@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".LoginActivity">
+
+    <ImageView
+        android:id="@+id/imageView_ipca_logo"
+        android:layout_width="match_parent"
+        android:layout_height="125dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="50dp"
+        app:srcCompat="@drawable/ipca_logo" />
+
+    <TextView
+        android:id="@+id/textView_login"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView_ipca_logo"
+        android:layout_marginTop="25dp"
+        android:layout_marginLeft="25dp"
+        android:layout_marginRight="25dp"
+        android:text="@string/Login"
+        android:textAlignment="viewStart"
+        android:textStyle="bold"
+        android:textSize="30sp" />
+    <!--
+    <Button
+        android:id="@+id/button_email"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:layout_marginLeft="25dp"
+        android:background="@drawable/rounded_button"
+        android:text="@string/Email"
+        android:textSize="11sp"
+        app:layout_constraintTop_toBottomOf="@+id/textView_login"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toLeftOf="@+id/button_student_number" />
+
+    <Button
+        android:id="@+id/button_student_number"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:layout_marginRight="25dp"
+        android:background="@drawable/rounded_button"
+        android:text="@string/Student_Number"
+        android:textSize="11sp"
+        app:layout_constraintTop_toBottomOf="@+id/textView_login"
+        app:layout_constraintLeft_toRightOf="@+id/button_email"
+        app:layout_constraintRight_toRightOf="parent" />
+    -->
+    <EditText
+        android:id="@+id/editText_email"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:autofillHints="emailAddress"
+        android:hint="@string/Email"
+        android:inputType="textEmailAddress"
+        android:minHeight="50dp"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/textView_login"
+        android:background="@drawable/edit_text_border"/>
+
+    <EditText
+        android:id="@+id/editText_password"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/editText_email"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:hint="@string/Password"
+        android:inputType="textPassword"
+        android:autofillHints="password"
+        android:minHeight="50dp"
+        android:background="@drawable/edit_text_border"/>
+
+    <Button
+        android:id="@+id/button_login"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="25dp"
+        android:layout_marginRight="25dp"
+        android:layout_marginBottom="50dp"
+        android:background="@drawable/rounded_button"
+        android:minHeight="60dp"
+        android:text="@string/Login"
+        app:layout_constraintBottom_toTopOf="@+id/textView_signup_link"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:onClick="performLogin"/>
+
+    <TextView
+        android:id="@+id/textView_signup_link"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginBottom="75dp"
+        android:layout_marginLeft="25dp"
+        android:layout_marginRight="25dp"
+        android:text="or Sign up here"
+        android:textAlignment="center"
+        android:clickable="true"
+        android:onClick="performSignUp"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

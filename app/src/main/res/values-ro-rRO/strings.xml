@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">CM_TP</string>
+    <string name="Welcome">Bine ați venit</string>
+    <string name="Password">Parola</string>
+    <string name="Login">Autentificare</string>
+    <string name="Email">Email</string>
+    <string name="Student_Number">Numărul studentului</string>
+</resources>
