@@ -5,5 +5,9 @@
     <string name="Password">Parola</string>
     <string name="Login">Autentificare</string>
     <string name="Email">Email</string>
-    <string name="Student_Number">Numărul studentului</string>
+    <string name="Student_number">Numărul studentului</string>
+    <string name="Sign_Up">Înscrieți-vă</string>
+    <string name="Name">Nume</string>
+    <string name="Last_name">Nume de familie</string>
+    <string name="First_name">Nume și prenume</string>
 </resources>
