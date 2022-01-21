@@ -11,4 +11,5 @@
     <string name="First_name">First name</string>
     <string name="Save_credentials">Save credentials</string>
     <string name="Error_invalid_credentials">Invalid credentials</string>
+    <string name="Fill_out_all_fields">Fill out all fields</string>
 </resources>

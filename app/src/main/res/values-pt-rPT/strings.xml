@@ -12,4 +12,5 @@
     <string name="First_name">Nome próprio</string>
     <string name="Save_credentials">Guardar credenciais</string>
     <string name="Error_invalid_credentials">Credenciais inválidas</string>
+    <string name="Fill_out_all_fields">Preencha todos os campos</string>
 </resources>

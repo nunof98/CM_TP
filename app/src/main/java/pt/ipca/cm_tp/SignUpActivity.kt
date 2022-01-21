@@ -6,7 +6,9 @@ import android.os.Bundle
 import android.view.View
 import android.widget.Button
 import android.widget.EditText
+import android.widget.TextView
 import android.widget.Toast
+import com.google.android.material.textfield.TextInputEditText
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
@@ -23,23 +25,23 @@ class SignUpActivity : AppCompatActivity() {
         auth = Firebase.auth
 
         findViewById<Button>(R.id.button_sign_up).setOnClickListener {
-            changeToLoginActivity()
+            performSignUp()
         }
+
+
     }
 
-    fun performSignUp(view: View) {
-        val firstNameET = findViewById<EditText>(R.id.editText_first_name)
-        val lastNameET = findViewById<EditText>(R.id.editText_last_name)
-        val emailET = findViewById<EditText>(R.id.editText_email)
-        val passwordET = findViewById<EditText>(R.id.editText_password)
+    fun performSignUp() {
+        val nameTET = findViewById<TextInputEditText>(R.id.tet_name)
+        val emailTET = findViewById<TextInputEditText>(R.id.tet_email)
+        val passwordTET = findViewById<TextInputEditText>(R.id.tet_password)
 
         // Get user information
-        val firstName = firstNameET.text.toString()
-        val lastName = lastNameET.text.toString()
-        val email = emailET.text.toString()
-        val password = passwordET.text.toString()
+        val name = nameTET.text.toString()
+        val email = emailTET.text.toString()
+        val password = passwordTET.text.toString()
 
-        if (firstName.isNotEmpty() && lastName.isNotEmpty() && email.isNotEmpty() && password.isNotEmpty())
+        if (name.isNotEmpty() && email.isNotEmpty() && password.isNotEmpty())
         {
             auth.createUserWithEmailAndPassword(email, password)
                 .addOnCompleteListener(this) { task ->
@@ -55,7 +57,7 @@ class SignUpActivity : AppCompatActivity() {
                 }
         } else {
             // If user doesn't fill out all fields
-            Toast.makeText(this,"Fill out all fields", Toast.LENGTH_LONG).show()
+            findViewById<TextView>(R.id.textView_error).visibility = View.VISIBLE
         }
     }
 

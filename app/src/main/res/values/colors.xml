@@ -7,9 +7,15 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+
+    <!-- My colors -->
     <color name="red">#FF0000</color>
     <color name="ipca_green">#037B4A</color>
+    <color name="ipca_green_light">#48ab76</color>
+    <color name="ipca_green_dark">#004e21</color>
     <color name="space_gray">#303239</color>
-    <color name="space_black">#23262B</color>
+    <color name="space_gray_light">#595b63</color>
+    <color name="space_gray_dark">#23262B</color>
+    <color name="space_black">#070a13</color>
     <color name="light_gray">#DADEE3</color>
 </resources>

@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".SignUpActivity">
+    tools:context=".SignUpActivity"
+    android:background="?colorPrimary">
 
     <ImageView
         android:id="@+id/imageView_ipca_logo"
@@ -32,69 +33,97 @@
         android:textStyle="bold"
         android:textSize="30sp" />
 
-    <EditText
-        android:id="@+id/editText_first_name"
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/til_name"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="50dp"
-        android:layout_marginLeft="30dp"
-        android:layout_marginRight="30dp"
-        android:autofillHints="name"
-        android:hint="@string/First_name"
-        android:inputType="textPersonName"
-        android:minHeight="50dp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@id/textView_sign_up"
-        android:background="@drawable/edit_text_border"/>
+        android:layout_marginTop="50dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:hint="@string/Name"
+        android:textColorHint="?colorSecondaryVariant">
 
-    <EditText
-        android:id="@+id/editText_last_name"
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/tet_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:autofillHints="name"
+            android:ems="25"
+            android:imeOptions="actionNext"
+            android:inputType="textPersonName"
+            android:minHeight="50dp"
+            android:background="?colorPrimary"/>
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/til_email"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/editText_first_name"
-        android:layout_marginTop="10dp"
+        app:layout_constraintTop_toBottomOf="@id/til_name"
+        android:layout_marginTop="20dp"
         android:layout_marginLeft="30dp"
         android:layout_marginRight="30dp"
-        android:hint="@string/Last_name"
-        android:inputType="textPersonName"
-        android:autofillHints="name"
-        android:minHeight="50dp"
-        android:background="@drawable/edit_text_border"/>
-
-    <EditText
-        android:id="@+id/editText_email"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:layout_marginLeft="30dp"
-        android:layout_marginRight="30dp"
-        android:autofillHints="emailAddress"
         android:hint="@string/Email"
-        android:inputType="textEmailAddress"
-        android:minHeight="50dp"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/editText_last_name"
-        android:background="@drawable/edit_text_border"/>
+        android:textColorHint="?colorSecondaryVariant">
 
-    <EditText
-        android:id="@+id/editText_password"
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/tet_email"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:autofillHints="emailAddress"
+            android:ems="25"
+            android:imeOptions="actionNext"
+            android:inputType="textEmailAddress"
+            android:minHeight="50dp"
+            android:background="?colorPrimary"/>
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/til_password"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/editText_email"
+        app:layout_constraintTop_toBottomOf="@id/til_email"
         android:layout_marginTop="10dp"
         android:layout_marginLeft="30dp"
         android:layout_marginRight="30dp"
         android:hint="@string/Password"
-        android:inputType="textPassword"
-        android:autofillHints="password"
-        android:minHeight="50dp"
-        android:background="@drawable/edit_text_border"/>
+        app:passwordToggleEnabled="true"
+        android:textColorHint="?colorSecondaryVariant">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/tet_password"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:ems="16"
+            android:imeOptions="actionDone"
+            android:inputType="textPassword"
+            android:autofillHints="password"
+            android:minHeight="50dp"
+            android:background="?colorPrimary"/>
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <TextView
+        android:id="@+id/textView_error"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/til_password"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:text="@string/Fill_out_all_fields"
+        android:visibility="gone"
+        android:textColor="@color/red"/>
 
     <Button
         android:id="@+id/button_sign_up"
@@ -104,8 +133,10 @@
         android:layout_marginRight="25dp"
         android:layout_marginBottom="125dp"
         android:background="@drawable/rounded_button"
+        android:backgroundTint="?colorOnPrimary"
         android:minHeight="60dp"
         android:text="@string/Sign_Up"
+        android:textAllCaps="false"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"/>

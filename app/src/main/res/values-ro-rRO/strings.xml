@@ -12,4 +12,5 @@
     <string name="First_name">Nume și prenume</string>
     <string name="Save_credentials">Salvați acreditările</string>
     <string name="Error_invalid_credentials">Acreditări nevalabile</string>
+    <string name="Fill_out_all_fields">Completați toate câmpurile</string>
 </resources>
