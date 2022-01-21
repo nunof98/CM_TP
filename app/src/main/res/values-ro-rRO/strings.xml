@@ -10,4 +10,6 @@
     <string name="Name">Nume</string>
     <string name="Last_name">Nume de familie</string>
     <string name="First_name">Nume și prenume</string>
+    <string name="Save_credentials">Salvați acreditările</string>
+    <string name="Error_invalid_credentials">Acreditări nevalabile</string>
 </resources>

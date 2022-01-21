@@ -9,4 +9,6 @@
     <string name="Name">Name</string>
     <string name="Last_name">Last name</string>
     <string name="First_name">First name</string>
+    <string name="Save_credentials">Save credentials</string>
+    <string name="Error_invalid_credentials">Invalid credentials</string>
 </resources>

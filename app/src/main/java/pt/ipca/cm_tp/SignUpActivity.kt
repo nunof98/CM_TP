@@ -4,6 +4,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
@@ -20,6 +21,10 @@ class SignUpActivity : AppCompatActivity() {
 
         // Initialize Firebase Auth
         auth = Firebase.auth
+
+        findViewById<Button>(R.id.button_sign_up).setOnClickListener {
+            changeToLoginActivity()
+        }
     }
 
     fun performSignUp(view: View) {
@@ -40,7 +45,7 @@ class SignUpActivity : AppCompatActivity() {
                 .addOnCompleteListener(this) { task ->
                     if (task.isSuccessful) {
                         // Get intent and start activity
-                        startActivity(Intent(this, LoginActivity::class.java))
+                        changeToLoginActivity()
                         // Sign in success, update UI with the signed-in user's information
                         Toast.makeText(this,"You are signed up", Toast.LENGTH_LONG).show()
                     } else {
@@ -54,7 +59,8 @@ class SignUpActivity : AppCompatActivity() {
         }
     }
 
-    fun changeToLoginActivity(view: android.view.View) {
-        startActivity(Intent(this, LoginActivity::class.java))
+    fun changeToLoginActivity() {
+        val intent = Intent(this, LoginActivity::class.java)
+        startActivity(intent)
     }
 }

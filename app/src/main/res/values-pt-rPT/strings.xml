@@ -10,4 +10,6 @@
     <string name="Name">Nome</string>
     <string name="Last_name">Apelido</string>
     <string name="First_name">Nome próprio</string>
+    <string name="Save_credentials">Guardar credenciais</string>
+    <string name="Error_invalid_credentials">Credenciais inválidas</string>
 </resources>

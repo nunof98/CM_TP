@@ -14,7 +14,7 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         android:layout_marginTop="50dp"
-        app:srcCompat="@drawable/ipca_logo" />
+        app:srcCompat="@drawable/ipca_logo"/>
 
     <TextView
         android:id="@+id/textView_login"
@@ -27,6 +27,7 @@
         android:layout_marginLeft="25dp"
         android:layout_marginRight="25dp"
         android:text="@string/Login"
+        android:textColor="?colorSecondary"
         android:textAlignment="viewStart"
         android:textStyle="bold"
         android:textSize="30sp" />
@@ -57,37 +58,80 @@
         app:layout_constraintLeft_toRightOf="@+id/button_email"
         app:layout_constraintRight_toRightOf="parent" />
     -->
-    <EditText
-        android:id="@+id/editText_email"
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/til_email"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="50dp"
-        android:layout_marginLeft="30dp"
-        android:layout_marginRight="30dp"
-        android:autofillHints="emailAddress"
-        android:hint="@string/Email"
-        android:inputType="textEmailAddress"
-        android:minHeight="50dp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@id/textView_login"
-        android:background="@drawable/edit_text_border"/>
+        android:layout_marginTop="50dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:hint="@string/Email">
 
-    <EditText
-        android:id="@+id/editText_password"
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/tet_email"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:autofillHints="emailAddress"
+            android:ems="25"
+            android:imeOptions="actionDone"
+            android:inputType="textEmailAddress"
+            android:minHeight="50dp"
+            android:background="@drawable/edit_text_border" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/til_password"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/editText_email"
+        app:layout_constraintTop_toBottomOf="@id/til_email"
         android:layout_marginTop="10dp"
         android:layout_marginLeft="30dp"
         android:layout_marginRight="30dp"
         android:hint="@string/Password"
-        android:inputType="textPassword"
-        android:autofillHints="password"
-        android:minHeight="50dp"
-        android:background="@drawable/edit_text_border"/>
+        app:passwordToggleEnabled="true">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/tet_password"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:ems="10"
+            android:imeOptions="actionDone"
+            android:inputType="textPassword"
+            android:autofillHints="password"
+            android:minHeight="50dp"
+            android:background="@drawable/edit_text_border"/>
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <TextView
+        android:id="@+id/textView_error"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/til_password"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:text="@string/Error_invalid_credentials"
+        android:visibility="gone"
+        android:textColor="@color/red"/>
+
+    <CheckBox
+        android:id="@+id/checkBox_login"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="30dp"
+        android:buttonTint="?colorPrimary"
+        android:text="@string/Save_credentials"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/textView_error" />
 
     <Button
         android:id="@+id/button_login"
@@ -99,6 +143,7 @@
         android:background="@drawable/rounded_button"
         android:minHeight="60dp"
         android:text="@string/Login"
+        android:textAllCaps="false"
         app:layout_constraintBottom_toTopOf="@+id/textView_signup_link"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"

@@ -7,24 +7,13 @@
     tools:context=".SignUpActivity">
 
     <ImageView
-        android:id="@+id/imageView_back_arrow"
-        android:layout_width="25dp"
-        android:layout_height="25dp"
-        android:layout_marginStart="25dp"
-        android:layout_marginTop="25dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/black_left_arrow"
-        android:clickable="true"
-        android:onClick="changeToLoginActivity"/>
-
-    <ImageView
         android:id="@+id/imageView_ipca_logo"
         android:layout_width="match_parent"
         android:layout_height="125dp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView_back_arrow"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="50dp"
         app:srcCompat="@drawable/ipca_logo" />
 
     <TextView
@@ -38,6 +27,7 @@
         android:layout_marginLeft="25dp"
         android:layout_marginRight="25dp"
         android:text="@string/Sign_Up"
+        android:textColor="?colorSecondary"
         android:textAlignment="viewStart"
         android:textStyle="bold"
         android:textSize="30sp" />
@@ -118,7 +108,6 @@
         android:text="@string/Sign_Up"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        android:onClick="performSignUp"/>
+        app:layout_constraintRight_toRightOf="parent"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

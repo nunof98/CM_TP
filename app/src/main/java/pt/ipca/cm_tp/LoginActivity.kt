@@ -12,71 +12,93 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 import android.text.Html
+import android.widget.CheckBox
 import android.widget.TextView
+import com.google.android.material.textfield.TextInputEditText
+import org.w3c.dom.Text
 
 
 class LoginActivity : AppCompatActivity() {
 
     private lateinit var auth: FirebaseAuth
-    private lateinit var emailET: EditText
-    private lateinit var passwordET: EditText
+    private lateinit var emailTET: TextInputEditText
+    private lateinit var passwordTET: TextInputEditText
+    private lateinit var checkBox: CheckBox
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
 
-        // change text on textView
+        // Change text on textView
         val signupTV = findViewById<TextView>(R.id.textView_signup_link)
         signupTV.text = Html.fromHtml("or <u><font color=#037B4A>Sign Up here</font></u>")
 
         // Initialize Firebase Auth
         auth = Firebase.auth
 
-        emailET = findViewById<EditText>(R.id.editText_email)
-        passwordET = findViewById<EditText>(R.id.editText_password)
+        // Get objects from login activity
+        emailTET = findViewById<TextInputEditText>(R.id.tet_email)
+        passwordTET = findViewById<TextInputEditText>(R.id.tet_password)
+        checkBox = findViewById<CheckBox>(R.id.checkBox_login)
 
-        // autofill email and password
-        emailET.setText(getSharedPreferences(this).getString("email", ""))
-        passwordET.setText(getSharedPreferences(this).getString("password", ""))
+        // Autofill email and password and checkBox
+        emailTET.setText(getSharedPreferences(this).getString("email", ""))
+        passwordTET.setText(getSharedPreferences(this).getString("password", ""))
+        checkBox.isChecked = getSharedPreferences(this).getBoolean("checkBox", false)
 
-        // get email and password from sharedPreferences
+        // Get email and password from sharedPreferences
         val email = getSharedPreferences(this).getString("email", "") ?: ""
         val password = getSharedPreferences(this).getString("password", "") ?: ""
 
-        // auto login if email and password are available
+        // Auto login if email and password are available
         if(email.isNotEmpty() && password.isNotEmpty()){
             // go to second activity after login
-            //startActivity(Intent(this, MainActivity::class.java))
+            //changeToMainActivity()
         }
     }
 
     fun performLogin(view: View) {
-        val emailET = findViewById<EditText>(R.id.editText_email)
-        val passwordET = findViewById<EditText>(R.id.editText_password)
+        // Get objects from login activity
+        val emailTET = findViewById<TextInputEditText>(R.id.tet_email)
+        val passwordTET = findViewById<TextInputEditText>(R.id.tet_password)
+        val checkBox = findViewById<CheckBox>(R.id.checkBox_login)
 
-        val email = emailET.text.toString()
-        val password = passwordET.text.toString()
+        // Get text from fields
+        val email = emailTET.text.toString()
+        val password = passwordTET.text.toString()
+        val saveCredentials = checkBox.isChecked
 
+        // Authenticate with Firebase
         auth.signInWithEmailAndPassword(email, password)
             .addOnCompleteListener(this) { task ->
                 if (task.isSuccessful) {
-                    // commit email and password to sharedPreferences
-                    getSharedPreferences(this).edit().putString("email", email).apply()
-                    getSharedPreferences(this).edit().putString("password", password).apply()
+                    // Validate if checkBox is checked
+                    if (saveCredentials)
+                    {
+                        // commit email and password to sharedPreferences
+                        getSharedPreferences(this).edit().putString("email", email).apply()
+                        getSharedPreferences(this).edit().putString("password", password).apply()
+                    }
+                    // commit checkBox state to sharedPreferences
+                    getSharedPreferences(this).edit().putBoolean("checkBox", saveCredentials).apply()
                     // get intent and start activity
-                    val intent = Intent(this@LoginActivity, MainActivity::class.java)
-                    startActivity(intent)
-                    // Sign in success, update UI with the signed-in user's information
-                    Toast.makeText(this,"Logged in", Toast.LENGTH_LONG).show()
+                    changeToMainActivity()
                 } else {
                     // If sign in fails, display a message to the user.
-                    Toast.makeText(this,"Logged in failed", Toast.LENGTH_LONG).show()
+                    findViewById<TextView>(R.id.textView_error).visibility = View.VISIBLE
                 }
             }
     }
 
-    fun changeToSignUpActivity(view: android.view.View) {
-        startActivity(Intent(this, SignUpActivity::class.java))
+    fun changeToSignUpActivity(view: View) {
+        val intent = Intent(this, SignUpActivity::class.java)
+        startActivity(intent)
+    }
+
+    fun changeToMainActivity() {
+        val intent = Intent(this, MainActivity::class.java)
+        startActivity(intent)
+        finish()
     }
 
     private fun getSharedPreferences(context: Context): SharedPreferences {
