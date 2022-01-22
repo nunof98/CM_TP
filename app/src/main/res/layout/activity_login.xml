@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".LoginActivity"
-    android:background="?colorPrimary">
+    android:background="?colorOnPrimary">
 
     <ImageView
         android:id="@+id/imageView_ipca_logo"
@@ -32,33 +32,6 @@
         android:textAlignment="viewStart"
         android:textStyle="bold"
         android:textSize="30sp" />
-    <!--
-    <Button
-        android:id="@+id/button_email"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="50dp"
-        android:layout_marginLeft="25dp"
-        android:background="@drawable/rounded_button"
-        android:text="@string/Email"
-        android:textSize="11sp"
-        app:layout_constraintTop_toBottomOf="@+id/textView_login"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toLeftOf="@+id/button_student_number" />
-
-    <Button
-        android:id="@+id/button_student_number"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="50dp"
-        android:layout_marginRight="25dp"
-        android:background="@drawable/rounded_button"
-        android:text="@string/Student_Number"
-        android:textSize="11sp"
-        app:layout_constraintTop_toBottomOf="@+id/textView_login"
-        app:layout_constraintLeft_toRightOf="@+id/button_email"
-        app:layout_constraintRight_toRightOf="parent" />
-    -->
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/til_email"
@@ -71,7 +44,8 @@
         android:layout_marginLeft="30dp"
         android:layout_marginRight="30dp"
         android:hint="@string/Email"
-        android:textColorHint="?colorSecondaryVariant" >
+        app:endIconMode="clear_text"
+        app:startIconDrawable="@drawable/ic_email">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/tet_email"
@@ -81,7 +55,8 @@
             android:ems="25"
             android:imeOptions="actionNext"
             android:inputType="textEmailAddress"
-            android:minHeight="50dp"/>
+            android:minHeight="50dp"
+            android:background="?colorOnPrimary"/>
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
@@ -91,24 +66,23 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@id/til_email"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="15dp"
         android:layout_marginLeft="30dp"
         android:layout_marginRight="30dp"
         android:hint="@string/Password"
-        app:passwordToggleEnabled="true"
-        android:textColorHint="?colorSecondaryVariant">
+        app:endIconMode="password_toggle"
+        app:startIconDrawable="@drawable/ic_password">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/tet_password"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
             android:ems="10"
             android:imeOptions="actionDone"
             android:inputType="textPassword"
             android:autofillHints="password"
             android:minHeight="50dp"
-            android:background="?colorPrimary"/>
+            android:background="?colorOnPrimary"/>
 
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -124,14 +98,14 @@
         android:layout_marginRight="30dp"
         android:text="@string/Error_invalid_credentials"
         android:visibility="gone"
-        android:textColor="@color/red"/>
+        android:textColor="?colorError"/>
 
     <CheckBox
         android:id="@+id/checkBox_login"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="30dp"
-        android:buttonTint="?colorOnPrimary"
+        android:buttonTint="?colorPrimary"
         android:text="@string/Save_credentials"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toBottomOf="@id/textView_error" />
@@ -144,9 +118,7 @@
         android:layout_marginRight="25dp"
         android:layout_marginBottom="50dp"
         android:background="@drawable/rounded_button"
-        android:backgroundTint="?colorOnPrimary"
         android:minHeight="60dp"
-        android:onClick="performLogin"
         android:text="@string/Login"
         android:textAllCaps="false"
         app:layout_constraintBottom_toTopOf="@+id/textView_signup_link"
@@ -164,6 +136,7 @@
         android:layout_marginLeft="25dp"
         android:layout_marginRight="25dp"
         android:textAlignment="center"
+        android:focusable="true"
         android:clickable="true"
         android:onClick="changeToSignUpActivity"/>
 

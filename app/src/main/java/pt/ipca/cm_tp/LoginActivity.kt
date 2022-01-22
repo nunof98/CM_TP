@@ -6,28 +6,30 @@ import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
-import android.widget.EditText
-import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 import android.text.Html
-import android.widget.CheckBox
-import android.widget.TextView
+import android.widget.*
 import com.google.android.material.textfield.TextInputEditText
+import com.google.android.material.textfield.TextInputLayout
 import org.w3c.dom.Text
 
 
 class LoginActivity : AppCompatActivity() {
 
     private lateinit var auth: FirebaseAuth
-    private lateinit var emailTET: TextInputEditText
-    private lateinit var passwordTET: TextInputEditText
+    private lateinit var textInputEmail: TextInputLayout
+    private lateinit var textInputPassword: TextInputLayout
     private lateinit var checkBox: CheckBox
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
+
+        findViewById<Button>(R.id.button_login).setOnClickListener {
+            performLogin()
+        }
 
         // Change text on textView
         val signupTV = findViewById<TextView>(R.id.textView_signup_link)
@@ -37,13 +39,13 @@ class LoginActivity : AppCompatActivity() {
         auth = Firebase.auth
 
         // Get objects from login activity
-        emailTET = findViewById<TextInputEditText>(R.id.tet_email)
-        passwordTET = findViewById<TextInputEditText>(R.id.tet_password)
-        checkBox = findViewById<CheckBox>(R.id.checkBox_login)
+        textInputEmail = findViewById(R.id.til_email)
+        textInputPassword = findViewById(R.id.til_password)
+        checkBox = findViewById(R.id.checkBox_login)
 
         // Autofill email and password and checkBox
-        emailTET.setText(getSharedPreferences(this).getString("email", ""))
-        passwordTET.setText(getSharedPreferences(this).getString("password", ""))
+        textInputEmail.editText?.setText(getSharedPreferences(this).getString("email", ""))
+        textInputPassword.editText?.setText(getSharedPreferences(this).getString("password", ""))
         checkBox.isChecked = getSharedPreferences(this).getBoolean("checkBox", false)
 
         // Get email and password from sharedPreferences
@@ -53,41 +55,54 @@ class LoginActivity : AppCompatActivity() {
         // Auto login if email and password are available
         if(email.isNotEmpty() && password.isNotEmpty()){
             // go to second activity after login
-            //changeToMainActivity()
+            //performLogin()
         }
     }
 
-    fun performLogin(view: View) {
-        // Get objects from login activity
-        val emailTET = findViewById<TextInputEditText>(R.id.tet_email)
-        val passwordTET = findViewById<TextInputEditText>(R.id.tet_password)
-        val checkBox = findViewById<CheckBox>(R.id.checkBox_login)
-
+    private fun performLogin() {
         // Get text from fields
-        val email = emailTET.text.toString()
-        val password = passwordTET.text.toString()
+        val email = textInputEmail.editText?.text.toString()
+        val password = textInputPassword.editText?.text.toString()
         val saveCredentials = checkBox.isChecked
 
-        // Authenticate with Firebase
-        auth.signInWithEmailAndPassword(email, password)
-            .addOnCompleteListener(this) { task ->
-                if (task.isSuccessful) {
-                    // Validate if checkBox is checked
-                    if (saveCredentials)
-                    {
-                        // commit email and password to sharedPreferences
-                        getSharedPreferences(this).edit().putString("email", email).apply()
-                        getSharedPreferences(this).edit().putString("password", password).apply()
+        if (email.isNotEmpty()) {
+            //Remove error message and layout space
+            textInputEmail.error = null
+            textInputEmail.isErrorEnabled = false
+
+            if (password.isNotEmpty()) {
+                //Remove error message and layout space
+                textInputPassword.error = null
+                textInputPassword.isErrorEnabled = false
+
+                // Authenticate with Firebase
+                auth.signInWithEmailAndPassword(email, password)
+                    .addOnCompleteListener(this) { task ->
+                        if (task.isSuccessful) {
+                            // Validate if checkBox is checked
+                            if (saveCredentials)
+                            {
+                                // commit email and password to sharedPreferences
+                                getSharedPreferences(this).edit().putString("email", email).apply()
+                                getSharedPreferences(this).edit().putString("password", password).apply()
+                            }
+                            // commit checkBox state to sharedPreferences
+                            getSharedPreferences(this).edit().putBoolean("checkBox", saveCredentials).apply()
+                            // get intent and start activity
+                            changeToMainActivity()
+                        } else {
+                            // If sign in fails, display a message to the user.
+                            findViewById<TextView>(R.id.textView_error).visibility = View.VISIBLE
+                        }
                     }
-                    // commit checkBox state to sharedPreferences
-                    getSharedPreferences(this).edit().putBoolean("checkBox", saveCredentials).apply()
-                    // get intent and start activity
-                    changeToMainActivity()
-                } else {
-                    // If sign in fails, display a message to the user.
-                    findViewById<TextView>(R.id.textView_error).visibility = View.VISIBLE
-                }
+            } else {
+                //Display error message
+                textInputPassword.error = "Input a password"
             }
+        } else {
+            //Display error message
+            textInputEmail.error = "Enter an email"
+        }
     }
 
     fun changeToSignUpActivity(view: View) {
@@ -95,7 +110,7 @@ class LoginActivity : AppCompatActivity() {
         startActivity(intent)
     }
 
-    fun changeToMainActivity() {
+    private fun changeToMainActivity() {
         val intent = Intent(this, MainActivity::class.java)
         startActivity(intent)
         finish()

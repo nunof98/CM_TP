@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".SignUpActivity"
-    android:background="?colorPrimary">
+    android:background="?colorOnPrimary">
 
     <ImageView
         android:id="@+id/imageView_ipca_logo"
@@ -44,7 +44,8 @@
         android:layout_marginLeft="30dp"
         android:layout_marginRight="30dp"
         android:hint="@string/Name"
-        android:textColorHint="?colorSecondaryVariant">
+        app:endIconMode="clear_text"
+        app:startIconDrawable="@drawable/ic_name">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/tet_name"
@@ -55,7 +56,7 @@
             android:imeOptions="actionNext"
             android:inputType="textPersonName"
             android:minHeight="50dp"
-            android:background="?colorPrimary"/>
+            android:background="?colorOnPrimary"/>
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
@@ -65,11 +66,12 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@id/til_name"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="15dp"
         android:layout_marginLeft="30dp"
         android:layout_marginRight="30dp"
         android:hint="@string/Email"
-        android:textColorHint="?colorSecondaryVariant">
+        app:endIconMode="clear_text"
+        app:startIconDrawable="@drawable/ic_email">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/tet_email"
@@ -80,7 +82,7 @@
             android:imeOptions="actionNext"
             android:inputType="textEmailAddress"
             android:minHeight="50dp"
-            android:background="?colorPrimary"/>
+            android:background="?colorOnPrimary"/>
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
@@ -90,24 +92,23 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@id/til_email"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="15dp"
         android:layout_marginLeft="30dp"
         android:layout_marginRight="30dp"
         android:hint="@string/Password"
-        app:passwordToggleEnabled="true"
-        android:textColorHint="?colorSecondaryVariant">
+        app:endIconMode="password_toggle"
+        app:startIconDrawable="@drawable/ic_password">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/tet_password"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="15dp"
             android:ems="16"
             android:imeOptions="actionDone"
             android:inputType="textPassword"
             android:autofillHints="password"
             android:minHeight="50dp"
-            android:background="?colorPrimary"/>
+            android:background="?colorOnPrimary"/>
 
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -117,13 +118,13 @@
         android:layout_height="wrap_content"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/til_password"
-        android:layout_marginTop="10dp"
+        app:layout_constraintBottom_toTopOf="@+id/button_sign_up"
+        android:layout_marginBottom="10dp"
         android:layout_marginLeft="30dp"
         android:layout_marginRight="30dp"
         android:text="@string/Fill_out_all_fields"
         android:visibility="gone"
-        android:textColor="@color/red"/>
+        android:textColor="?colorError"/>
 
     <Button
         android:id="@+id/button_sign_up"

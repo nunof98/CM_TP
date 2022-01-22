@@ -10,6 +10,8 @@
 
     <!-- My colors -->
     <color name="red">#FF0000</color>
+    <color name="red_dark">#b80027</color>
+    <color name="salmon">#cf6679</color>
     <color name="ipca_green">#037B4A</color>
     <color name="ipca_green_light">#48ab76</color>
     <color name="ipca_green_dark">#004e21</color>
