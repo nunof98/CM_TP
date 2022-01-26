@@ -1,16 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">CM_TP</string>
-    <string name="Welcome">Bine ați venit</string>
-    <string name="Password">Parola</string>
-    <string name="Login">Autentificare</string>
-    <string name="Email">Email</string>
-    <string name="Student_number">Numărul studentului</string>
-    <string name="Sign_Up">Înscrieți-vă</string>
-    <string name="Name">Nume</string>
-    <string name="Last_name">Nume de familie</string>
-    <string name="First_name">Nume și prenume</string>
-    <string name="Save_credentials">Salvați acreditările</string>
-    <string name="Error_invalid_credentials">Acreditări nevalabile</string>
-    <string name="Fill_out_all_fields">Completați toate câmpurile</string>
+    <string name="hint_password">Parola</string>
+    <string name="action_login">Autentificare</string>
+    <string name="hint_email">Email</string>
+    <string name="action_sign_Up">Înscrieți-vă</string>
+    <string name="hint_name">Nume</string>
+    <string name="action_save_credentials">Salvați acreditările</string>
+    <string name="error_invalid_credentials">Acreditări nevalabile</string>
+    <string name="error_fill_out_all_fields">Completați toate câmpurile</string>
+    <string name="error_enter_an_email">Introduceți un e-mail</string>
+    <string name="dialog_you_are_signed_up">Sunteți înscris</string>
+    <string name="dialog_ign_up_failed">Înregistrarea a eșuat</string>
+    <string name="error_you_must_use_an_IPCA_email">Trebuie să utilizați un e-mail IPCA</string>
+    <string name="error_password_isnt_strong_enough">Parola nu este suficient de puternică</string>
+    <string name="main_menu_home">Pagina principală</string>
+    <string name="main_menu_subjects">Discipline</string>
+    <string name="main_menu_about">Informații</string>
+    <string name="error_enter_a_password">Introduceți o parolă</string>
+    <string name="main_menu_calendar">Calendar</string>
+    <string name="about_copyright">Copyright © 2022\\nMEEC, IPCA, Portugalia</string>
+    <string name="authors">Autori</string>
+    <string name="source_code">Codul sursă</string>
 </resources>

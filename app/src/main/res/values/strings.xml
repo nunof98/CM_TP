@@ -1,15 +1,45 @@
 <resources>
     <string name="app_name">CM_TP</string>
-    <string name="Welcome">Welcome</string>
-    <string name="Password">Password</string>
-    <string name="Login">Login</string>
-    <string name="Email">Email</string>
-    <string name="Student_number">Student number</string>
-    <string name="Sign_Up">Sign Up</string>
-    <string name="Name">Name</string>
-    <string name="Last_name">Last name</string>
-    <string name="First_name">First name</string>
-    <string name="Save_credentials">Save credentials</string>
-    <string name="Error_invalid_credentials">Invalid credentials</string>
-    <string name="Fill_out_all_fields">Fill out all fields</string>
+
+    <!-- Login -->
+    <string name="action_login">Login</string>
+    <string name="action_save_credentials">Save credentials</string>
+
+    <string name="hint_email">Email</string>
+    <string name="hint_password">Password</string>
+
+    <string name="error_invalid_credentials">Invalid credentials</string>
+
+    <!-- Sign Up -->
+    <string name="action_sign_Up">Sign Up</string>
+    <string name="hint_name">Name</string>
+
+    <string name="dialog_you_are_signed_up">You are signed up</string>
+    <string name="dialog_ign_up_failed">Sign up failed</string>
+
+    <string name="error_fill_out_all_fields">Fill out all fields</string>
+    <string name="error_enter_an_email">Enter an email</string>
+    <string name="error_enter_a_password">Enter a password</string>
+    <string name="error_you_must_use_an_IPCA_email">You must use an IPCA email</string>
+    <string name="error_password_isnt_strong_enough">Password isn\'t strong enough</string>
+
+    <!-- Home bar -->
+    <string name="main_menu_home">Home</string>
+    <string name="main_menu_subjects">Subjects</string>
+    <string name="main_menu_calendar">Calendar</string>
+    <string name="main_menu_about">About</string>
+
+    <!-- About -->
+    <string name="about_copyright">Copyright © 2022\nMEEC, IPCA, Portugal</string>
+
+    <!-- Authors -->
+    <string name="authors">Authors</string>
+    <string name="authors_nuno_fernandes" translatable="false">Nuno Fernandes</string>
+    <string name="authors_joaquin_dillen" translatable="false">Joaquin Dillen</string>
+    <string name="authors_andre_fernandes" translatable="false">André Fernandes</string>
+
+    <!-- Github -->
+    <string name="source_code">Source code</string>
+    <string name="github_url" translatable="false">https://github.com/nunof98/CM_TP</string>
+
 </resources>

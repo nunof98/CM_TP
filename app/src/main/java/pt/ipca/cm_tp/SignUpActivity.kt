@@ -5,10 +5,8 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.Button
-import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
-import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
@@ -57,10 +55,12 @@ class SignUpActivity : AppCompatActivity() {
                             // Get intent and start activity
                             changeToLoginActivity()
                             // Sign in success, update UI with the signed-in user's information
-                            Toast.makeText(this,"You are signed up", Toast.LENGTH_LONG).show()
+                            Toast.makeText(this, getString(R.string.dialog_you_are_signed_up),
+                                Toast.LENGTH_LONG).show()
                         } else {
                             // If sign in fails, display a message to the user.
-                            Toast.makeText(this,"Sign up failed", Toast.LENGTH_LONG).show()
+                            Toast.makeText(this, getString(R.string.dialog_ign_up_failed),
+                                Toast.LENGTH_LONG).show()
                         }
                     }
             }
@@ -84,11 +84,11 @@ class SignUpActivity : AppCompatActivity() {
                 return true
             } else {
                 //Display error message
-                textInputEmail.error = "You must use an IPCA email"
+                textInputEmail.error = getString(R.string.error_you_must_use_an_IPCA_email)
             }
         } else {
             //Display error message
-            textInputEmail.error = "Enter an email"
+            textInputEmail.error = getString(R.string.error_enter_an_email)
         }
 
         return false
@@ -111,14 +111,14 @@ class SignUpActivity : AppCompatActivity() {
 
             // Display error message
             if (!m.matches()) {
-                textInputPassword.error = "Password isn't strong enough"
+                textInputPassword.error = getString(R.string.error_password_isnt_strong_enough)
             }
 
             return m.matches()
 
         } else {
             // Display error message
-            textInputPassword.error = "Enter a password"
+            textInputPassword.error = getString(R.string.error_enter_a_password)
         }
 
         return false

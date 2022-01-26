@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/home"
+        android:enabled="true"
+        android:icon="@drawable/ic_home"
+        android:title="@string/main_menu_home"/>
+
+    <item
+        android:id="@+id/subjects"
+        android:enabled="true"
+        android:icon="@drawable/ic_open_book"
+        android:title="@string/main_menu_subjects"/>
+
+    <item
+        android:id="@+id/calendar"
+        android:enabled="true"
+        android:icon="@drawable/ic_calendar"
+        android:title="@string/main_menu_calendar"/>
+
+    <item
+        android:id="@+id/about"
+        android:enabled="true"
+        android:icon="@drawable/ic_info"
+        android:title="@string/main_menu_about"/>
+
+</menu>

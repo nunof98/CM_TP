@@ -11,9 +11,7 @@ import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 import android.text.Html
 import android.widget.*
-import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout
-import org.w3c.dom.Text
 
 
 class LoginActivity : AppCompatActivity() {
@@ -52,11 +50,13 @@ class LoginActivity : AppCompatActivity() {
         val email = getSharedPreferences(this).getString("email", "") ?: ""
         val password = getSharedPreferences(this).getString("password", "") ?: ""
 
+        /*
         // Auto login if email and password are available
         if(email.isNotEmpty() && password.isNotEmpty()){
             // go to second activity after login
-            //performLogin()
+            performLogin()
         }
+        */
     }
 
     private fun performLogin() {
@@ -97,11 +97,11 @@ class LoginActivity : AppCompatActivity() {
                     }
             } else {
                 //Display error message
-                textInputPassword.error = "Input a password"
+                textInputPassword.error = getString(R.string.error_enter_a_password)
             }
         } else {
             //Display error message
-            textInputEmail.error = "Enter an email"
+            textInputEmail.error = getString(R.string.error_enter_an_email)
         }
     }
 

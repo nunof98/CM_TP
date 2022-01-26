@@ -27,7 +27,7 @@
         android:layout_marginTop="25dp"
         android:layout_marginLeft="25dp"
         android:layout_marginRight="25dp"
-        android:text="@string/Sign_Up"
+        android:text="@string/action_sign_Up"
         android:textColor="?colorSecondary"
         android:textAlignment="viewStart"
         android:textStyle="bold"
@@ -43,7 +43,7 @@
         android:layout_marginTop="50dp"
         android:layout_marginLeft="30dp"
         android:layout_marginRight="30dp"
-        android:hint="@string/Name"
+        android:hint="@string/hint_name"
         app:endIconMode="clear_text"
         app:startIconDrawable="@drawable/ic_name">
 
@@ -69,7 +69,7 @@
         android:layout_marginTop="15dp"
         android:layout_marginLeft="30dp"
         android:layout_marginRight="30dp"
-        android:hint="@string/Email"
+        android:hint="@string/hint_email"
         app:endIconMode="clear_text"
         app:startIconDrawable="@drawable/ic_email">
 
@@ -95,7 +95,7 @@
         android:layout_marginTop="15dp"
         android:layout_marginLeft="30dp"
         android:layout_marginRight="30dp"
-        android:hint="@string/Password"
+        android:hint="@string/hint_password"
         app:endIconMode="password_toggle"
         app:startIconDrawable="@drawable/ic_password">
 
@@ -119,10 +119,10 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintBottom_toTopOf="@+id/button_sign_up"
-        android:layout_marginBottom="10dp"
+        android:layout_marginBottom="20dp"
         android:layout_marginLeft="30dp"
         android:layout_marginRight="30dp"
-        android:text="@string/Fill_out_all_fields"
+        android:text="@string/error_fill_out_all_fields"
         android:visibility="gone"
         android:textColor="?colorError"/>
 
@@ -136,7 +136,7 @@
         android:background="@drawable/rounded_button"
         android:backgroundTint="?colorOnPrimary"
         android:minHeight="60dp"
-        android:text="@string/Sign_Up"
+        android:text="@string/action_sign_Up"
         android:textAllCaps="false"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
