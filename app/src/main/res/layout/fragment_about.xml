@@ -105,7 +105,10 @@
         app:layout_constraintRight_toRightOf="parent"
         android:layout_marginTop="5dp"
         android:text="@string/github_url"
-        android:textColor="?colorSecondary" />
+        android:textColor="?colorSecondary"
+        android:drawablePadding="10dp"
+        app:drawableStartCompat="@drawable/ic_github"
+        app:drawableTint="?colorSecondary" />
 
     <TextView
         android:id="@+id/textView_copyright"
