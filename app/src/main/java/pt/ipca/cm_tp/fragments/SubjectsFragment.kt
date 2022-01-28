@@ -4,6 +4,8 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ArrayAdapter
+import android.widget.ListView
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -24,19 +26,35 @@ class SubjectsFragment : Fragment(){
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        /*
+        val listView = requireView().findViewById<ListView>(R.id.listView_subjects)
+
+        val values = listOf<String>(
+            "Computação Móvel",
+            "Laboratórios Integrados I",
+            "Procesamento Digial de Sinal",
+            "Procesamento de Imagem e Visão por Computador",
+            "Sistemas Embebidos e Tempo Real")
+
+        val adapter = ArrayAdapter<String>(requireContext(), android.R.layout.simple_list_item_1, values)
+        listView.adapter = adapter
+
+         */
+
+
         val recyclerView = requireView().findViewById<RecyclerView>(R.id.recyclerView_subjects)
 
-        val values = listOf<DoubleString>(
-            DoubleString("CM", "Computação Móvel"),
-            DoubleString("LII", "Laboratórios Integrados I"),
-            DoubleString("PDS", "Procesamento Digial de Sinal"),
-            DoubleString("PIVC", "Procesamento de Imagem e Visão por Computador"),
-            DoubleString("SETR", "Sistemas Embebidos e Tempo Real"),
-        )
+        val values = listOf<String>(
+            "Computação Móvel",
+            "Laboratórios Integrados I",
+            "Procesamento Digial de Sinal",
+            "Procesamento de Imagem e Visão por Computador",
+            "Sistemas Embebidos e Tempo Real")
 
         val adapter = SubjectsAdapter(values)
         recyclerView.adapter = adapter
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
+
     }
 
 }

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/nfc"
+        android:enabled="true"
+        android:icon="@drawable/ic_nfc"
+        android:title="@string/register_menu_nfc"/>
+
+    <item
+        android:id="@+id/camera"
+        android:enabled="true"
+        android:icon="@drawable/ic_camera"
+        android:title="@string/register_menu_camera"/>
+
+</menu>

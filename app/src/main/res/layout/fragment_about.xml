@@ -114,10 +114,10 @@
         android:id="@+id/textView_copyright"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/textView_github"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        android:layout_marginTop="200dp"
+        android:layout_marginBottom="50dp"
         android:text="@string/about_copyright"
         android:textColor="?colorSecondary"/>
 

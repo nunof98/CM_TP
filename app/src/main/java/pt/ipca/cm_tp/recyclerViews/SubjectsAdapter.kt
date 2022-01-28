@@ -3,9 +3,8 @@ package pt.ipca.cm_tp.recyclerViews
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import pt.ipca.cm_tp.utils.DoubleString
 
-class SubjectsAdapter(val subjectList: List<DoubleString>) :
+class SubjectsAdapter(val subjectList: List<String>) :
     RecyclerView.Adapter<SubjectsViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SubjectsViewHolder {

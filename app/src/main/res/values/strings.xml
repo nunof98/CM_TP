@@ -26,8 +26,20 @@
     <!-- Home bar -->
     <string name="main_menu_home">Home</string>
     <string name="main_menu_subjects">Subjects</string>
-    <string name="main_menu_calendar">Calendar</string>
+    <string name="main_menu_schedule">Schedule</string>
+    <string name="main_menu_profile">Profile</string>
     <string name="main_menu_about">About</string>
+
+    <!-- Register bar -->
+    <string name="register_menu_nfc" translatable="false">NFC</string>
+    <string name="register_menu_camera">Camera</string>
+
+    <!-- Home -->
+    <string name="action_register">Register</string>
+
+    <!-- Subjects -->
+
+    <!-- Schedule -->
 
     <!-- About -->
     <string name="about_copyright">Copyright © 2022\nMEEC, IPCA, Portugal</string>

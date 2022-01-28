@@ -4,16 +4,14 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
-import pt.ipca.cm_tp.fragments.AboutFragment
-import pt.ipca.cm_tp.fragments.CalendarFragment
-import pt.ipca.cm_tp.fragments.HomeFragment
-import pt.ipca.cm_tp.fragments.SubjectsFragment
+import pt.ipca.cm_tp.fragments.*
 
 class MainActivity : AppCompatActivity() {
 
     private val homeFragment by lazy { HomeFragment() }
     private val subjectsFragment by lazy { SubjectsFragment() }
-    private val calendarFragment by lazy { CalendarFragment() }
+    private val scheduleFragment by lazy { ScheduleFragment() }
+    private val profileFragment by lazy { ProfileFragment() }
     private val aboutFragment by lazy { AboutFragment() }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -22,7 +20,7 @@ class MainActivity : AppCompatActivity() {
 
         loadFragment(homeFragment)
 
-        val bottomNavigationView = findViewById<BottomNavigationView>(R.id.bottomNavigationView)
+        val bottomNavigationView = findViewById<BottomNavigationView>(R.id.mainNavigationView)
         bottomNavigationView.setOnNavigationItemSelectedListener { item ->
             when (item.itemId) {
 
@@ -36,8 +34,13 @@ class MainActivity : AppCompatActivity() {
                     true
                 }
 
-                R.id.calendar -> {
-                    loadFragment(calendarFragment)
+                R.id.schedule -> {
+                    loadFragment(scheduleFragment)
+                    true
+                }
+
+                R.id.profile -> {
+                    loadFragment(profileFragment)
                     true
                 }
 

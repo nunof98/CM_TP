@@ -12,6 +12,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:text="@string/main_menu_calendar"/>
+        android:text="@string/main_menu_schedule"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
