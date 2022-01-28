@@ -117,7 +117,7 @@
         android:layout_marginLeft="25dp"
         android:layout_marginRight="25dp"
         android:layout_marginBottom="50dp"
-        android:background="@drawable/rounded_button"
+        android:background="@drawable/bg_rounded_edges"
         android:minHeight="60dp"
         android:text="@string/action_login"
         android:textAllCaps="false"

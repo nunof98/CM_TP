@@ -49,6 +49,9 @@ dependencies {
     implementation 'androidx.lifecycle:lifecycle-livedata-ktx:2.4.0'
     implementation 'androidx.activity:activity-ktx:1.4.0'
 
+    implementation 'androidx.camera:camera-view:1.1.0-beta01'
+    implementation 'androidx.camera:camera-lifecycle:1.0.2'
+
 
     testImplementation 'junit:junit:4.+'
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'

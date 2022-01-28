@@ -25,6 +25,7 @@ class LoginActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
 
+        // Bind button press to login function
         findViewById<Button>(R.id.button_login).setOnClickListener {
             performLogin()
         }
@@ -59,6 +60,12 @@ class LoginActivity : AppCompatActivity() {
         */
     }
 
+    /**
+     * Performs Firebase login.
+     * If successful it will change current activity to Main activity
+     * If it isn't successful it will alert user trough error
+     * messages, depending on the cause
+     */
     private fun performLogin() {
         // Get text from fields
         val email = textInputEmail.editText?.text.toString()
@@ -105,17 +112,29 @@ class LoginActivity : AppCompatActivity() {
         }
     }
 
+    /**
+     * Changes activity to Sign up activity
+     * @param   View
+     */
     fun changeToSignUpActivity(view: View) {
         val intent = Intent(this, SignUpActivity::class.java)
         startActivity(intent)
     }
 
+    /**
+     * Changes activity to Main activity
+     */
     private fun changeToMainActivity() {
         val intent = Intent(this, MainActivity::class.java)
         startActivity(intent)
         finish()
     }
 
+    /**
+     * Returns shared preferences object
+     * @param   Context
+     * @return  sharedPreferences object
+     */
     private fun getSharedPreferences(context: Context): SharedPreferences {
         return context.getSharedPreferences(getString(R.string.app_name), Context.MODE_PRIVATE)
     }

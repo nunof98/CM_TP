@@ -33,6 +33,7 @@
     <!-- Register bar -->
     <string name="register_menu_nfc" translatable="false">NFC</string>
     <string name="register_menu_camera">Camera</string>
+    <string name="action_nfc">Hold your phone against the device</string>
 
     <!-- Home -->
     <string name="action_register">Register</string>

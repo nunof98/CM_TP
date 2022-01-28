@@ -41,9 +41,10 @@ class SubjectsFragment : Fragment(){
 
          */
 
-
+        // Get recyclerView from layout
         val recyclerView = requireView().findViewById<RecyclerView>(R.id.recyclerView_subjects)
 
+        // Get data
         val values = listOf<String>(
             "Computação Móvel",
             "Laboratórios Integrados I",
@@ -51,6 +52,7 @@ class SubjectsFragment : Fragment(){
             "Procesamento de Imagem e Visão por Computador",
             "Sistemas Embebidos e Tempo Real")
 
+        // Initialize adapter
         val adapter = SubjectsAdapter(values)
         recyclerView.adapter = adapter
         recyclerView.layoutManager = LinearLayoutManager(requireContext())

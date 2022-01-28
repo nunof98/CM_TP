@@ -9,6 +9,7 @@ import pt.ipca.cm_tp.fragments.NfcFragment
 
 class RegisterActivity : AppCompatActivity() {
 
+    // Initialize fragments as lazy
     private val nfcFragment by lazy { NfcFragment() }
     private val cameraFragment by lazy { CameraFragment() }
 
@@ -16,17 +17,21 @@ class RegisterActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_register)
 
+        // Load nfc fragment by default
         loadFragment(nfcFragment)
 
+        // Set on click listener on menu navigation to change fragment
         val registerNavigationView = findViewById<BottomNavigationView>(R.id.registerNavigationView)
         registerNavigationView.setOnNavigationItemSelectedListener { item ->
             when (item.itemId) {
 
+                // Load nfc fragment
                 R.id.nfc -> {
                     loadFragment(nfcFragment)
                     true
                 }
 
+                // Load camera fragment
                 R.id.camera -> {
                     loadFragment(cameraFragment)
                     true
@@ -37,6 +42,10 @@ class RegisterActivity : AppCompatActivity() {
         }
     }
 
+    /**
+     * Loads fragments into ui
+     * @param   Fragment    an activity fragment
+     */
     private fun loadFragment(fragment: Fragment){
         supportFragmentManager
             .beginTransaction()

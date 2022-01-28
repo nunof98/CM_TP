@@ -8,6 +8,7 @@ import pt.ipca.cm_tp.fragments.*
 
 class MainActivity : AppCompatActivity() {
 
+    // Initialize fragments as lazy
     private val homeFragment by lazy { HomeFragment() }
     private val subjectsFragment by lazy { SubjectsFragment() }
     private val scheduleFragment by lazy { ScheduleFragment() }
@@ -18,32 +19,39 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        // Load home fragment by default
         loadFragment(homeFragment)
 
+        // Set on click listener on menu navigation to change fragment
         val bottomNavigationView = findViewById<BottomNavigationView>(R.id.mainNavigationView)
         bottomNavigationView.setOnNavigationItemSelectedListener { item ->
             when (item.itemId) {
 
+                // Load home fragment
                 R.id.home -> {
                     loadFragment(homeFragment)
                     true
                 }
 
+                // Load subjects fragment
                 R.id.subjects -> {
                     loadFragment(subjectsFragment)
                     true
                 }
 
+                // Load schedule fragment
                 R.id.schedule -> {
                     loadFragment(scheduleFragment)
                     true
                 }
 
+                // Load profile fragment
                 R.id.profile -> {
                     loadFragment(profileFragment)
                     true
                 }
 
+                // Load about fragment
                 R.id.about -> {
                     loadFragment(aboutFragment)
                     true
@@ -54,6 +62,10 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    /**
+     * Loads fragments into ui
+     * @param   Fragment    an activity fragment
+     */
     private fun loadFragment(fragment: Fragment){
         supportFragmentManager
             .beginTransaction()

@@ -25,4 +25,5 @@
     <string name="action_register">Înregistrare</string>
     <string name="main_menu_profile">Profil</string>
     <string name="register_menu_camera">Camera</string>
+    <string name="action_nfc">Țineți telefonul pe dispozitiv</string>
 </resources>

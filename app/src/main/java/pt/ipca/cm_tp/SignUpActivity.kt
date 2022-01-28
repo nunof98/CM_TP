@@ -27,11 +27,18 @@ class SignUpActivity : AppCompatActivity() {
         // Initialize Firebase Auth
         auth = Firebase.auth
 
+        // Bind button press to login function
         findViewById<Button>(R.id.button_sign_up).setOnClickListener {
             performSignUp()
         }
     }
 
+    /**
+     * Performs Firebase sign up.
+     * If successful it will change current activity to Login activity
+     * If it isn't successful it will alert user trough error
+     * messages, depending on the cause
+     */
     private fun performSignUp() {
         textInputName = findViewById(R.id.til_name)
         textInputEmail = findViewById(R.id.til_email)
@@ -70,6 +77,11 @@ class SignUpActivity : AppCompatActivity() {
         }
     }
 
+    /**
+     * Validates if email is from IPCA
+     * @param   email   a string that will be evaluated
+     * @return          true or false
+     */
     private fun validateEmail(email: String): Boolean {
         if (email.isNotEmpty()) {
             //Remove error message and layout space
@@ -94,6 +106,12 @@ class SignUpActivity : AppCompatActivity() {
         return false
     }
 
+    /**
+     * Validates if password is considered strong (has numbers,
+     * uppercase and lowercase letters, and special characters).
+     * @param   password    a string that will be evaluated
+     * @return              true or false
+     */
     private fun validatePassword(password: String): Boolean {
         if (password.isNotEmpty()) {
             // Remove error message and layout space
@@ -124,6 +142,9 @@ class SignUpActivity : AppCompatActivity() {
         return false
     }
 
+    /**
+     * Changes activity to Login activity
+     */
     private fun changeToLoginActivity() {
         val intent = Intent(this, LoginActivity::class.java)
         startActivity(intent)
