@@ -4,6 +4,7 @@ import android.Manifest
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.Bitmap
+import android.media.Image
 import android.media.MediaRecorder
 import android.os.Bundle
 import android.provider.MediaStore

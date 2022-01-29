@@ -9,9 +9,9 @@ import android.widget.Button
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import pt.ipca.cm_tp.recyclerViews.DeadlineAdapter
 import pt.ipca.cm_tp.R
 import pt.ipca.cm_tp.RegisterActivity
+import pt.ipca.cm_tp.recyclerViews.HistoryAdapter
 import pt.ipca.cm_tp.utils.TripleString
 
 
@@ -34,19 +34,19 @@ class HomeFragment : Fragment() {
         }
 
         // Get recyclerView from layout
-        val recyclerView = requireView().findViewById<RecyclerView>(R.id.recyclerView_deadline)
+        val recyclerView = requireView().findViewById<RecyclerView>(R.id.recyclerView_history)
 
         // Get data
         val values = listOf<TripleString>(
-            TripleString("8", "Computação Móvel", "Make app"),
-            TripleString("10", "Laboratórios Integrados I", "Make PCB"),
-            TripleString("25", "Procesamento Digial de Sinal", "Make voice recognition algorithm"),
-            TripleString("55", "Procesamento de Imagem e Visão por Computador", "Make OCR"),
-            TripleString("100", "Sistemas Embebidos e Tempo Real", "Make code")
+            TripleString("Corporate Finance", "Wed, Dec 1", "14:00","Wed, Dec 1","16:00","School of Management * Room 5 * Attendance on Time"),
+            TripleString("Derivatives", "Thu, Dec 2", "16:00","Thu, Dec 2","18:00","School of Management * Room 3 * Attendance on Time"),
+            TripleString("Investments", "Fri, Dec 3", "16:00","Fri, Dec 3","18:00", "School of Management * Room 1 * Attendance on Time"),
+            TripleString("Crypto Currency", "Mon, Dec 6", "14:00","Mon, Dec 6","16:00","School of Management * Room 3 * Attendance on Time"),
+            TripleString("Law of Investment", "Mon, Dec 6", "16:00","Mon, Dec 6","18:00", "School of Management * Room 2 * Attendance on Time")
         )
 
         // Initialize adapter
-        val adapter = DeadlineAdapter(values)
+        val adapter = HistoryAdapter(values)
         recyclerView.adapter = adapter
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
     }
