@@ -36,7 +36,7 @@
         android:layout_marginTop="25dp"
         android:layout_marginLeft="25dp"
         android:layout_marginRight="25dp"
-        android:text="Nuno Fernandes (15464)"
+        android:text="André Fernandes (15465)"
         android:textColor="?colorSecondary"
         android:textStyle="bold"
         android:textSize="25sp" />

@@ -2,8 +2,14 @@ package pt.ipca.cm_tp
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
+import androidx.room.Room
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
+import pt.ipca.cm_room.MyDatabase
+import pt.ipca.cm_tp.databases.Student
 import pt.ipca.cm_tp.fragments.*
 
 class MainActivity : AppCompatActivity() {
@@ -18,6 +24,22 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        val db = Room.databaseBuilder(applicationContext,
+            MyDatabase::class.java, "student.db").build()
+
+        /*
+        GlobalScope.launch {
+            db.studentDao().insertAll(
+                Student(id = 15463, name = "Joaquin Dillen"),
+                Student(id = 15464, name = "Nuno Fernandes"))
+            val data = db.studentDao().getAll()
+
+            data?.forEach {
+                Log.d("ROOM:", it.id.toString() + ":" + it.name)
+            }
+        }
+        */
 
         // Load home fragment by default
         loadFragment(homeFragment)

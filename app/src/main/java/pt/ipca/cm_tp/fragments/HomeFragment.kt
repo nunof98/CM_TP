@@ -6,11 +6,14 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import pt.ipca.cm_room.MyDatabase
 import pt.ipca.cm_tp.R
 import pt.ipca.cm_tp.RegisterActivity
+import pt.ipca.cm_tp.databases.StudentDao
 import pt.ipca.cm_tp.recyclerViews.HistoryAdapter
 import pt.ipca.cm_tp.utils.TripleString
 
@@ -33,6 +36,8 @@ class HomeFragment : Fragment() {
             changeToRegisterActivity()
         }
 
+        getStudentNameByID(15464)
+
         // Get recyclerView from layout
         val recyclerView = requireView().findViewById<RecyclerView>(R.id.recyclerView_history)
 
@@ -49,6 +54,13 @@ class HomeFragment : Fragment() {
         val adapter = HistoryAdapter(values)
         recyclerView.adapter = adapter
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
+    }
+
+
+    fun getStudentNameByID(id: Int){
+        requireView().
+            findViewById<TextView>(R.id.textView_student_name).
+                text = StudentDao.getName(id) + "($id.toString())"
     }
 
     /**
