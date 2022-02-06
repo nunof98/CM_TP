@@ -1,54 +1,60 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="horizontal"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    android:layout_height="match_parent">
 
-    <LinearLayout
+    <ImageView
+        android:id="@+id/imageView_deadline_pic"
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:layout_margin="20dp"
+        android:scaleType="centerCrop"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:srcCompat="@tools:sample/backgrounds/scenic[11]" />
+
+    <TextView
+        android:id="@+id/textView_days_left"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:layout_marginTop="58dp"
+        android:layout_alignLeft="@+id/imageView_deadline_pic"
+        android:layout_alignRight="@+id/imageView_deadline_pic"
+        android:text="12 Days"
+        android:textSize="30sp"
+        android:gravity="center"
+        android:textStyle="bold"
+        android:textColor="@color/white"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        />
 
-        <TextView
-            android:id="@+id/textView_days_left"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="days left"
-            android:textAllCaps="true"
-            android:textSize="11sp"/>
+    <View
+        android:layout_width="200dp"
+        android:layout_height="3dp"
+        android:background="@color/white"
+        android:layout_marginTop="100dp"
+        android:foregroundGravity="center"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
 
-        <TextView
-            android:id="@+id/textView_counter"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="50sp"
-            android:textStyle="bold"/>
-
-    </LinearLayout>
-
-    <LinearLayout
+    <TextView
+        android:id="@+id/textView_Event_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:layout_marginTop="105dp"
+        android:text="Event Title"
+        android:textSize="30sp"
+        android:gravity="center"
+        android:textStyle="bold"
+        android:textColor="@color/white"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
 
-        <TextView
-            android:id="@+id/textView_subject"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="15sp"
-            android:textStyle="bold"
-            android:layout_marginStart="25dp"/>
-
-        <TextView
-            android:id="@+id/textView_description"
-            android:layout_width="wrap_content"
-            android:layout_height="0dp"
-            android:textSize="15sp"
-            android:layout_marginTop="10dp"
-            android:layout_marginStart="25dp"
-            android:layout_weight="1" />
-
-    </LinearLayout>
-
-</LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
