@@ -1,4 +1,4 @@
-package pt.ipca.cm_tp.fragments
+package pt.ipca.cm_tp.ui.fragments
 
 import android.Manifest
 import android.content.Intent
@@ -20,6 +20,7 @@ import androidx.fragment.app.Fragment
 import pt.ipca.cm_tp.R
 import java.io.IOException
 
+
 private const val LOG_TAG = "AudioRecordTest"
 const val REQUEST_CAMERA = 0
 const val REQUEST_RECORD_AUDIO = 1
@@ -31,7 +32,6 @@ class CameraFragment : Fragment(){
     private var isRecording: Boolean = false
     private lateinit var imageButtonMic: ImageButton
     private lateinit var imageButtonContinue: ImageButton
-    private lateinit var imageBitmap: Bitmap
     private lateinit var recordPath: String
 
     override fun onCreateView(
@@ -49,7 +49,6 @@ class CameraFragment : Fragment(){
         imageButtonMic = requireView().findViewById(R.id.button_audio_capture)
         imageButtonContinue = requireView().findViewById(R.id.button_continue)
 
-        //openCamera()
         if(checkCameraPermission()) {
             openNativeCamera()
         }
@@ -79,7 +78,7 @@ class CameraFragment : Fragment(){
      */
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == AppCompatActivity.RESULT_OK) {
-            imageBitmap = data?.extras?.get("data") as Bitmap
+            val imageBitmap = data?.extras?.get("data") as Bitmap
             requireView().findViewById<ImageView>(R.id.imageView_photo).setImageBitmap(imageBitmap)
         }
 

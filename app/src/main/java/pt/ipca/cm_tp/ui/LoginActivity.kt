@@ -1,4 +1,4 @@
-package pt.ipca.cm_tp
+package pt.ipca.cm_tp.ui
 
 import android.content.Context
 import android.content.Intent
@@ -12,6 +12,7 @@ import com.google.firebase.ktx.Firebase
 import android.text.Html
 import android.widget.*
 import com.google.android.material.textfield.TextInputLayout
+import pt.ipca.cm_tp.R
 
 
 class LoginActivity : AppCompatActivity() {
@@ -20,6 +21,7 @@ class LoginActivity : AppCompatActivity() {
     private lateinit var textInputEmail: TextInputLayout
     private lateinit var textInputPassword: TextInputLayout
     private lateinit var checkBox: CheckBox
+    lateinit var studentEmail: String
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -47,11 +49,11 @@ class LoginActivity : AppCompatActivity() {
         textInputPassword.editText?.setText(getSharedPreferences(this).getString("password", ""))
         checkBox.isChecked = getSharedPreferences(this).getBoolean("checkBox", false)
 
+        /*
         // Get email and password from sharedPreferences
         val email = getSharedPreferences(this).getString("email", "") ?: ""
         val password = getSharedPreferences(this).getString("password", "") ?: ""
 
-        /*
         // Auto login if email and password are available
         if(email.isNotEmpty() && password.isNotEmpty()){
             // go to second activity after login
@@ -86,6 +88,7 @@ class LoginActivity : AppCompatActivity() {
                 auth.signInWithEmailAndPassword(email, password)
                     .addOnCompleteListener(this) { task ->
                         if (task.isSuccessful) {
+                            studentEmail = email
                             // Validate if checkBox is checked
                             if (saveCredentials)
                             {

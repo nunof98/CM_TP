@@ -36,7 +36,7 @@
         android:layout_marginTop="25dp"
         android:layout_marginLeft="25dp"
         android:layout_marginRight="25dp"
-        android:text="André Fernandes (15465)"
+        android:text="FN LN (number)"
         android:textColor="?colorSecondary"
         android:textStyle="bold"
         android:textSize="25sp" />
@@ -51,7 +51,7 @@
         android:layout_marginTop="5dp"
         android:layout_marginLeft="25dp"
         android:layout_marginRight="25dp"
-        android:text="Masters in Eletronics and Computers Engeneering"
+        android:text="Course"
         android:textColor="?colorSecondary"
         android:textSize="15sp" />
 

@@ -1,4 +1,4 @@
-package pt.ipca.cm_tp.fragments
+package pt.ipca.cm_tp.ui.fragments
 
 import android.os.Bundle
 import android.view.LayoutInflater

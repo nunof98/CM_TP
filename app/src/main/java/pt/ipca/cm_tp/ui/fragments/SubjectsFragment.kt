@@ -1,17 +1,14 @@
-package pt.ipca.cm_tp.fragments
+package pt.ipca.cm_tp.ui.fragments
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ArrayAdapter
-import android.widget.ListView
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import pt.ipca.cm_tp.utils.DoubleString
 import pt.ipca.cm_tp.R
-import pt.ipca.cm_tp.recyclerViews.SubjectsAdapter
+import pt.ipca.cm_tp.ui.recyclerViews.SubjectsAdapter
 
 class SubjectsFragment : Fragment(){
 

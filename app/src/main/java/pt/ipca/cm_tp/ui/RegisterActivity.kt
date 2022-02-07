@@ -1,11 +1,12 @@
-package pt.ipca.cm_tp
+package pt.ipca.cm_tp.ui
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
-import pt.ipca.cm_tp.fragments.CameraFragment
-import pt.ipca.cm_tp.fragments.NfcFragment
+import pt.ipca.cm_tp.R
+import pt.ipca.cm_tp.ui.fragments.CameraFragment
+import pt.ipca.cm_tp.ui.fragments.NfcFragment
 
 class RegisterActivity : AppCompatActivity() {
 

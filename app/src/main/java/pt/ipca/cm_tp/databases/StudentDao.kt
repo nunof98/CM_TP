@@ -8,14 +8,20 @@ interface StudentDao {
     @Query("SELECT * FROM student")
     fun getAll(): List<Student>
 
-    @Query("SELECT name FROM student WHERE id == :id")
-    fun getName(id: Int): String
+    @Query("SELECT (firstName || ' ' || lastName) FROM student WHERE id = :id")
+    fun getNameById(id: Int): String
+
+    @Query("SELECT * FROM student WHERE id = :id ")
+    fun findStudentById(id: Int): Student
 
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     fun insertAll(vararg student: Student)
 
-    @Delete
-    fun delete(student: Student)
+    @Insert(onConflict = OnConflictStrategy.IGNORE)
+    fun insertStudent(student: Student)
+
+    @Query("DELETE FROM student WHERE id = :id")
+    fun deleteById(id: Int)
 
     @Update
     fun update(vararg student: Student)

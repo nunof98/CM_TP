@@ -1,4 +1,4 @@
-package pt.ipca.cm_tp
+package pt.ipca.cm_tp.ui
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
@@ -11,6 +11,7 @@ import com.google.android.material.textfield.TextInputLayout
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
+import pt.ipca.cm_tp.R
 import java.util.regex.Pattern
 
 class SignUpActivity : AppCompatActivity() {

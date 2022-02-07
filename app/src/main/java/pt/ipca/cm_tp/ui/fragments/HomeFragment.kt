@@ -1,24 +1,36 @@
-package pt.ipca.cm_tp.fragments
+package pt.ipca.cm_tp.ui.fragments
 
 import android.content.Intent
+import android.graphics.Bitmap
 import android.os.Bundle
+import android.provider.MediaStore
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.ImageView
 import android.widget.TextView
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import pt.ipca.cm_room.MyDatabase
+import pt.ipca.cm_tp.MyApplication
 import pt.ipca.cm_tp.R
-import pt.ipca.cm_tp.RegisterActivity
-import pt.ipca.cm_tp.databases.StudentDao
-import pt.ipca.cm_tp.recyclerViews.HistoryAdapter
+import pt.ipca.cm_tp.databases.Student
+import pt.ipca.cm_tp.databases.StudentRepository
+import pt.ipca.cm_tp.ui.LoginActivity
+import pt.ipca.cm_tp.ui.RegisterActivity
+import pt.ipca.cm_tp.ui.recyclerViews.HistoryAdapter
 import pt.ipca.cm_tp.utils.TripleString
 
 
+
 class HomeFragment : Fragment() {
+
+    private lateinit var studentRepository: StudentRepository
+    //private val repository = (requireActivity().application as MyApplication).studentRepository
+    //private val db = AppDatabase.getDatabase(requireContext())
+    //private val db = AppDatabase.getDatabase(requireContext().applicationContext as MyApplication)
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -31,12 +43,15 @@ class HomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        // Initialize repositories
+        studentRepository = (requireActivity().application as MyApplication).studentRepository
+
+        displayStudentInfo(15464)
+
         // Bind button press to login function
         requireView().findViewById<Button>(R.id.button_register).setOnClickListener {
             changeToRegisterActivity()
         }
-
-        getStudentNameByID(15464)
 
         // Get recyclerView from layout
         val recyclerView = requireView().findViewById<RecyclerView>(R.id.recyclerView_history)
@@ -56,11 +71,43 @@ class HomeFragment : Fragment() {
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
     }
 
+    /**
+     * This method fetches student data from ROOM database and
+     * displays it on the textViews in home fragment
+     *
+     */
+    private fun displayStudentInfo(id: Int) {
+        val student: Student = studentRepository.findStudentById(id)
 
-    fun getStudentNameByID(id: Int){
+        // Get student name
         requireView().
             findViewById<TextView>(R.id.textView_student_name).
-                text = StudentDao.getName(id) + "($id.toString())"
+                text = "${student.firstName} ${student.lastName} (${student.id})"
+
+        // Get student course
+        requireView().
+            findViewById<TextView>(R.id.textView_student_course).
+                text = "${student.course} — ${student.year}º year"
+    }
+
+    /**
+     * This method will take an image taken by the camera and put it in the ui
+     */
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == AppCompatActivity.RESULT_OK) {
+            val imageBitmap = data?.extras?.get("data") as Bitmap
+            requireView().findViewById<ImageView>(R.id.imageView_photo).setImageBitmap(imageBitmap)
+        }
+
+        super.onActivityResult(requestCode, resultCode, data)
+    }
+
+    /**
+     * Calling this method will open the default camera application.
+     */
+    private fun openNativeCamera() {
+        val intent = Intent(requireContext(), )
+
     }
 
     /**

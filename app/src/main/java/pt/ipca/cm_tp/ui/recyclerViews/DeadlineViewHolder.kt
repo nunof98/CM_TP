@@ -1,4 +1,4 @@
-package pt.ipca.cm_tp.recyclerViews
+package pt.ipca.cm_tp.ui.recyclerViews
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
