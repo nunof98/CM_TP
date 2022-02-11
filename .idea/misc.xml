@@ -5,15 +5,23 @@
       <map>
         <entry key="..\:/Users/Dasil/Documents/GitHub/CM_TP/app/src/main/res/drawable/ic_send.xml" value="0.125" />
         <entry key="..\:/Users/Dasil/Documents/GitHub/CM_TP/app/src/main/res/layout/activity_login.xml" value="0.18958333333333333" />
+        <entry key="..\:/Users/Dasil/Documents/GitHub/CM_TP/app/src/main/res/layout/activity_sign_up.xml" value="0.2625" />
+        <entry key="..\:/Users/Dasil/Documents/GitHub/CM_TP/app/src/main/res/layout/fragment_about.xml" value="0.2625" />
+        <entry key="..\:/Users/Dasil/Documents/GitHub/CM_TP/app/src/main/res/layout/fragment_add_deadline.xml" value="0.20925925925925926" />
+        <entry key="..\:/Users/Dasil/Documents/GitHub/CM_TP/app/src/main/res/layout/fragment_camera.xml" value="0.2625" />
         <entry key="..\:/Users/Dasil/Documents/GitHub/CM_TP/app/src/main/res/layout/fragment_home.xml" value="0.18958333333333333" />
+        <entry key="..\:/Users/Dasil/Documents/GitHub/CM_TP/app/src/main/res/layout/fragment_leaderboard.xml" value="0.2625" />
         <entry key="..\:/Users/Dasil/Documents/GitHub/CM_TP/app/src/main/res/layout/fragment_leatherboard.xml" value="0.18958333333333333" />
+        <entry key="..\:/Users/Dasil/Documents/GitHub/CM_TP/app/src/main/res/layout/fragment_nfc.xml" value="0.2625" />
         <entry key="..\:/Users/Dasil/Documents/GitHub/CM_TP/app/src/main/res/layout/fragment_profile.xml" value="0.18958333333333333" />
         <entry key="..\:/Users/Dasil/Documents/GitHub/CM_TP/app/src/main/res/layout/fragment_schedule.xml" value="0.18958333333333333" />
         <entry key="..\:/Users/Dasil/Documents/GitHub/CM_TP/app/src/main/res/layout/fragment_subjects.xml" value="0.25" />
-        <entry key="..\:/Users/Dasil/Documents/GitHub/CM_TP/app/src/main/res/layout/item_deadline.xml" value="0.4" />
+        <entry key="..\:/Users/Dasil/Documents/GitHub/CM_TP/app/src/main/res/layout/item_deadline.xml" value="0.47440273037542663" />
         <entry key="..\:/Users/Dasil/Documents/GitHub/CM_TP/app/src/main/res/layout/item_history.xml" value="0.18958333333333333" />
+        <entry key="..\:/Users/Dasil/Documents/GitHub/CM_TP/app/src/main/res/layout/item_leaderboard.xml" value="0.1140625" />
         <entry key="..\:/Users/Dasil/Documents/GitHub/CM_TP/app/src/main/res/layout/item_leatherBoard.xml" value="0.33" />
         <entry key="..\:/Users/Dasil/Documents/GitHub/CM_TP/app/src/main/res/layout/item_subjects.xml" value="0.33" />
+        <entry key="..\:/Users/Dasil/Documents/GitHub/CM_TP/app/src/main/res/menu/main_menu.xml" value="0.1140625" />
         <entry key="..\:/Users/lemos/AndroidStudioProjects/CM_TP/app/src/main/res/drawable/bg_round.xml" value="0.1" />
         <entry key="..\:/Users/lemos/AndroidStudioProjects/CM_TP/app/src/main/res/drawable/bg_rounded_edges.xml" value="0.1" />
         <entry key="..\:/Users/lemos/AndroidStudioProjects/CM_TP/app/src/main/res/drawable/edit_text_border.xml" value="0.2203125" />
