@@ -3,6 +3,7 @@ package pt.ipca.cm_tp.ui
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.Button
 import android.widget.TextView
@@ -10,6 +11,7 @@ import android.widget.Toast
 import com.google.android.material.textfield.TextInputLayout
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
+import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import pt.ipca.cm_tp.R
 import java.util.regex.Pattern
@@ -46,6 +48,14 @@ class SignUpActivity : AppCompatActivity() {
         textInputPassword = findViewById(R.id.til_password)
         val textViewError = findViewById<TextView>(R.id.textView_error)
 
+        findViewById<TextInputLayout>(R.id.til_password).addOnEditTextAttachedListener {
+            if (textInputPassword.isErrorEnabled) {
+                //Remove error message and layout space
+                textInputEmail.error = null
+                textInputEmail.isErrorEnabled = false
+            }
+        }
+
         // Get user information
         val name = textInputName.editText?.text.toString()
         val email = textInputEmail.editText?.text.toString()
@@ -60,6 +70,8 @@ class SignUpActivity : AppCompatActivity() {
                 auth.createUserWithEmailAndPassword(email, password)
                     .addOnCompleteListener(this) { task ->
                         if (task.isSuccessful) {
+                            // Set user
+                            setUser(task.result.user!!.uid, email, name)
                             // Get intent and start activity
                             changeToLoginActivity()
                             // Sign in success, update UI with the signed-in user's information
@@ -76,6 +88,35 @@ class SignUpActivity : AppCompatActivity() {
             // If user doesn't fill out all fields
             textViewError.visibility = View.VISIBLE
         }
+    }
+
+    /**
+     *
+     */
+    private fun setUser(id: String, email: String, name: String) {
+        val db = Firebase.firestore
+
+        var parts  = name.split(" ").toMutableList()
+        val firstName = parts.firstOrNull()
+        parts.removeAt(0)
+        val lastName = parts.joinToString(" ")
+
+        // Create a new user with a first and last name
+        val user = hashMapOf(
+            "firstName" to firstName,
+            "lastName" to lastName,
+            "email" to email
+        )
+
+        // Add a new document with a generated ID
+        db.collection("students").document()
+            .set(user)
+            .addOnSuccessListener { documentReference ->
+                Log.d("FIREBASE", "DocumentSnapshot added with ID: ${documentReference}")
+            }
+            .addOnFailureListener { e ->
+                Log.w("FIREBASE", "Error adding document", e)
+            }
     }
 
     /**
@@ -121,9 +162,9 @@ class SignUpActivity : AppCompatActivity() {
 
             // Regex to validate if password is strong
             val regex = "^(?=.*[0-9])" +
-                    "(?=.*[a-z])(?=.*[A-Z])" +
-                    "(?=.*[@#$%^&+=])" +
-                    "(?=\\S+$).{8,20}$"
+                        "(?=.*[a-z])(?=.*[A-Z])" +
+                        "(?=.*[@#$%^&+=])" +
+                        "(?=\\S+$).{8,20}$"
 
             val p = Pattern.compile(regex)
             val m = p.matcher(password)

@@ -1,5 +1,6 @@
 package pt.ipca.cm_tp.databases
 
+import androidx.lifecycle.LiveData
 import androidx.room.*
 
 @Dao

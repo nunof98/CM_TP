@@ -1,7 +1,9 @@
 package pt.ipca.cm_tp.databases
 
-class StudentRepository(private val studentDao: StudentDao) {
+import androidx.lifecycle.LiveData
 
+class StudentRepository(private val studentDao: StudentDao) {
+    /*
     init {
         // Delete student
         AppDatabase
@@ -23,6 +25,7 @@ class StudentRepository(private val studentDao: StudentDao) {
                 )
             }
     }
+    */
 
     fun getAll() {
         AppDatabase
@@ -32,26 +35,20 @@ class StudentRepository(private val studentDao: StudentDao) {
             }
     }
 
-    fun getNameById(id: Int): String {
-        var studentName: String = "Error"
+    fun getNameById(id: Int, callback: (name: String?) -> Unit) {//}: String {
         AppDatabase
             .databaseWriteExecutor
             .execute {
-                studentName = studentDao.getNameById(id)
+                callback(studentDao.getNameById(id))
             }
-
-        return studentName
     }
 
-    fun findStudentById(id: Int): Student {
-        var student: Student = Student(0, "Error", "Error", "Error", 0)
+    fun findStudentById(id: Int, callback: (student: Student?) -> Unit) { //: Student {
         AppDatabase
             .databaseWriteExecutor
             .execute {
-                student = studentDao.findStudentById(id)
+                callback(studentDao.findStudentById(id))
             }
-
-        return student
     }
 
     fun insertAll(vararg student: Student) {

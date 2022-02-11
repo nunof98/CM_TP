@@ -1,16 +1,12 @@
 package pt.ipca.cm_tp.ui.fragments
 
 import android.content.Intent
-import android.graphics.Bitmap
 import android.os.Bundle
-import android.provider.MediaStore
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
-import android.widget.ImageView
 import android.widget.TextView
-import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -18,7 +14,6 @@ import pt.ipca.cm_tp.MyApplication
 import pt.ipca.cm_tp.R
 import pt.ipca.cm_tp.databases.Student
 import pt.ipca.cm_tp.databases.StudentRepository
-import pt.ipca.cm_tp.ui.LoginActivity
 import pt.ipca.cm_tp.ui.RegisterActivity
 import pt.ipca.cm_tp.ui.recyclerViews.HistoryAdapter
 import pt.ipca.cm_tp.utils.TripleString
@@ -28,9 +23,6 @@ import pt.ipca.cm_tp.utils.TripleString
 class HomeFragment : Fragment() {
 
     private lateinit var studentRepository: StudentRepository
-    //private val repository = (requireActivity().application as MyApplication).studentRepository
-    //private val db = AppDatabase.getDatabase(requireContext())
-    //private val db = AppDatabase.getDatabase(requireContext().applicationContext as MyApplication)
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -77,37 +69,17 @@ class HomeFragment : Fragment() {
      *
      */
     private fun displayStudentInfo(id: Int) {
-        val student: Student = studentRepository.findStudentById(id)
+        studentRepository.findStudentById(id) { student ->
+            // Set student name
+            requireView()
+                .findViewById<TextView>(R.id.textView_student_name)
+                    .text = "${student?.firstName} ${student?.lastName} (${student?.id})"
 
-        // Get student name
-        requireView().
-            findViewById<TextView>(R.id.textView_student_name).
-                text = "${student.firstName} ${student.lastName} (${student.id})"
-
-        // Get student course
-        requireView().
-            findViewById<TextView>(R.id.textView_student_course).
-                text = "${student.course} — ${student.year}º year"
-    }
-
-    /**
-     * This method will take an image taken by the camera and put it in the ui
-     */
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == AppCompatActivity.RESULT_OK) {
-            val imageBitmap = data?.extras?.get("data") as Bitmap
-            requireView().findViewById<ImageView>(R.id.imageView_photo).setImageBitmap(imageBitmap)
+            // Set student course
+            requireView()
+                .findViewById<TextView>(R.id.textView_student_course)
+                    .text = "${student?.course} — ${student?.year}º year"
         }
-
-        super.onActivityResult(requestCode, resultCode, data)
-    }
-
-    /**
-     * Calling this method will open the default camera application.
-     */
-    private fun openNativeCamera() {
-        val intent = Intent(requireContext(), )
-
     }
 
     /**
