@@ -1,10 +1,26 @@
 package pt.ipca.cm_tp.databases
 
-import androidx.lifecycle.LiveData
+import android.util.Log
+import com.google.firebase.firestore.FirebaseFirestore
 
-class StudentRepository(private val studentDao: StudentDao) {
-    /*
+class StudentRepository(
+    //db: FirebaseFirestore = FirebaseFirestore.getInstance(),
+    private val studentDao: StudentDao) {
+
     init {
+    /*
+        db.collection("students")
+            .get()
+            .addOnSuccessListener { documents ->
+                for (document in documents) {
+                    //Log.d("FIRESTORE:", "${document.id} => ${document.data}")
+                    val data = document.data
+                }
+            }
+            .addOnFailureListener { exception ->
+                Log.w("FIRESTORE:", "Error getting documents: ", exception)
+            }*/
+        /*
         // Delete student
         AppDatabase
             .databaseWriteExecutor
@@ -24,8 +40,8 @@ class StudentRepository(private val studentDao: StudentDao) {
                         1)
                 )
             }
-    }
     */
+    }
 
     fun getAll() {
         AppDatabase
@@ -35,7 +51,7 @@ class StudentRepository(private val studentDao: StudentDao) {
             }
     }
 
-    fun getNameById(id: Int, callback: (name: String?) -> Unit) {//}: String {
+    fun getNameById(id: Int, callback: (name: String?) -> Unit) {
         AppDatabase
             .databaseWriteExecutor
             .execute {
@@ -43,7 +59,7 @@ class StudentRepository(private val studentDao: StudentDao) {
             }
     }
 
-    fun findStudentById(id: Int, callback: (student: Student?) -> Unit) { //: Student {
+    fun findStudentById(id: Int, callback: (student: Student?) -> Unit) {
         AppDatabase
             .databaseWriteExecutor
             .execute {

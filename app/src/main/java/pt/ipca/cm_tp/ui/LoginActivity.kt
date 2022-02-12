@@ -3,17 +3,15 @@ package pt.ipca.cm_tp.ui
 import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.text.Html
 import android.view.View
+import android.widget.*
+import androidx.appcompat.app.AppCompatActivity
+import com.google.android.material.textfield.TextInputLayout
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
-import android.text.Html
-import android.util.Log
-import android.widget.*
-import com.google.android.material.textfield.TextInputLayout
-import com.google.firebase.firestore.ktx.firestore
 import pt.ipca.cm_tp.R
 
 
@@ -23,7 +21,7 @@ class LoginActivity : AppCompatActivity() {
     private lateinit var textInputEmail: TextInputLayout
     private lateinit var textInputPassword: TextInputLayout
     private lateinit var checkBox: CheckBox
-    lateinit var studentEmail: String
+    lateinit var studentID: String
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -90,7 +88,8 @@ class LoginActivity : AppCompatActivity() {
                 auth.signInWithEmailAndPassword(email, password)
                     .addOnCompleteListener(this) { task ->
                         if (task.isSuccessful) {
-                            studentEmail = email
+                            studentID = email.substring(1, email.indexOf("@"))
+
                             // Validate if checkBox is checked
                             if (saveCredentials)
                             {
@@ -131,6 +130,7 @@ class LoginActivity : AppCompatActivity() {
      */
     private fun changeToMainActivity() {
         val intent = Intent(this, MainActivity::class.java)
+        intent.putExtra("studentID", studentID)
         startActivity(intent)
         finish()
     }
@@ -143,5 +143,4 @@ class LoginActivity : AppCompatActivity() {
     private fun getSharedPreferences(context: Context): SharedPreferences {
         return context.getSharedPreferences(getString(R.string.app_name), Context.MODE_PRIVATE)
     }
-
 }

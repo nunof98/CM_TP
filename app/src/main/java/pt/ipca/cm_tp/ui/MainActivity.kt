@@ -15,10 +15,13 @@ class MainActivity : AppCompatActivity() {
     private val scheduleFragment by lazy { ScheduleFragment() }
     private val profileFragment by lazy { ProfileFragment() }
     private val aboutFragment by lazy { AboutFragment() }
+    lateinit var studentID: String
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        studentID = intent.getStringExtra("studentID")!!
 
         // Load home fragment by default
         loadFragment(homeFragment)

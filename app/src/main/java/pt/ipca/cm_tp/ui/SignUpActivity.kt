@@ -93,7 +93,7 @@ class SignUpActivity : AppCompatActivity() {
     /**
      *
      */
-    private fun setUser(id: String, email: String, name: String) {
+    private fun setUser(id: String, name: String, email: String) {
         val db = Firebase.firestore
 
         var parts  = name.split(" ").toMutableList()
@@ -101,21 +101,24 @@ class SignUpActivity : AppCompatActivity() {
         parts.removeAt(0)
         val lastName = parts.joinToString(" ")
 
+        val number = email.substring(1, email.indexOf("@"))
+
         // Create a new user with a first and last name
         val user = hashMapOf(
             "firstName" to firstName,
             "lastName" to lastName,
-            "email" to email
+            "email" to email,
+            "id" to number
         )
 
         // Add a new document with a generated ID
         db.collection("students").document()
             .set(user)
             .addOnSuccessListener { documentReference ->
-                Log.d("FIREBASE", "DocumentSnapshot added with ID: ${documentReference}")
+                Log.d("FIRESTORE", "DocumentSnapshot added with ID: ${documentReference}")
             }
             .addOnFailureListener { e ->
-                Log.w("FIREBASE", "Error adding document", e)
+                Log.w("FIRESTORE", "Error adding document", e)
             }
     }
 
@@ -163,7 +166,7 @@ class SignUpActivity : AppCompatActivity() {
             // Regex to validate if password is strong
             val regex = "^(?=.*[0-9])" +
                         "(?=.*[a-z])(?=.*[A-Z])" +
-                        "(?=.*[@#$%^&+=])" +
+                        "(?=.*[@#$%^&+=?!])" +
                         "(?=\\S+$).{8,20}$"
 
             val p = Pattern.compile(regex)

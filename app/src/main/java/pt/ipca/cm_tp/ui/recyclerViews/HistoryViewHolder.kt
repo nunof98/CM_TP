@@ -5,7 +5,7 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import pt.ipca.cm_tp.R
-import pt.ipca.cm_tp.utils.TripleString
+import pt.ipca.cm_tp.utils.MultiString
 
 class HistoryViewHolder(inflater: LayoutInflater, val  parent: ViewGroup) :
     RecyclerView.ViewHolder(inflater.inflate(R.layout.item_history, parent, false)) {
@@ -18,12 +18,12 @@ class HistoryViewHolder(inflater: LayoutInflater, val  parent: ViewGroup) :
     private var resume_info = itemView.findViewById<TextView>(R.id.textView_resume_info)
 
 
-    fun bindData(tripleString: TripleString){
-        subject_name.text = tripleString.s1
-        date_entry.text = tripleString.s2
-        entry_hour.text = tripleString.s3
-        date_end.text = tripleString.s4
-        end_hour.text = tripleString.s5
-        resume_info.text = tripleString.s6
+    fun bindData(multiString: MultiString){
+        subject_name.text = multiString.s1
+        date_entry.text = multiString.s2
+        entry_hour.text = multiString.s3
+        date_end.text = multiString.s4
+        end_hour.text = multiString.s5
+        resume_info.text = multiString.s6
     }
 }

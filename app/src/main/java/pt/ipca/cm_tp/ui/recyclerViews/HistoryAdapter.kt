@@ -3,9 +3,9 @@ package pt.ipca.cm_tp.ui.recyclerViews
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import pt.ipca.cm_tp.utils.TripleString
+import pt.ipca.cm_tp.utils.MultiString
 
-class HistoryAdapter(val historyList: List<TripleString>) :
+class HistoryAdapter(val historyList: List<MultiString>) :
     RecyclerView.Adapter<HistoryViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HistoryViewHolder {
