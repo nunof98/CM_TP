@@ -14,10 +14,10 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@tools:sample/backgrounds/scenic"/>
+        app:srcCompat="@drawable/scenic1" />
 
     <ImageButton
-        android:id="@+id/button_add"
+        android:id="@+id/button_select_background"
         android:layout_width="75dp"
         android:layout_height="75dp"
         android:layout_marginTop="120dp"
@@ -27,8 +27,8 @@
         android:padding="20dp"
         android:scaleType="fitCenter"
         android:src="@drawable/ic_image"
-        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
         app:tint="@color/white" />
 
     <TextView
@@ -173,7 +173,6 @@
         android:text="@string/hint_add_event"
         android:textAllCaps="true"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintRight_toLeftOf="button_delete_event"
         app:layout_constraintLeft_toLeftOf="parent" />
 
     <Button
@@ -188,7 +187,6 @@
         android:text="@string/hint_delete_event"
         android:textAllCaps="true"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toRightOf="button_add_event"
         app:layout_constraintRight_toRightOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

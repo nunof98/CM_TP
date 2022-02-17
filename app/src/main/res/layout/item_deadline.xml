@@ -9,12 +9,12 @@
         android:id="@+id/imageView_deadline_pic"
         android:layout_width="match_parent"
         android:layout_height="150dp"
-        android:layout_margin="20dp"
+        android:layout_margin="5dp"
         android:scaleType="centerCrop"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:srcCompat="@tools:sample/backgrounds/scenic" />
+        app:srcCompat="@drawable/scenic1" />
 
     <TextView
         android:id="@+id/textView_days_left"
@@ -30,6 +30,7 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toTopOf="@+id/imageView_deadline_pic"
+        app:layout_constraintBottom_toTopOf="@+id/view_line"
         />
 
     <View
@@ -45,8 +46,11 @@
 
     <TextView
         android:id="@+id/textView_event_title"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
         android:text="Event Title"
         android:textSize="30sp"
         android:textStyle="bold"
@@ -54,6 +58,7 @@
         android:layout_marginBottom="25dp"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/view_line"
         app:layout_constraintBottom_toBottomOf="@+id/imageView_deadline_pic"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
