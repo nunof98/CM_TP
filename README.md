@@ -38,8 +38,8 @@ Minimum requirements:
   
    Delivery:
         
-        (1) APK file (compiled) of the application.
+        ● APK file (compiled) of the application.
         
-        (2) Source code of the application.
+        ● Source code of the application.
         
-        (3) Simple PDF report on how the application works.
+        ● Simple PDF report on how the application works.
