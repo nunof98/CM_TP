@@ -36,10 +36,10 @@ Minimum requirements:
     
   Note: The application must use Firebase (Firestore + Authentication + Storage + Cloud CloudMessaging) to manage the backend. The application must use SQLite (internal database storage) in the sense of internal caching, i.e. the app must work EVEN without or with weak internet.
   
-   Delivery:
+ Delivery:
         
-        ● APK file (compiled) of the application.
+   ● APK file (compiled) of the application.
         
-        ● Source code of the application.
+   ● Source code of the application.
         
-        ● Simple PDF report on how the application works.
+   ● Simple PDF report on how the application works.
