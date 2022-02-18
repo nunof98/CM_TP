@@ -18,12 +18,17 @@
     <string name="main_menu_subjects">Disciplinas</string>
     <string name="main_menu_about">Informação</string>
     <string name="error_enter_a_password">Insira uma palavra-passe</string>
-    <string name="main_menu_schedule">Horário</string>
     <string name="about_copyright">Copyright © 2022\\nMEEC, IPCA, Portugalia</string>
     <string name="authors">Autores</string>
     <string name="source_code">Código fonte</string>
     <string name="action_register">Registar</string>
-    <string name="main_menu_profile">Perfil</string>
     <string name="register_menu_camera">Câmara</string>
     <string name="action_nfc">Encoste o seu telemóvel ao dispositivo</string>
+    <string name="main_menu_leaderboard">Pontuações</string>
+    <string name="main_menu_deadlines">Prazos</string>
+    <string name="hint_event_title">Título do evento</string>
+    <string name="hint_date">Data</string>
+    <string name="hint_describe">Descreva o seu evento:</string>
+    <string name="hint_add_event">Adicionar Evento</string>
+    <string name="hint_delete_event">Eliminar Evento</string>
 </resources>

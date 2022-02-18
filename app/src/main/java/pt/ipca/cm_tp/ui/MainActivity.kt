@@ -12,8 +12,8 @@ class MainActivity : AppCompatActivity() {
     // Initialize fragments as lazy
     private val homeFragment by lazy { HomeFragment() }
     private val subjectsFragment by lazy { SubjectsFragment() }
-    private val scheduleFragment by lazy { ScheduleFragment() }
-    private val profileFragment by lazy { ProfileFragment() }
+    private val scheduleFragment by lazy { DeadlinesFragment() }
+    private val profileFragment by lazy { ScoreboardFragment() }
     private val aboutFragment by lazy { AboutFragment() }
     lateinit var studentID: String
 

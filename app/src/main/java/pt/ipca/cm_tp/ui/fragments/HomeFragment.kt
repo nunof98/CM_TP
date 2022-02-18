@@ -22,8 +22,6 @@ import pt.ipca.cm_tp.ui.RegisterActivity
 import pt.ipca.cm_tp.ui.recyclerViews.HistoryAdapter
 import pt.ipca.cm_tp.utils.MultiString
 
-
-
 class HomeFragment : Fragment() {
 
     private lateinit var studentRepository: StudentRepository

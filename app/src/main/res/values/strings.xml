@@ -26,8 +26,8 @@
     <!-- Home bar -->
     <string name="main_menu_home">Home</string>
     <string name="main_menu_subjects">Subjects</string>
-    <string name="main_menu_schedule">Schedule</string>
-    <string name="main_menu_profile">Profile</string>
+    <string name="main_menu_deadlines">Deadlines</string>
+    <string name="main_menu_leaderboard">Scores</string>
     <string name="main_menu_about">About</string>
 
     <!-- Register bar -->
@@ -40,7 +40,12 @@
 
     <!-- Subjects -->
 
-    <!-- Schedule -->
+    <!-- Deadlines -->
+    <string name="hint_event_title">Event title</string>
+    <string name="hint_date">Date</string>
+    <string name="hint_describe">Describe your event:</string>
+    <string name="hint_add_event">Add Event</string>
+    <string name="hint_delete_event">Delete Event</string>
 
     <!-- About -->
     <string name="about_copyright">Copyright © 2022\nMEEC, IPCA, Portugal</string>
@@ -54,5 +59,7 @@
     <!-- Github -->
     <string name="source_code">Source code</string>
     <string name="github_url" translatable="false">https://github.com/nunof98/CM_TP</string>
+
+
 
 </resources>

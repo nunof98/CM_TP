@@ -3,9 +3,9 @@ package pt.ipca.cm_tp.ui.recyclerViews
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import pt.ipca.cm_tp.utils.MultiString
+import pt.ipca.cm_tp.databases.Deadline
 
-class DeadlineAdapter(val deadlineList: List<MultiString>) :
+class DeadlineAdapter(val deadlineList: List<Deadline>):
     RecyclerView.Adapter<DeadlineViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DeadlineViewHolder {

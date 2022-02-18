@@ -18,12 +18,17 @@
     <string name="main_menu_subjects">Discipline</string>
     <string name="main_menu_about">Informații</string>
     <string name="error_enter_a_password">Introduceți o parolă</string>
-    <string name="main_menu_schedule">Program</string>
     <string name="about_copyright">Copyright © 2022\\nMEEC, IPCA, Portugalia</string>
     <string name="authors">Autori</string>
     <string name="source_code">Codul sursă</string>
     <string name="action_register">Înregistrare</string>
-    <string name="main_menu_profile">Profil</string>
     <string name="register_menu_camera">Camera</string>
     <string name="action_nfc">Țineți telefonul pe dispozitiv</string>
+    <string name="main_menu_leaderboard">Scoruri</string>
+    <string name="main_menu_deadlines">Termene limită</string>
+    <string name="hint_event_title">Título do evento</string>
+    <string name="hint_date">Data</string>
+    <string name="hint_describe">" Descrieți evenimentul dvs.:"</string>
+    <string name="hint_add_event">Adăugați un eveniment</string>
+    <string name="hint_delete_event">" Șterge evenimentul"</string>
 </resources>
