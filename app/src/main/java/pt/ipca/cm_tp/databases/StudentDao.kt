@@ -1,6 +1,5 @@
 package pt.ipca.cm_tp.databases
 
-import androidx.lifecycle.LiveData
 import androidx.room.*
 
 @Dao
@@ -12,13 +11,13 @@ interface StudentDao {
     @Query("SELECT (firstName || ' ' || lastName) FROM student WHERE id = :id")
     fun getNameById(id: Int): String
 
+    @Query("SELECT course FROM student WHERE id = :id")
+    fun getCourseById(id: Int): String
+
     @Query("SELECT * FROM student WHERE id = :id ")
     fun findStudentById(id: Int): Student
 
-    @Insert(onConflict = OnConflictStrategy.IGNORE)
-    fun insertAll(vararg student: Student)
-
-    @Insert(onConflict = OnConflictStrategy.IGNORE)
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertStudent(student: Student)
 
     @Query("DELETE FROM student WHERE id = :id")

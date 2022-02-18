@@ -3,10 +3,10 @@ package pt.ipca.cm_tp.databases
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 
-@Entity(tableName = "subjects")
+@Entity(tableName = "subject")
 class Subject(
-    @PrimaryKey(autoGenerate = true)
-    val id: Int,
+    @PrimaryKey(autoGenerate = false)
+    val id: String,
     val name: String,
     val course: String,
     val semester: Int,

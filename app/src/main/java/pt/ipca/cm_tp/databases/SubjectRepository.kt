@@ -1,5 +1,8 @@
 package pt.ipca.cm_tp.databases
 
+import android.util.Log
+import com.google.firebase.firestore.FirebaseFirestore
+
 class SubjectRepository(private val subjectDao: SubjectDao) {
 
     init {
@@ -14,19 +17,11 @@ class SubjectRepository(private val subjectDao: SubjectDao) {
             }
     }
 
-    fun getCourseSubjects(course: String, callback: (subjectList: List<Subject>?) -> Unit) {
+    fun getSubjectsByCourseAndYear(course: String, year: Int, callback: (subjectList: List<Subject>?) -> Unit) {
         AppDatabase
             .databaseWriteExecutor
             .execute {
-                callback(subjectDao.getCourseSubjects(course))
-            }
-    }
-
-    fun insertAll(vararg subject: Subject) {
-        AppDatabase
-            .databaseWriteExecutor
-            .execute {
-                subjectDao.insertAll(subject)
+                callback(subjectDao.getSubjectsByCourseAndYear(course, year))
             }
     }
 

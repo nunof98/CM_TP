@@ -5,19 +5,16 @@ import androidx.room.*
 @Dao
 interface SubjectDao {
 
-    @Query("SELECT * FROM subjects")
+    @Query("SELECT * FROM subject")
     fun getAll(): List<Subject>
 
-    @Query("SELECT * FROM subjects WHERE course = :course")
-    fun getCourseSubjects(course: String): List<Subject>
+    @Query("SELECT * FROM subject WHERE course = :course AND year = :year")
+    fun getSubjectsByCourseAndYear(course: String, year: Int): List<Subject>
 
-    @Insert(onConflict = OnConflictStrategy.IGNORE)
-    fun insertAll(vararg subjects: Array<out Subject>)
-
-    @Insert(onConflict = OnConflictStrategy.IGNORE)
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertSubject(subject: Subject)
 
-    @Query("DELETE FROM subjects WHERE name = :name and course = :course")
+    @Query("DELETE FROM subject WHERE name = :name and course = :course")
     fun deleteByName(name: String, course: String)
 
     @Update

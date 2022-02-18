@@ -2,7 +2,8 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:layout_margin="20dp">
 
 
     <TextView
@@ -11,8 +12,7 @@
         android:layout_width="match_parent"
         android:text="Subject"
         android:textStyle="bold"
-        android:textSize="30sp"
-        android:layout_marginStart="20dp"
+        android:textSize="25sp"
         />
 
     <TextView
@@ -21,30 +21,26 @@
         android:layout_height="wrap_content"
         android:text="Professors' name"
         android:textStyle="bold"
-        android:textSize="25sp"
-        android:layout_marginStart="20dp"
+        android:textSize="20sp"
         />
 
     <TextView
-        android:id="@+id/textView_prof_mail"
+        android:id="@+id/textView_prof_email"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="professor@ipca.pt"
         android:textStyle="bold"
-        android:textSize="25sp"
-        android:layout_marginStart="20dp"
+        android:textSize="20sp"
 
         />
 
     <TextView
-        android:id="@+id/textView_date_entry"
+        android:id="@+id/textView_schedule"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Wed, from 14:00 to 16:00"
         android:textStyle="bold"
-        android:textSize="25sp"
-        android:layout_marginStart="20dp"
-        android:layout_marginBottom="50dp"
+        android:textSize="20sp"
         />
 
 </LinearLayout>

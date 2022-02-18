@@ -3,51 +3,17 @@ package pt.ipca.cm_tp.databases
 import android.util.Log
 import com.google.firebase.firestore.FirebaseFirestore
 
-class StudentRepository(
-    //db: FirebaseFirestore = FirebaseFirestore.getInstance(),
-    private val studentDao: StudentDao) {
+class StudentRepository(private val studentDao: StudentDao) {
 
     init {
-    /*
-        db.collection("students")
-            .get()
-            .addOnSuccessListener { documents ->
-                for (document in documents) {
-                    //Log.d("FIRESTORE:", "${document.id} => ${document.data}")
-                    val data = document.data
-                }
-            }
-            .addOnFailureListener { exception ->
-                Log.w("FIRESTORE:", "Error getting documents: ", exception)
-            }*/
-        /*
-        // Delete student
-        AppDatabase
-            .databaseWriteExecutor
-            .execute {
-                studentDao.deleteById(15464)
-            }
 
-        // Insert student
-        AppDatabase
-            .databaseWriteExecutor
-            .execute {
-                studentDao.insertStudent(
-                    Student(15464,
-                        "Nuno",
-                        "Fernandes",
-                        "Mestrado Engenharia Eletrónica e de Computadores",
-                        1)
-                )
-            }
-    */
     }
 
-    fun getAll() {
+    fun getAll(callback: (studentList: List<Student>?) -> Unit) {
         AppDatabase
             .databaseWriteExecutor
             .execute {
-                studentDao.getAll()
+                callback(studentDao.getAll())
             }
     }
 
@@ -59,6 +25,14 @@ class StudentRepository(
             }
     }
 
+    fun getCourseById(id: Int, callback: (course: String?) -> Unit) {
+        AppDatabase
+            .databaseWriteExecutor
+            .execute {
+                callback(studentDao.getCourseById(id))
+            }
+    }
+
     fun findStudentById(id: Int, callback: (student: Student?) -> Unit) {
         AppDatabase
             .databaseWriteExecutor
@@ -67,11 +41,11 @@ class StudentRepository(
             }
     }
 
-    fun insertAll(vararg student: Student) {
+    fun insertStudent(student: Student) {
         AppDatabase
             .databaseWriteExecutor
             .execute {
-                studentDao.insertAll(*student)
+                studentDao.insertStudent(student)
             }
     }
 

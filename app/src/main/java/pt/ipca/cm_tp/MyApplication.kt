@@ -10,7 +10,6 @@ import pt.ipca.cm_tp.databases.SubjectRepository
 class MyApplication : Application() {
 
     val database by lazy { AppDatabase.getDatabase(this) }
-    val studentRepository by lazy { StudentRepository(/*Firebase.firestore,*/ database.studentDao()) }
+    val studentRepository by lazy { StudentRepository(database.studentDao()) }
     val subjectRepository by lazy { SubjectRepository(database.subjectDao()) }
-
 }

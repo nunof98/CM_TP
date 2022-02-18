@@ -15,6 +15,7 @@ import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import pt.ipca.cm_tp.MyApplication
 import pt.ipca.cm_tp.R
+import pt.ipca.cm_tp.databases.Student
 import pt.ipca.cm_tp.databases.StudentRepository
 import pt.ipca.cm_tp.ui.MainActivity
 import pt.ipca.cm_tp.ui.RegisterActivity
@@ -26,6 +27,7 @@ import pt.ipca.cm_tp.utils.MultiString
 class HomeFragment : Fragment() {
 
     private lateinit var studentRepository: StudentRepository
+    private val db = Firebase.firestore
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -42,12 +44,12 @@ class HomeFragment : Fragment() {
         studentRepository = (requireActivity().application as MyApplication).studentRepository
 
         // Get student id number
-        val studentID = (activity as MainActivity).studentID
+        val studentID = (activity as MainActivity).studentID.toInt()
 
         // Get student info from firestore
-        getStudentInfo(studentID.toInt())
+        setup(studentID)
         // Display students' info on Home view
-        displayStudentInfo(studentID.toInt())
+        displayStudentInfo(studentID)
 
         // Bind button press to login function
         requireView().findViewById<Button>(R.id.button_register).setOnClickListener {
@@ -59,11 +61,11 @@ class HomeFragment : Fragment() {
 
         // Get data
         val values = listOf<MultiString>(
-            MultiString("Corporate Finance", "Wed, Dec 1", "14:00","Wed, Dec 1","16:00","School of Management * Room 5 * Attendance on Time"),
-            MultiString("Derivatives", "Thu, Dec 2", "16:00","Thu, Dec 2","18:00","School of Management * Room 3 * Attendance on Time"),
-            MultiString("Investments", "Fri, Dec 3", "16:00","Fri, Dec 3","18:00", "School of Management * Room 1 * Attendance on Time"),
-            MultiString("Crypto Currency", "Mon, Dec 6", "14:00","Mon, Dec 6","16:00","School of Management * Room 3 * Attendance on Time"),
-            MultiString("Law of Investment", "Mon, Dec 6", "16:00","Mon, Dec 6","18:00", "School of Management * Room 2 * Attendance on Time")
+            MultiString("Corporate Finance", "Wed, Dec 1", "14:00","Wed, Dec 1","16:00","School of Management | Room 5 | Attendance on Time"),
+            MultiString("Derivatives", "Thu, Dec 2", "16:00","Thu, Dec 2","18:00","School of Management | Room 3 | Attendance on Time"),
+            MultiString("Investments", "Fri, Dec 3", "16:00","Fri, Dec 3","18:00", "School of Management | Room 1 | Attendance on Time"),
+            MultiString("Crypto Currency", "Mon, Dec 6", "14:00","Mon, Dec 6","16:00","School of Management | Room 3 | Attendance on Time"),
+            MultiString("Law of Investment", "Mon, Dec 6", "16:00","Mon, Dec 6","18:00", "School of Management | Room 2 | Attendance on Time")
         )
 
         // Initialize adapter
@@ -72,20 +74,31 @@ class HomeFragment : Fragment() {
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
     }
 
-    private fun getStudentInfo(id: Int) {
-        val db = Firebase.firestore
-
+    /**
+     *
+     */
+    private fun setup(id: Int) {
+        // Get student info from firestore
         db.collection("students")
             .whereEqualTo("id", id)
             .get()
             .addOnSuccessListener { documents ->
                 for (document in documents) {
-                    //Log.d("FIRESTORE:", "${document.id} => ${document.data}")
-                    val data = document.data
+                    Log.d("FIRESTORE_STUDENTS:", "${document.id} => ${document.data}")
+
+                    // Insert student to local database
+                    studentRepository.insertStudent(
+                        Student(
+                            id = document.get("id").toString().toInt(),
+                            course = document.get("course") as String,
+                            firstName = document.get("firstName") as String,
+                            lastName = document.get("lastName") as String,
+                            year = document.get("year").toString().toInt()
+                    ))
                 }
             }
             .addOnFailureListener { exception ->
-                Log.w("FIRESTORE:", "Error getting documents: ", exception)
+                Log.w("FIRESTORE_STUDENTS:", "Error getting documents: ", exception)
             }
     }
 
