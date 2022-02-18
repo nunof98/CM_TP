@@ -7,7 +7,8 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import pt.ipca.cm_tp.R
 
-class LeaderboardFragment : Fragment(){
+
+class LeaderboardFragment : Fragment() {
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -17,4 +18,7 @@ class LeaderboardFragment : Fragment(){
         return inflater.inflate(R.layout.fragment_leaderboard, container, false)
     }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+    }
 }

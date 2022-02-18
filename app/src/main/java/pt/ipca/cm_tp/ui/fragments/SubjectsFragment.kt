@@ -5,6 +5,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -44,6 +45,11 @@ class SubjectsFragment : Fragment(){
         studentRepository.findStudentById(studentID) { student ->
             // Get subjects from firestore
             student?.let { setup(student.course, student.year) }
+
+            // Set label
+            requireView()
+                .findViewById<TextView>(R.id.textView_student_course)
+                .text = student?.course
 
             // Get recyclerView from layout
             val recyclerView = requireView().findViewById<RecyclerView>(R.id.recyclerView_subjects)

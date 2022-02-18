@@ -10,11 +10,12 @@
         android:layout_width="match_parent"
         android:layout_height="140dp"
         android:layout_margin="20dp"
+        android:layout_marginTop="16dp"
         android:scaleType="centerCrop"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/scenic1" />
+        tools:srcCompat="@tools:sample/backgrounds/scenic" />
 
     <ImageButton
         android:id="@+id/button_select_background"

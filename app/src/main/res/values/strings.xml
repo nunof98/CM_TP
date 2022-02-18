@@ -39,6 +39,7 @@
     <string name="action_register">Register</string>
 
     <!-- Subjects -->
+    <string name="office_hours">Office hours:</string>
 
     <!-- Deadlines -->
     <string name="hint_event_title">Event title</string>

@@ -6,7 +6,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import pt.ipca.cm_tp.R
 
-class ScoreboardViewHolder(inflater: LayoutInflater, val  parent: ViewGroup) :
+class LeaderboardViewHolder(inflater: LayoutInflater, val  parent: ViewGroup) :
     RecyclerView.ViewHolder(inflater.inflate(R.layout.item_leaderboard, parent, false)) {
 
     private var tvName = itemView.findViewById<TextView>(R.id.textView_subject_name)

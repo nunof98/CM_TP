@@ -31,4 +31,5 @@
     <string name="hint_describe">Descreva o seu evento:</string>
     <string name="hint_add_event">Adicionar Evento</string>
     <string name="hint_delete_event">Eliminar Evento</string>
+    <string name="office_hours">Horário de atendimento:</string>
 </resources>

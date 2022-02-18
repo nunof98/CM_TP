@@ -8,8 +8,8 @@ import java.util.*
 class Deadline(
     @PrimaryKey(autoGenerate = true)
     val id: Int = 0,
-    val dueDate: Date,
     val title: String,
+    val dueDate: String
     ) {
 
 }

@@ -4,15 +4,15 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 
-class ScoreboardAdapter(val leatherBoardList: List<String>) :
-    RecyclerView.Adapter<ScoreboardViewHolder>() {
+class LeaderboardAdapter(val leatherBoardList: List<String>) :
+    RecyclerView.Adapter<LeaderboardViewHolder>() {
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ScoreboardViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): LeaderboardViewHolder {
         val inflater = LayoutInflater.from(parent.context)
-        return ScoreboardViewHolder(inflater, parent)
+        return LeaderboardViewHolder(inflater, parent)
     }
 
-    override fun onBindViewHolder(holder: ScoreboardViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: LeaderboardViewHolder, position: Int) {
         holder.bindData(leatherBoardList.get(position))
     }
 

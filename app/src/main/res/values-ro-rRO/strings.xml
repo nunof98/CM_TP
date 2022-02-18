@@ -31,4 +31,5 @@
     <string name="hint_describe">" Descrieți evenimentul dvs.:"</string>
     <string name="hint_add_event">Adăugați un eveniment</string>
     <string name="hint_delete_event">" Șterge evenimentul"</string>
+    <string name="office_hours">Ore de birou:</string>
 </resources>

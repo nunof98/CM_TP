@@ -19,10 +19,10 @@
 
         <ImageView
             android:id="@+id/ImageView_profile_picture"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@mipmap/ic_launcher"
-            android:scaleType="centerCrop"/>
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:scaleType="centerCrop"
+            tools:srcCompat="@tools:sample/avatars"/>
 
     </androidx.cardview.widget.CardView>
 
@@ -59,13 +59,11 @@
         android:id="@+id/textView_next_classes"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView_student_course"
-        android:layout_margin="30dp"
+        android:layout_margin="20dp"
         android:text="Attendance History"
-        android:textColor="?colorSecondary"
-        android:textSize="20sp" />
+        android:textColor="?colorSecondary" />
 
     <!--
     <RelativeLayout

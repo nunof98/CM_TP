@@ -13,7 +13,7 @@ class MainActivity : AppCompatActivity() {
     private val homeFragment by lazy { HomeFragment() }
     private val subjectsFragment by lazy { SubjectsFragment() }
     private val scheduleFragment by lazy { DeadlinesFragment() }
-    private val profileFragment by lazy { ScoreboardFragment() }
+    private val profileFragment by lazy { LeaderboardFragment() }
     private val aboutFragment by lazy { AboutFragment() }
     lateinit var studentID: String
 

@@ -11,9 +11,10 @@ class SubjectsViewHolder(inflater: LayoutInflater, val  parent: ViewGroup) :
     RecyclerView.ViewHolder(inflater.inflate(R.layout.item_subjects, parent, false)) {
 
     private var subjectNameTV = itemView.findViewById<TextView>(R.id.textView_subject_name)
-    private var professorNameTV = itemView.findViewById<TextView>(R.id.textView_prof_name)
-    private var professorEmailTV = itemView.findViewById<TextView>(R.id.textView_prof_email)
-    private var scheduleTV = itemView.findViewById<TextView>(R.id.textView_schedule)
+    private var professorNameTV = itemView.findViewById<TextView>(R.id.textView_professor_name)
+    private var professorEmailTV = itemView.findViewById<TextView>(R.id.textView_professor_email)
+    private var scheduleTV = itemView.findViewById<TextView>(R.id.textView_subject_schedule)
+    private var officeHoursTV = itemView.findViewById<TextView>(R.id.textView_office_hours)
 
 
     fun bindData(subject: Subject){
@@ -21,5 +22,6 @@ class SubjectsViewHolder(inflater: LayoutInflater, val  parent: ViewGroup) :
         professorNameTV.text = subject.professorName
         professorEmailTV.text = subject.professorEmail
         scheduleTV.text = "${subject.schedule1}\n${subject.schedule2}"
+        officeHoursTV.text = subject.officeHours
     }
 }

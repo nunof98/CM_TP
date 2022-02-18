@@ -1,6 +1,5 @@
-package pt.ipca.cm_tp.fragments
+package pt.ipca.cm_tp.ui.fragments
 
-import android.R.attr
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
@@ -10,7 +9,7 @@ import android.view.ViewGroup
 import android.widget.Button
 import androidx.fragment.app.Fragment
 import pt.ipca.cm_tp.R
-import pt.ipca.cm_tp.utils.TripleString
+import pt.ipca.cm_tp.utils.MultiString
 
 
 val PICK_IMAGE = 1
@@ -41,12 +40,12 @@ class AddDeadlinesFragment : Fragment(){
         }
 
         // Get data
-        val values = listOf<TripleString>(
-            TripleString("Corporate Finance", "Wed, Dec 1", "14:00","Wed, Dec 1","16:00","School of Management * Room 5 * Attendance on Time"),
-            TripleString("Derivatives", "Thu, Dec 2", "16:00","Thu, Dec 2","18:00","School of Management * Room 3 * Attendance on Time"),
-            TripleString("Investments", "Fri, Dec 3", "16:00","Fri, Dec 3","18:00", "School of Management * Room 1 * Attendance on Time"),
-            TripleString("Crypto Currency", "Mon, Dec 6", "14:00","Mon, Dec 6","16:00","School of Management * Room 3 * Attendance on Time"),
-            TripleString("Law of Investment", "Mon, Dec 6", "16:00","Mon, Dec 6","18:00", "School of Management * Room 2 * Attendance on Time")
+        val values = listOf<MultiString>(
+            MultiString("Corporate Finance", "Wed, Dec 1", "14:00","Wed, Dec 1","16:00","School of Management * Room 5 * Attendance on Time"),
+            MultiString("Derivatives", "Thu, Dec 2", "16:00","Thu, Dec 2","18:00","School of Management * Room 3 * Attendance on Time"),
+            MultiString("Investments", "Fri, Dec 3", "16:00","Fri, Dec 3","18:00", "School of Management * Room 1 * Attendance on Time"),
+            MultiString("Crypto Currency", "Mon, Dec 6", "14:00","Mon, Dec 6","16:00","School of Management * Room 3 * Attendance on Time"),
+            MultiString("Law of Investment", "Mon, Dec 6", "16:00","Mon, Dec 6","18:00", "School of Management * Room 2 * Attendance on Time")
         )
 
 
