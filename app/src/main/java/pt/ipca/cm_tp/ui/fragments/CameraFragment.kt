@@ -1,6 +1,7 @@
 package pt.ipca.cm_tp.ui.fragments
 
 import android.Manifest
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.Bitmap
@@ -17,13 +18,20 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
+import com.google.android.gms.location.FusedLocationProviderClient
+import com.google.android.gms.location.LocationServices
 import pt.ipca.cm_tp.R
 import java.io.IOException
+import kotlin.math.acos
+import kotlin.math.cos
+import kotlin.math.round
+import kotlin.math.sin
 
 
 private const val LOG_TAG = "AudioRecordTest"
 const val REQUEST_CAMERA = 0
 const val REQUEST_RECORD_AUDIO = 1
+const val REQUEST_FINE_LOCATION = 2
 private const val REQUEST_IMAGE_CAPTURE = 100
 
 class CameraFragment : Fragment(){
@@ -33,6 +41,7 @@ class CameraFragment : Fragment(){
     private lateinit var imageButtonMic: ImageButton
     private lateinit var imageButtonContinue: ImageButton
     private lateinit var recordPath: String
+    private lateinit var fusedLocationProviderClient: FusedLocationProviderClient
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -45,32 +54,61 @@ class CameraFragment : Fragment(){
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(requireContext())
+
         // Initialize image buttons
         imageButtonMic = requireView().findViewById(R.id.button_audio_capture)
         imageButtonContinue = requireView().findViewById(R.id.button_continue)
 
-        if(checkCameraPermission()) {
-            openNativeCamera()
-        }
+        // Check location permission
+        if (checkLocationPermission()) {
+            // Check if phone is in IPCA campus
+            fusedLocationProviderClient.lastLocation.addOnSuccessListener { location ->
+                if (location == null) {
+                    Toast.makeText(requireContext(),"Sorry can't get Location", Toast.LENGTH_SHORT).show()
+                } else location.apply {
+                    //IPCA Location
+                    val latitudeIPCA = 41.53704048478451
+                    val longitudeIPCA = -8.627900848553278
 
-        requireView().findViewById<ImageButton>(R.id.button_audio_capture).setOnClickListener {
-            imageButtonContinue.visibility = View.INVISIBLE
+                    val distance = round(6378137 *
+                            acos(cos(location.latitude * Math.PI / 180) * cos(latitudeIPCA * Math.PI / 180)
+                                    * cos((longitudeIPCA * Math.PI / 180) - (location.longitude * Math.PI / 180))
+                                    + sin(location.latitude * Math.PI / 180) * sin(latitudeIPCA * Math.PI / 180)))
 
-            if(checkRecordPermission()) {
-                recordAudio()
+                    if (distance < 500) {
+                        // Check camera permission
+                        if (checkCameraPermission()) {
+                            openNativeCamera()
+
+                            requireView().findViewById<ImageButton>(R.id.button_audio_capture).setOnClickListener {
+                                // Check audio record permission
+                                if (checkRecordPermission()) {
+                                    recordAudio()
+
+                                    imageButtonContinue.visibility = View.INVISIBLE
+                                    requireView().findViewById<ImageButton>(R.id.button_continue).setOnClickListener {
+                                        sendData()
+                                    }
+                                } else {
+                                    // No audio record permission
+                                    Toast.makeText(requireContext(), "You must give audio record permission to use this feature", Toast.LENGTH_SHORT).show()
+                                }
+                            }
+                        } else {
+                            // No camera permission
+                            Toast.makeText(requireContext(), "You must give camera permission to use this feature", Toast.LENGTH_SHORT).show()
+                        }
+                    } else {
+                        // Not on campus grounds
+                        Toast.makeText(requireContext(), "You must be in the IPCA campus to use this feature", Toast.LENGTH_SHORT).show()
+                    }
+                }
             }
+        } else {
+            // No location permission
+            Toast.makeText(requireContext(), "You must give location permission to use this feature", Toast.LENGTH_SHORT).show()
         }
-
-        requireView().findViewById<ImageButton>(R.id.button_continue).setOnClickListener {
-            sendData()
-        }
-    }
-
-    /**
-     * Calling this method will send the image and audio recording to be analyse
-     */
-    private fun sendData() {
-
     }
 
     /**
@@ -154,6 +192,13 @@ class CameraFragment : Fragment(){
     }
 
     /**
+     * Calling this method will send the image and audio recording to be analyse
+     */
+    private fun sendData() {
+
+    }
+
+    /**
      * Checks and if necessary requests permission to access camera
      * @return    Boolean   if permission is granted or not
      */
@@ -180,6 +225,23 @@ class CameraFragment : Fragment(){
             != PackageManager.PERMISSION_GRANTED){
             // Ask permission for the micro
             requestPermissions(arrayOf(Manifest.permission.RECORD_AUDIO), REQUEST_RECORD_AUDIO)
+
+            return false
+        }
+
+        return true
+    }
+
+    /**
+     * Checks and if necessary requests permission to access location
+     * @return    Boolean   if permission is granted or not
+     */
+    private fun checkLocationPermission(): Boolean{
+        if(ContextCompat
+                .checkSelfPermission(requireContext(), Manifest.permission.ACCESS_FINE_LOCATION)
+            != PackageManager.PERMISSION_GRANTED){
+            // Ask permission for the location
+            requestPermissions(arrayOf(Manifest.permission.ACCESS_FINE_LOCATION), REQUEST_FINE_LOCATION)
 
             return false
         }

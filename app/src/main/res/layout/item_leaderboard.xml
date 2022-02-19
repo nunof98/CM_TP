@@ -10,7 +10,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:layout_margin="20dp"
+        android:layout_marginTop="15dp"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -19,7 +19,6 @@
             android:id="@+id/textView_score_order"
             android:layout_width="50sp"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="15dp"
             android:layout_gravity="center"
             android:textSize="60sp"
             android:textStyle="bold"
@@ -31,7 +30,6 @@
             android:id="@+id/imageView_student_profile_pic"
             android:layout_width="80dp"
             android:layout_height="80dp"
-            android:layout_marginTop="5dp"
             android:src="@mipmap/ic_launcher"
             tools:srcCompat="@tools:sample/avatars" />
 
@@ -40,7 +38,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:layout_margin="5dp"
+            android:layout_marginStart="5dp"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintTop_toBottomOf="parent">
 
