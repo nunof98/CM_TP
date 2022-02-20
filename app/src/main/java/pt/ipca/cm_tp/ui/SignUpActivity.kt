@@ -13,7 +13,9 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
+import org.jetbrains.anko.doAsync
 import pt.ipca.cm_tp.R
+import pt.ipca.cm_tp.databases.http.HttpHelper
 import java.util.regex.Pattern
 
 class SignUpActivity : AppCompatActivity() {
@@ -32,7 +34,16 @@ class SignUpActivity : AppCompatActivity() {
 
         // Bind button press to login function
         findViewById<Button>(R.id.button_sign_up).setOnClickListener {
-            performSignUp()
+            //performSignUp()
+            // Validade Credentials
+            doAsync {
+                Log.d("ANSWER","helloworld!!")
+                val http : HttpHelper = HttpHelper()
+                textInputEmail = findViewById(R.id.til_email)
+                val email = textInputEmail.editText?.text.toString()
+                val studentID = email.substring(1, email.indexOf("@"))
+                val jsonSTinfo = http.getStudent(studentID)
+            }
         }
     }
 
