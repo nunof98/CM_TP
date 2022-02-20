@@ -24,10 +24,10 @@ class DeadlinesFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         // Get recyclerView from layout
-        val recyclerView = requireView().findViewById<RecyclerView>(R.id.recyclerView_deadlineList)
+        val recyclerView = requireView().findViewById<RecyclerView>(R.id.recyclerView_deadline)
 
         // Get data
-        val values = listOf<pt.ipca.cm_tp.databases.Deadline>(
+        val deadlineList = listOf<pt.ipca.cm_tp.databases.Deadline>(
             pt.ipca.cm_tp.databases.Deadline(title = "Computação Móvel", dueDate =  "12 Days"),
             pt.ipca.cm_tp.databases.Deadline(title = "Laboratórios Integrados I", dueDate =  "15 Days"),
             pt.ipca.cm_tp.databases.Deadline(title = "Procesamento Digital de Sinal", dueDate =  "20 Days"),
@@ -35,7 +35,7 @@ class DeadlinesFragment : Fragment() {
             pt.ipca.cm_tp.databases.Deadline(title = "Sistemas Embebidos e Tempo Real", dueDate =  "35 Days"))
 
         // Initialize adapter
-        val adapter = DeadlineAdapter(values)
+        val adapter = DeadlineAdapter(deadlineList)
         recyclerView.adapter = adapter
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
 

@@ -8,19 +8,19 @@
         android:title="@string/main_menu_home"/>
 
     <item
-        android:id="@+id/subjects"
+        android:id="@+id/subject"
         android:enabled="true"
         android:icon="@drawable/ic_open_book"
         android:title="@string/main_menu_subjects"/>
 
     <item
-        android:id="@+id/schedule"
+        android:id="@+id/deadline"
         android:enabled="true"
         android:icon="@drawable/ic_calendar"
         android:title="@string/main_menu_deadlines"/>
 
     <item
-        android:id="@+id/profile"
+        android:id="@+id/leaderboard"
         android:enabled="true"
         android:icon="@drawable/ic_leaderboard"
         android:title="@string/main_menu_leaderboard"/>

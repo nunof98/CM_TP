@@ -11,8 +11,8 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="Corporate Finance"
-        android:textStyle="bold"
         android:textSize="25sp"
+        android:textColor="?colorSecondary"
         android:layout_marginTop="15dp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
@@ -25,7 +25,7 @@
         android:layout_height="wrap_content"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView_subject_name"
-        android:textStyle="bold"
+        android:textColor="?colorSecondary"
         android:text="Tuesday 14:00h - 16:30h \nFriday 09:00h - 11:30h"
         android:textSize="15sp" />
 
@@ -65,7 +65,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="15sp"
-            android:textStyle="bold"
+            android:textColor="?colorSecondary"
             android:text="Prof. Name"
             />
 
@@ -74,7 +74,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="15sp"
-            android:textStyle="bold"
+            android:textColor="?colorSecondary"
             android:text="email"
             />
 
@@ -82,7 +82,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="15sp"
-            android:textStyle="bold"
+            android:textColor="?colorSecondary"
             android:text="@string/office_hours"
             />
 
@@ -91,7 +91,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="15sp"
-            android:textStyle="bold"
+            android:textColor="?colorSecondary"
             android:text="Friday 17:00h - 19:00h"
             />
 

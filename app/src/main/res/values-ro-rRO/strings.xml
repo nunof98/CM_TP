@@ -32,4 +32,19 @@
     <string name="hint_add_event">Adăugați un eveniment</string>
     <string name="hint_delete_event">" Șterge evenimentul"</string>
     <string name="office_hours">Ore de birou:</string>
+    <string name="start">Începe la:</string>
+    <string name="end">Se încheie la:</string>
+    <string name="curricular_units">Unități curriculare:</string>
+    <string name="future_events">Evenimente viitoare</string>
+    <string name="ranking_scores">Scoruri de clasament</string>
+    <string name="attendance_history">Istoricul prezenței:</string>
+    <string name="profile_email">Email:</string>
+    <string name="profile_mobile_number">Numărul de telefon mobil:</string>
+    <string name="profile_address">Adresa:</string>
+    <string name="profile_status">Stare:</string>
+    <string name="profile_average_grade">Nota medie:</string>
+    <string name="profile_number_absences">Numărul de absențe:</string>
+    <string name="profile_attendance_score">Scor de prezență:</string>
+    <string name="profile_leaderboard_position">Poziția în clasament:</string>
+    <string name="ranking_points">Puncte:</string>
 </resources>

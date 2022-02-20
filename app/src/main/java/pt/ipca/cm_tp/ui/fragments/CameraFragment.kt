@@ -58,56 +58,87 @@ class CameraFragment : Fragment(){
 
         // Initialize image buttons
         imageButtonMic = requireView().findViewById(R.id.button_audio_capture)
+        imageButtonMic.visibility = View.INVISIBLE
         imageButtonContinue = requireView().findViewById(R.id.button_continue)
+        imageButtonContinue.visibility = View.INVISIBLE
+
+        requireView().findViewById<ImageButton>(R.id.button_audio_capture).setOnClickListener {
+            // Check audio record permission
+            if (checkRecordPermission()) {
+                // Start audio recording process
+                recordAudio()
+            } else {
+                // No audio record permission
+                Toast.makeText(
+                    requireContext(),
+                    "You must give audio record permission to use this feature",
+                    Toast.LENGTH_SHORT
+                ).show()
+            }
+        }
+
+        requireView().findViewById<ImageButton>(R.id.button_continue).setOnClickListener {
+            // Send data for analysis
+            sendData()
+        }
 
         // Check location permission
         if (checkLocationPermission()) {
-            // Check if phone is in IPCA campus
+            // Get last location
             fusedLocationProviderClient.lastLocation.addOnSuccessListener { location ->
+                // Fail
                 if (location == null) {
-                    Toast.makeText(requireContext(),"Sorry can't get Location", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(
+                        requireContext(),
+                        "Sorry can't get Location",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                // Success
                 } else location.apply {
-                    //IPCA Location
+                    //IPCAs' location
                     val latitudeIPCA = 41.53704048478451
                     val longitudeIPCA = -8.627900848553278
 
-                    val distance = round(6378137 *
-                            acos(cos(location.latitude * Math.PI / 180) * cos(latitudeIPCA * Math.PI / 180)
-                                    * cos((longitudeIPCA * Math.PI / 180) - (location.longitude * Math.PI / 180))
-                                    + sin(location.latitude * Math.PI / 180) * sin(latitudeIPCA * Math.PI / 180)))
+                    // Calculate phones distance from IPCA campus
+                    val distance = round(
+                        6378137 * acos(cos(location.latitude * Math.PI / 180) * cos(latitudeIPCA * Math.PI / 180)
+                                        * cos((longitudeIPCA * Math.PI / 180) - (location.longitude * Math.PI / 180))
+                                        + sin(location.latitude * Math.PI / 180) * sin(latitudeIPCA * Math.PI / 180))
+                    )
 
-                    if (distance < 500) {
+                    // If phone is within radius of IPCA campus
+                    if (distance <= 500) {
                         // Check camera permission
                         if (checkCameraPermission()) {
+                            // Open native camera
                             openNativeCamera()
-
-                            requireView().findViewById<ImageButton>(R.id.button_audio_capture).setOnClickListener {
-                                // Check audio record permission
-                                if (checkRecordPermission()) {
-                                    recordAudio()
-
-                                    imageButtonContinue.visibility = View.INVISIBLE
-                                    requireView().findViewById<ImageButton>(R.id.button_continue).setOnClickListener {
-                                        sendData()
-                                    }
-                                } else {
-                                    // No audio record permission
-                                    Toast.makeText(requireContext(), "You must give audio record permission to use this feature", Toast.LENGTH_SHORT).show()
-                                }
-                            }
+                            // Make record audio button visible
+                            imageButtonMic.visibility = View.VISIBLE
                         } else {
                             // No camera permission
-                            Toast.makeText(requireContext(), "You must give camera permission to use this feature", Toast.LENGTH_SHORT).show()
+                            Toast.makeText(
+                                requireContext(),
+                                "You must give camera permission to use this feature",
+                                Toast.LENGTH_SHORT
+                            ).show()
                         }
                     } else {
                         // Not on campus grounds
-                        Toast.makeText(requireContext(), "You must be in the IPCA campus to use this feature", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(
+                            requireContext(),
+                            "You must be in the IPCA campus to use this feature",
+                            Toast.LENGTH_SHORT
+                        ).show()
                     }
                 }
             }
         } else {
             // No location permission
-            Toast.makeText(requireContext(), "You must give location permission to use this feature", Toast.LENGTH_SHORT).show()
+            Toast.makeText(
+                requireContext(),
+                "You must give location permission to use this feature",
+                Toast.LENGTH_SHORT
+            ).show()
         }
     }
 
@@ -195,7 +226,7 @@ class CameraFragment : Fragment(){
      * Calling this method will send the image and audio recording to be analyse
      */
     private fun sendData() {
-
+        Toast.makeText(requireContext(), "Data sent", Toast.LENGTH_SHORT).show()
     }
 
     /**

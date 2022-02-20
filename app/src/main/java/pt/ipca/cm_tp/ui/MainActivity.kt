@@ -2,26 +2,37 @@ package pt.ipca.cm_tp.ui
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.ktx.Firebase
+import pt.ipca.cm_tp.MyApplication
 import pt.ipca.cm_tp.R
+import pt.ipca.cm_tp.databases.Student
+import pt.ipca.cm_tp.databases.StudentRepository
 import pt.ipca.cm_tp.ui.fragments.*
 
 class MainActivity : AppCompatActivity() {
 
     // Initialize fragments as lazy
     private val homeFragment by lazy { HomeFragment() }
-    private val subjectsFragment by lazy { SubjectsFragment() }
-    private val scheduleFragment by lazy { DeadlinesFragment() }
-    private val profileFragment by lazy { LeaderboardFragment() }
+    private val subjectFragment by lazy { SubjectsFragment() }
+    private val deadlineFragment by lazy { DeadlinesFragment() }
+    private val leaderboardFragment by lazy { LeaderboardFragment() }
     private val aboutFragment by lazy { AboutFragment() }
     lateinit var studentID: String
+    lateinit var studentRepository: StudentRepository
+    private val db = Firebase.firestore
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
         studentID = intent.getStringExtra("studentID")!!
+
+        // Get logged student info from firestore
+        getStudentFromFirestore(studentID.toInt())
 
         // Load home fragment by default
         loadFragment(homeFragment)
@@ -38,20 +49,20 @@ class MainActivity : AppCompatActivity() {
                 }
 
                 // Load subjects fragment
-                R.id.subjects -> {
-                    loadFragment(subjectsFragment)
+                R.id.subject -> {
+                    loadFragment(subjectFragment)
                     true
                 }
 
                 // Load schedule fragment
-                R.id.schedule -> {
-                    loadFragment(scheduleFragment)
+                R.id.deadline -> {
+                    loadFragment(deadlineFragment)
                     true
                 }
 
                 // Load profile fragment
-                R.id.profile -> {
-                    loadFragment(profileFragment)
+                R.id.leaderboard-> {
+                    loadFragment(leaderboardFragment)
                     true
                 }
 
@@ -70,10 +81,38 @@ class MainActivity : AppCompatActivity() {
      * Loads fragments into ui
      * @param   Fragment    an activity fragment
      */
-    private fun loadFragment(fragment: Fragment){
+    fun loadFragment(fragment: Fragment) {
         supportFragmentManager
             .beginTransaction()
             .replace(R.id.navigationContainer, fragment)
             .commit()
+    }
+
+    private fun getStudentFromFirestore(id: Int) {
+        // Initialize repositories
+        studentRepository = (application as MyApplication).studentRepository
+
+        // Get student info from firestore
+        db.collection("students")
+            .whereEqualTo("id", id)
+            .get()
+            .addOnSuccessListener { documents ->
+                for (document in documents) {
+                    Log.d("FIRESTORE_STUDENTS:", "${document.id} => ${document.data}")
+
+                    // Insert student to local database
+                    studentRepository.insertStudent(
+                        Student(
+                            id = document.get("id").toString().toInt(),
+                            course = document.get("course") as String,
+                            firstName = document.get("firstName") as String,
+                            lastName = document.get("lastName") as String,
+                            year = document.get("year").toString().toInt()
+                        ))
+                }
+            }
+            .addOnFailureListener { exception ->
+                Log.w("FIRESTORE_STUDENTS:", "Error getting documents: ", exception)
+            }
     }
 }

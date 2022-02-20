@@ -5,12 +5,14 @@
         android:id="@+id/nfc"
         android:enabled="true"
         android:icon="@drawable/ic_nfc"
+        android:iconTint="?colorSecondary"
         android:title="@string/register_menu_nfc"/>
 
     <item
         android:id="@+id/camera"
         android:enabled="true"
         android:icon="@drawable/ic_camera"
+        android:iconTint="?colorSecondary"
         android:title="@string/register_menu_camera"/>
 
 </menu>

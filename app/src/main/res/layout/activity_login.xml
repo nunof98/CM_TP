@@ -44,8 +44,11 @@
         android:layout_marginLeft="30dp"
         android:layout_marginRight="30dp"
         android:hint="@string/hint_email"
+        app:hintTextColor="?colorSecondary"
         app:endIconMode="clear_text"
-        app:startIconDrawable="@drawable/ic_email">
+        app:startIconDrawable="@drawable/ic_email"
+        app:startIconTint="?colorSecondary"
+        app:endIconTint="?colorSecondary">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/tet_email"
@@ -70,8 +73,11 @@
         android:layout_marginLeft="30dp"
         android:layout_marginRight="30dp"
         android:hint="@string/hint_password"
+        app:hintTextColor="?colorSecondary"
         app:endIconMode="password_toggle"
-        app:startIconDrawable="@drawable/ic_password">
+        app:startIconDrawable="@drawable/ic_password"
+        app:startIconTint="?colorSecondary"
+        app:endIconTint="?colorSecondary">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/tet_password"
@@ -120,6 +126,7 @@
         android:background="@drawable/bg_rounded_edges"
         android:minHeight="60dp"
         android:text="@string/action_login"
+        android:textColor="@color/white"
         android:textAllCaps="false"
         app:layout_constraintBottom_toTopOf="@+id/textView_signup_link"
         app:layout_constraintLeft_toLeftOf="parent"
@@ -136,6 +143,7 @@
         android:layout_marginLeft="25dp"
         android:layout_marginRight="25dp"
         android:textAlignment="center"
+        android:textColor="?colorSecondary"
         android:focusable="true"
         android:clickable="true"
         android:onClick="changeToSignUpActivity"/>
