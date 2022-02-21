@@ -8,12 +8,12 @@
     <ImageView
         android:id="@+id/imageView_background_pic"
         android:layout_width="match_parent"
-        android:layout_height="150dp"
+        android:layout_height="180dp"
         android:scaleType="centerCrop"
+        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:srcCompat="@tools:sample/backgrounds/scenic" />
+        tools:src="@drawable/ipca_background" />
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cardView_profile_picture"
@@ -21,8 +21,7 @@
         android:layout_height="wrap_content"
         app:layout_constraintLeft_toLeftOf="@+id/imageView_background_pic"
         app:layout_constraintTop_toTopOf="@+id/imageView_background_pic"
-        app:layout_constraintBottom_toBottomOf="@+id/imageView_background_pic"
-        app:layout_constraintRight_toRightOf="@+id/imageView_background_pic"
+        android:layout_margin="25dp"
         app:cardCornerRadius="90dp"
         android:layout_gravity="center">
 

@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import pt.ipca.cm_tp.MyApplication
@@ -34,6 +35,11 @@ class ProfileFragment : Fragment() {
         val studentID = (activity as MainActivity).studentID.toInt()
         studentRepository.findStudentById(studentID) { student ->
             // Set student name on textView
+            //requireView()
+            //    .findViewById<ImageView>(R.id.ImageView_profile_picture)
+            //    .setImageResource(student?.profilePicture)
+
+            // Set student name on textView
             requireView()
                 .findViewById<TextView>(R.id.textView_student_name)
                 .text = "${student?.firstName} ${student?.lastName} ● ${student?.id}"
@@ -43,10 +49,33 @@ class ProfileFragment : Fragment() {
                 .findViewById<TextView>(R.id.textView_student_course)
                 .text = "${student?.course} — ${student?.year}º year"
 
+            /*
             // Set student email on textView
             requireView()
                 .findViewById<TextView>(R.id.textView_student_mail)
-                .text = "a${student?.id}@alunos.ipca.pt"
+                .text = student?.email
+
+            // Set student phone number on textView
+            requireView()
+                .findViewById<TextView>(R.id.textView_student_mail)
+                .text = student?.phoneNumber
+
+            // Set student address on textView
+            requireView()
+                .findViewById<TextView>(R.id.textView_student_mail)
+                .text = student?.address
+
+            // Set student status on textView
+            requireView()
+                .findViewById<TextView>(R.id.textView_student_mail)
+                .text = student?.status
+
+            // Set student average grade on textView
+            requireView()
+                .findViewById<TextView>(R.id.textView_student_mail)
+                .text = student?.averageGrade.toString()
+
+             */
         }
     }
 }

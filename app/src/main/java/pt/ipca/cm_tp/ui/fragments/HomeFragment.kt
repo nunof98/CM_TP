@@ -88,7 +88,7 @@ class HomeFragment : Fragment() {
             // Set student name
             requireView()
                 .findViewById<TextView>(R.id.textView_student_name)
-                    .text = "${student?.firstName} ${student?.lastName} (${student?.id})"
+                    .text = "${student?.firstName} ${student?.lastName} nº${student?.id}"
 
             // Set student course
             requireView()

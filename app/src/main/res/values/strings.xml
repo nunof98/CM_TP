@@ -51,9 +51,12 @@
     <string name="future_events">Future Events</string>
     <string name="hint_event_title">Event title</string>
     <string name="hint_date">Date</string>
-    <string name="hint_describe">Describe your event:</string>
+    <string name="hint_describe">Describe your event</string>
     <string name="hint_add_event">Add Event</string>
     <string name="hint_delete_event">Delete Event</string>
+
+    <!-- Add Deadline -->
+    <string name="preview">Preview</string>
 
     <!-- Scores -->
     <string name="ranking_scores">Ranking Scores</string>

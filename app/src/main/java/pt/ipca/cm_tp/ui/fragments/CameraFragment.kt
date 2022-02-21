@@ -2,6 +2,7 @@ package pt.ipca.cm_tp.ui.fragments
 
 import android.Manifest
 import android.annotation.SuppressLint
+import android.app.Activity.RESULT_OK
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.Bitmap
@@ -146,20 +147,21 @@ class CameraFragment : Fragment(){
      * This method will take an image taken by the camera and put it in the ui
      */
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == AppCompatActivity.RESULT_OK) {
-            val imageBitmap = data?.extras?.get("data") as Bitmap
-            requireView().findViewById<ImageView>(R.id.imageView_photo).setImageBitmap(imageBitmap)
-        }
-
         super.onActivityResult(requestCode, resultCode, data)
+        if (resultCode == RESULT_OK && requestCode == REQUEST_IMAGE_CAPTURE) {
+            val imageBitmap = data?.extras?.get("data") as Bitmap
+            requireView()
+                .findViewById<ImageView>(R.id.imageView_photo)
+                .setImageBitmap(imageBitmap)
+        }
     }
 
     /**
      * Calling this method will open the default camera application.
      */
     private fun openNativeCamera() {
-        val intent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
-        startActivityForResult(intent, REQUEST_IMAGE_CAPTURE)
+        val takePictureIntent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
+        startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE)
     }
 
     /**

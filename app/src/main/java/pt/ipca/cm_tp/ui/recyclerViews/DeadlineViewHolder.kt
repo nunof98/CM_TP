@@ -18,7 +18,7 @@ class DeadlineViewHolder(inflater: LayoutInflater, val  parent: ViewGroup) :
 
 
     fun bindData(deadline: Deadline){
-        daysTV.text = deadline.dueDate.toString()
+        daysTV.text = deadline.dueDate
         evenTitleTV.text = deadline.title
         //photoIV.setImageResource(R.drawable.scenic1)
     }
