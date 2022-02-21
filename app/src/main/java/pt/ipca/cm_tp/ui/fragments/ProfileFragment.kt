@@ -1,6 +1,5 @@
 package pt.ipca.cm_tp.ui.fragments
 
-import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -10,9 +9,7 @@ import android.widget.TextView
 import androidx.fragment.app.Fragment
 import pt.ipca.cm_tp.MyApplication
 import pt.ipca.cm_tp.R
-import pt.ipca.cm_tp.databases.StudentRepository
 import pt.ipca.cm_tp.ui.MainActivity
-import pt.ipca.cm_tp.ui.RegisterActivity
 
 
 class ProfileFragment : Fragment() {
@@ -27,6 +24,10 @@ class ProfileFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        // Force imageView to show image
+        val imageView = requireView().findViewById<ImageView>(R.id.imageView_background_pic)
+        imageView.setImageResource(R.drawable.ipca_background)
 
         // Initialize repositories
         val studentRepository = (requireActivity().application as MyApplication).studentRepository

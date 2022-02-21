@@ -93,7 +93,7 @@ class SignUpActivity : AppCompatActivity() {
     /**
      *
      */
-    private fun setUser(id: String, name: String, email: String) {
+    private fun setUser(id: String, email: String, name: String) {
         val db = Firebase.firestore
 
         var parts  = name.split(" ").toMutableList()

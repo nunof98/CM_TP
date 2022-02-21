@@ -17,8 +17,10 @@ import android.widget.TextView
 import androidx.annotation.RequiresApi
 import androidx.fragment.app.Fragment
 import com.google.android.material.textfield.TextInputEditText
-import com.google.android.material.textfield.TextInputLayout
+import pt.ipca.cm_tp.MyApplication
 import pt.ipca.cm_tp.R
+import pt.ipca.cm_tp.databases.Deadline
+import pt.ipca.cm_tp.databases.DeadlineRepository
 import java.time.LocalDate
 import java.time.Period
 import java.time.format.DateTimeFormatter
@@ -28,9 +30,8 @@ val PICK_IMAGE = 1
 
 class AddDeadlinesFragment : Fragment(){
 
-    private lateinit var textInputEventTitle: TextInputLayout
-    private lateinit var textInputDate: TextInputLayout
-    private lateinit var textInputDescription: TextInputLayout
+    private lateinit var deadlineRepository: DeadlineRepository
+    private lateinit var period: Period
 
     override fun onCreateView(inflater: LayoutInflater,container: ViewGroup?,savedInstanceState: Bundle?): View? {
         return inflater.inflate(R.layout.fragment_add_deadline, container, false)
@@ -40,10 +41,8 @@ class AddDeadlinesFragment : Fragment(){
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        // Get objects from login activity
-        textInputEventTitle = requireView().findViewById(R.id.til_event_title)
-        textInputDate = requireView().findViewById(R.id.til_event_date)
-        textInputDescription = requireView().findViewById(R.id.til_event_describe)
+        // Initialize repositories
+        deadlineRepository = (requireActivity().application as MyApplication).deadlineRepository
 
         // Bind button press to Change Background Picture
         requireView().findViewById<ImageButton>(R.id.imageButton_select_background).setOnClickListener {
@@ -61,7 +60,7 @@ class AddDeadlinesFragment : Fragment(){
         // Set up text watcher for event title
         val eventTitleTextWatcher: TextWatcher = object : TextWatcher {
             override fun afterTextChanged(s: Editable) {
-                textInputEventTitle.editText?.setText(s.toString())
+                requireView().findViewById<TextView>(R.id.textView_event_title).text = s.toString()
             }
 
             override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {}
@@ -80,9 +79,9 @@ class AddDeadlinesFragment : Fragment(){
                 // Convert to LocalDate
                 val finalDate = LocalDate.parse(stringDate.replace("/", "-"), DateTimeFormatter.ISO_DATE)
                 // Calculate difference between dates in days
-                val days = Period.between(current, finalDate)
+                period = Period.between(current, finalDate)
                 // Set text
-                textInputDate.editText?.setText("${days.days} Days")
+                requireView().findViewById<TextView>(R.id.textView_days_left).text = "${period.days} Days"
             }
         }
     }
@@ -98,8 +97,19 @@ class AddDeadlinesFragment : Fragment(){
     /**
      * Saves the event information
      */
+    @RequiresApi(Build.VERSION_CODES.O)
     private fun addEvent() {
+        val eventTitle = requireView().findViewById<TextInputEditText>(R.id.tet_event_title).text.toString()
+        val eventDescription = requireView().findViewById<TextInputEditText>(R.id.tet_event_description).text.toString()
+      //val image = requireView().findViewById<ImageView>(R.id.imageView_background_pic).drawable
 
+        deadlineRepository.insertDeadline(
+            Deadline(
+                title = eventTitle,
+                dueDate = "${period.days}",
+                description = eventDescription,)
+                //picture = image)
+        )
     }
 
     /**

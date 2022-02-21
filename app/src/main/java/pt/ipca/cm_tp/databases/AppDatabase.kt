@@ -7,11 +7,12 @@ import androidx.room.RoomDatabase
 import java.util.concurrent.ExecutorService
 import java.util.concurrent.Executors
 
-@Database(entities = [Student::class, Subject::class], version = 3)
+@Database(entities = [Student::class, Subject::class, Deadline::class], version = 4)
 abstract class AppDatabase : RoomDatabase() {
 
     abstract fun studentDao(): StudentDao
     abstract fun subjectDao(): SubjectDao
+    abstract fun deadlineDao(): DeadlineDao
 
     companion object {
         // Singleton prevents multiple instances of database opening at the same time.
