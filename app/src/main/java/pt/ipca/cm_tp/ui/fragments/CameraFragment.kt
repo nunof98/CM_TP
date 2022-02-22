@@ -24,7 +24,16 @@ import androidx.core.content.FileProvider
 import androidx.fragment.app.Fragment
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
+import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.ktx.Firebase
+import pt.ipca.cm_tp.MyApplication
 import pt.ipca.cm_tp.R
+import pt.ipca.cm_tp.databases.Leaderboard
+import pt.ipca.cm_tp.databases.LeaderboardRepository
+import pt.ipca.cm_tp.databases.Subject
+import pt.ipca.cm_tp.ui.LoginActivity
+import pt.ipca.cm_tp.ui.MainActivity
+import pt.ipca.cm_tp.ui.RegisterActivity
 import java.io.File
 import java.io.IOException
 import kotlin.math.acos
@@ -42,6 +51,8 @@ private const val REQUEST_IMAGE_CAPTURE = 100
 
 class CameraFragment : Fragment(){
 
+
+
     private var mediaRecorder: MediaRecorder? = null
     private var isRecording: Boolean = false
     private lateinit var imageButtonMic: ImageButton
@@ -49,6 +60,8 @@ class CameraFragment : Fragment(){
     private lateinit var recordPath: String
     private lateinit var photoFile: File
     private lateinit var fusedLocationProviderClient: FusedLocationProviderClient
+    lateinit var studentID: String
+    private val db = Firebase.firestore
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -61,6 +74,9 @@ class CameraFragment : Fragment(){
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        // Get student id number
+        studentID = (activity as RegisterActivity).studentID
+
         fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(requireContext())
 
         // Initialize image buttons
@@ -68,6 +84,8 @@ class CameraFragment : Fragment(){
         imageButtonMic.visibility = View.INVISIBLE
         imageButtonContinue = requireView().findViewById(R.id.button_continue)
         imageButtonContinue.visibility = View.INVISIBLE
+
+
 
         requireView().findViewById<ImageButton>(R.id.button_audio_capture).setOnClickListener {
             // Check audio record permission
@@ -86,7 +104,7 @@ class CameraFragment : Fragment(){
 
         requireView().findViewById<ImageButton>(R.id.button_continue).setOnClickListener {
             // Send data for analysis
-            sendData()
+            sendData(studentID.toInt())
         }
 
         // Check location permission
@@ -243,8 +261,34 @@ class CameraFragment : Fragment(){
     /**
      * Calling this method will send the image and audio recording to be analyse
      */
-    private fun sendData() {
+    private fun sendData(id: Int) {
+
+        db.collection("leaderboard")
+            .whereEqualTo("studentNumber", id)
+            .get()
+            .addOnSuccessListener { documents ->
+                for (document in documents) {
+                    Log.d("FIRESTORE_SUBJECTS:", "${document.id} => ${document.data}")
+
+                    db.collection("leaderboard")
+                        .document("${document.id}")
+                        .update(mapOf(
+                            "points" to (document.get("points").toString().toInt() + 10)
+                        ))
+                }
+            }
+            .addOnFailureListener { exception ->
+                Log.w("FIRESTORE_SUBJECTS:", "Error getting documents: ", exception)
+            }
+
         Toast.makeText(requireContext(), "Data sent", Toast.LENGTH_SHORT).show()
+        val intent = Intent(requireContext(), MainActivity::class.java)
+        intent.putExtra("studentID", studentID)
+        startActivity(intent)
+
+
+        // Change to HomeFragment
+
     }
 
     /**
