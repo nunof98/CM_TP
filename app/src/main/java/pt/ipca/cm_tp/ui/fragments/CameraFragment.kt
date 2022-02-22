@@ -6,8 +6,10 @@ import android.app.Activity.RESULT_OK
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.Bitmap
+import android.graphics.BitmapFactory
 import android.media.MediaRecorder
 import android.os.Bundle
+import android.os.Environment
 import android.provider.MediaStore
 import android.util.Log
 import android.view.LayoutInflater
@@ -18,10 +20,12 @@ import android.widget.ImageView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
+import androidx.core.content.FileProvider
 import androidx.fragment.app.Fragment
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
 import pt.ipca.cm_tp.R
+import java.io.File
 import java.io.IOException
 import kotlin.math.acos
 import kotlin.math.cos
@@ -30,9 +34,10 @@ import kotlin.math.sin
 
 
 private const val LOG_TAG = "AudioRecordTest"
-const val REQUEST_CAMERA = 0
-const val REQUEST_RECORD_AUDIO = 1
-const val REQUEST_FINE_LOCATION = 2
+private const val FILE_NAME = "photo.jpg"
+private const val REQUEST_CAMERA = 0
+private const val REQUEST_RECORD_AUDIO = 1
+private const val REQUEST_FINE_LOCATION = 2
 private const val REQUEST_IMAGE_CAPTURE = 100
 
 class CameraFragment : Fragment(){
@@ -42,6 +47,7 @@ class CameraFragment : Fragment(){
     private lateinit var imageButtonMic: ImageButton
     private lateinit var imageButtonContinue: ImageButton
     private lateinit var recordPath: String
+    private lateinit var photoFile: File
     private lateinit var fusedLocationProviderClient: FusedLocationProviderClient
 
     override fun onCreateView(
@@ -147,13 +153,13 @@ class CameraFragment : Fragment(){
      * This method will take an image taken by the camera and put it in the ui
      */
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
         if (resultCode == RESULT_OK && requestCode == REQUEST_IMAGE_CAPTURE) {
-            val imageBitmap = data?.extras?.get("data") as Bitmap
+            val takenImage = BitmapFactory.decodeFile(photoFile.absolutePath)
             requireView()
                 .findViewById<ImageView>(R.id.imageView_photo)
-                .setImageBitmap(imageBitmap)
+                .setImageBitmap(takenImage)
         }
+        super.onActivityResult(requestCode, resultCode, data)
     }
 
     /**
@@ -161,7 +167,17 @@ class CameraFragment : Fragment(){
      */
     private fun openNativeCamera() {
         val takePictureIntent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
+        photoFile = getPhotoFile(FILE_NAME)
+        val fileProvider = FileProvider.getUriForFile(requireContext(), "pt.ipca.cm_tp.fileprovider", photoFile)
+        takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, fileProvider)
+
         startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE)
+    }
+
+    private fun getPhotoFile(fileName: String): File {
+        // Use 'getExternalFilesDir' on Context to access package-specific directories
+        val storageDirectory = requireContext().getExternalFilesDir(Environment.DIRECTORY_PICTURES)
+        return File.createTempFile(fileName, ".jpg", storageDirectory)
     }
 
     /**

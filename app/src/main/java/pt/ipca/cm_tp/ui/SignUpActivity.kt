@@ -14,6 +14,7 @@ import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import pt.ipca.cm_tp.R
+import pt.ipca.cm_tp.databases.Student
 import java.util.regex.Pattern
 
 class SignUpActivity : AppCompatActivity() {
@@ -70,7 +71,7 @@ class SignUpActivity : AppCompatActivity() {
                 auth.createUserWithEmailAndPassword(email, password)
                     .addOnCompleteListener(this) { task ->
                         if (task.isSuccessful) {
-                            // Set user
+                            // Set user on firestore
                             setUser(task.result.user!!.uid, email, name)
                             // Get intent and start activity
                             changeToLoginActivity()
