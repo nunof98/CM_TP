@@ -4,7 +4,6 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import pt.ipca.cm_tp.databases.Attendance
-import pt.ipca.cm_tp.utils.MultiString
 
 class HistoryAdapter(val historyList: List<Attendance>) :
     RecyclerView.Adapter<HistoryViewHolder>() {

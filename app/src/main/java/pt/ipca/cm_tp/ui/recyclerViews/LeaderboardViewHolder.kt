@@ -14,9 +14,9 @@ class LeaderboardViewHolder(inflater: LayoutInflater, val  parent: ViewGroup) :
     private var nameTV = itemView.findViewById<TextView>(R.id.textView_student_name)
     private var pointsTV = itemView.findViewById<TextView>(R.id.textView_points)
 
-    fun bindData(leaderboard: Leaderboard){
-        positionTV.text = leaderboard.position.toString()
-        nameTV.text = leaderboard.studentName
+    fun bindData(leaderboard: Leaderboard, position: Int){
+        positionTV.text = (position + 1).toString()
+        nameTV.text = "${leaderboard.studentName}\nnº${leaderboard.studentNumber}"
         pointsTV.text = leaderboard.points.toString()
     }
 }

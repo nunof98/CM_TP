@@ -6,7 +6,6 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import pt.ipca.cm_tp.R
 import pt.ipca.cm_tp.databases.Attendance
-import pt.ipca.cm_tp.utils.MultiString
 
 class HistoryViewHolder(inflater: LayoutInflater, val  parent: ViewGroup) :
     RecyclerView.ViewHolder(inflater.inflate(R.layout.item_history, parent, false)) {

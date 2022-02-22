@@ -80,7 +80,7 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         android:layout_marginTop="5dp"
-        android:text="@string/authors_andre_fernandes"
+        android:text="@string/authors_andre_moreira"
         android:textColor="?colorSecondary"/>
 
     <TextView

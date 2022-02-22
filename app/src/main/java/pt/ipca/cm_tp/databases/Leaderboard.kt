@@ -4,11 +4,10 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 import java.util.*
 
-@Entity(tableName = "attendance")
+@Entity(tableName = "leaderboard")
 class Leaderboard(
-    @PrimaryKey(autoGenerate = true)
-    val id: Int = 0,
-    val position: Int,
+    @PrimaryKey(autoGenerate = false)
+    val studentNumber: Int,
     val studentName: String,
     val points: Int
     ) {

@@ -11,17 +11,13 @@ import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.google.firebase.firestore.ktx.firestore
-import com.google.firebase.ktx.Firebase
 import pt.ipca.cm_tp.MyApplication
 import pt.ipca.cm_tp.R
 import pt.ipca.cm_tp.databases.Attendance
-import pt.ipca.cm_tp.databases.Student
 import pt.ipca.cm_tp.databases.StudentRepository
 import pt.ipca.cm_tp.ui.MainActivity
 import pt.ipca.cm_tp.ui.RegisterActivity
 import pt.ipca.cm_tp.ui.recyclerViews.HistoryAdapter
-import pt.ipca.cm_tp.utils.MultiString
 
 class HomeFragment : Fragment() {
 

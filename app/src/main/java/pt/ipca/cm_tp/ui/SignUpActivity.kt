@@ -13,8 +13,10 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
+import org.jetbrains.anko.doAsync
 import pt.ipca.cm_tp.R
 import pt.ipca.cm_tp.databases.Student
+import pt.ipca.cm_tp.databases.http.HttpHelper
 import java.util.regex.Pattern
 
 class SignUpActivity : AppCompatActivity() {
@@ -31,9 +33,13 @@ class SignUpActivity : AppCompatActivity() {
         // Initialize Firebase Auth
         auth = Firebase.auth
 
+        textInputName = findViewById(R.id.til_name)
+        textInputEmail = findViewById(R.id.til_email)
+        textInputPassword = findViewById(R.id.til_password)
+
         // Bind button press to login function
         findViewById<Button>(R.id.button_sign_up).setOnClickListener {
-            performSignUp()
+            serverQuery()
         }
     }
 
@@ -43,10 +49,10 @@ class SignUpActivity : AppCompatActivity() {
      * If it isn't successful it will alert user trough error
      * messages, depending on the cause
      */
-    private fun performSignUp() {
-        textInputName = findViewById(R.id.til_name)
-        textInputEmail = findViewById(R.id.til_email)
-        textInputPassword = findViewById(R.id.til_password)
+    private fun performSignUp(jsonSTinfo: String) {
+
+        val a = jsonSTinfo
+
         val textViewError = findViewById<TextView>(R.id.textView_error)
 
         findViewById<TextInputLayout>(R.id.til_password).addOnEditTextAttachedListener {
@@ -101,7 +107,6 @@ class SignUpActivity : AppCompatActivity() {
         val firstName = parts.firstOrNull()
         parts.removeAt(0)
         val lastName = parts.joinToString(" ")
-
         val number = email.substring(1, email.indexOf("@"))
 
         // Create a new user with a first and last name
@@ -194,5 +199,20 @@ class SignUpActivity : AppCompatActivity() {
     private fun changeToLoginActivity() {
         val intent = Intent(this, LoginActivity::class.java)
         startActivity(intent)
+    }
+
+    /**
+     * Calls the server and Performs the Sign Up
+     */
+    private fun serverQuery() {
+        // Validate Credentials
+        doAsync {
+            val http = HttpHelper()
+            val email = textInputEmail.editText?.text.toString()
+            val studentID = email.substring(1, email.indexOf("@"))
+            val jsonSTinfo = http.getStudent(studentID)
+            Log.d("ANSWER", "$jsonSTinfo")
+            performSignUp(jsonSTinfo)
+        }
     }
 }

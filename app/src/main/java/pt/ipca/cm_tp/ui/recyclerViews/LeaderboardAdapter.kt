@@ -14,7 +14,7 @@ class LeaderboardAdapter(val leaderboardList: List<Leaderboard>) :
     }
 
     override fun onBindViewHolder(holder: LeaderboardViewHolder, position: Int) {
-        holder.bindData(leaderboardList.get(position))
+        holder.bindData(leaderboardList.get(position), position)
     }
 
     override fun getItemCount(): Int {
