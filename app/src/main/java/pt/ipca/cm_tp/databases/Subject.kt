@@ -1,5 +1,6 @@
 package pt.ipca.cm_tp.databases
 
+import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 
@@ -15,7 +16,9 @@ class Subject(
     val schedule2: String,
     val professorName: String,
     val professorEmail: String,
-    val officeHours: String
+    val officeHours: String,
+    //@ColumnInfo(typeAffinity = ColumnInfo.BLOB)
+    //var professorPicture: ByteArray?
     ) {
 
 }

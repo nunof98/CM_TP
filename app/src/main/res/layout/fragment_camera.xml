@@ -27,7 +27,8 @@
         android:backgroundTint="@color/red_dark"
         android:src="@drawable/ic_mic"
         app:tint="@color/white"
-        android:padding="16dp" />
+        android:padding="16dp"
+        android:visibility="invisible"/>
 
     <ImageButton
         android:id="@+id/button_continue"

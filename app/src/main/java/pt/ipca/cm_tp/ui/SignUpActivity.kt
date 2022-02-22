@@ -34,6 +34,10 @@ class SignUpActivity : AppCompatActivity() {
         // Initialize Firebase Auth
         auth = Firebase.auth
 
+        textInputName = findViewById(R.id.til_name)
+        textInputEmail = findViewById(R.id.til_email)
+        textInputPassword = findViewById(R.id.til_password)
+
         // Bind button press to login function
         findViewById<Button>(R.id.button_sign_up).setOnClickListener {
             serverQuery()
@@ -47,9 +51,7 @@ class SignUpActivity : AppCompatActivity() {
      * messages, depending on the cause
      */
     private fun performSignUp(jsonSTinfo: String) {
-        textInputName = findViewById(R.id.til_name)
-        textInputEmail = findViewById(R.id.til_email)
-        textInputPassword = findViewById(R.id.til_password)
+
         val textViewError = findViewById<TextView>(R.id.textView_error)
 
         // Create Student From DB
@@ -76,7 +78,7 @@ class SignUpActivity : AppCompatActivity() {
                 auth.createUserWithEmailAndPassword(email, password)
                     .addOnCompleteListener(this) { task ->
                         if (task.isSuccessful) {
-                            // Set user
+                            // Set user on firestore
                             setUser(task.result.user!!.uid, email, name)
                             // Get intent and start activity
                             changeToLoginActivity()
@@ -103,14 +105,13 @@ class SignUpActivity : AppCompatActivity() {
     /**
      *
      */
-    private fun setUser(id: String, name: String, email: String) {
+    private fun setUser(id: String, email: String, name: String) {
         val db = Firebase.firestore
 
         var parts = name.split(" ").toMutableList()
         val firstName = parts.firstOrNull()
         parts.removeAt(0)
         val lastName = parts.joinToString(" ")
-
         val number = email.substring(1, email.indexOf("@"))
 
         // Create a new user with a first and last name
@@ -209,18 +210,15 @@ class SignUpActivity : AppCompatActivity() {
      * Calls the server and Performs the Sign Up
      */
     private fun serverQuery() {
-        // Validade Credentials
+
+        // Validate Credentials
         doAsync {
-            Log.d("ANSWER", "helloworld!!")
-            val http: HttpHelper = HttpHelper()
-            textInputEmail = findViewById(R.id.til_email)
+            val http = HttpHelper()
             val email = textInputEmail.editText?.text.toString()
             val studentID = email.substring(1, email.indexOf("@"))
             val jsonSTinfo = http.getStudent(studentID)
             Log.d("ANSWER", "$jsonSTinfo")
             performSignUp(jsonSTinfo)
         }
-
     }
-
 }

@@ -37,25 +37,51 @@
 
     <!-- Home -->
     <string name="action_register">Register</string>
+    <string name="attendance_history">Attendance History:</string>
+
+    <!-- History -->
+    <string name="start">Starts at:</string>
+    <string name="end">Ends at:</string>
 
     <!-- Subjects -->
     <string name="office_hours">Office hours:</string>
+    <string name="curricular_units">Curricular Units:</string>
 
     <!-- Deadlines -->
+    <string name="future_events">Future Events</string>
     <string name="hint_event_title">Event title</string>
     <string name="hint_date">Date</string>
-    <string name="hint_describe">Describe your event:</string>
+    <string name="hint_describe">Describe your event</string>
     <string name="hint_add_event">Add Event</string>
     <string name="hint_delete_event">Delete Event</string>
+    <string name="error_enter_a_title">Enter a title</string>
+    <string name="error_enter_a_date">Enter a date</string>
+
+    <!-- Add Deadline -->
+    <string name="preview">Preview</string>
+
+    <!-- Scores -->
+    <string name="ranking_scores">Ranking Scores</string>
+    <string name="ranking_points">Points:</string>
 
     <!-- About -->
     <string name="about_copyright">Copyright © 2022\nMEEC, IPCA, Portugal</string>
+
+    <!-- Profile -->
+    <string name="profile_email">Email:</string>
+    <string name="profile_mobile_number">Mobile Number:</string>
+    <string name="profile_address">Address:</string>
+    <string name="profile_status">Status:</string>
+    <string name="profile_average_grade">Average Grade:</string>
+    <string name="profile_number_absences">Number of Absences:</string>
+    <string name="profile_attendance_score">Attendance Score:</string>
+    <string name="profile_leaderboard_position">Leaderboard Position:</string>
 
     <!-- Authors -->
     <string name="authors">Authors</string>
     <string name="authors_nuno_fernandes" translatable="false">Nuno Fernandes</string>
     <string name="authors_joaquin_dillen" translatable="false">Joaquin Dillen</string>
-    <string name="authors_andre_fernandes" translatable="false">André Fernandes</string>
+    <string name="authors_andre_moreira" translatable="false">André Moreira</string>
 
     <!-- Github -->
     <string name="source_code">Source code</string>

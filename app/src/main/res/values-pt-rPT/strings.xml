@@ -32,4 +32,20 @@
     <string name="hint_add_event">Adicionar Evento</string>
     <string name="hint_delete_event">Eliminar Evento</string>
     <string name="office_hours">Horário de atendimento:</string>
+    <string name="start">Começa às:</string>
+    <string name="end">Acaba às:</string>
+    <string name="curricular_units">Unidades Curriculares:</string>
+    <string name="future_events">Eventos futuros</string>
+    <string name="ranking_scores">Pontuações</string>
+    <string name="attendance_history">Histórico de presenças:</string>
+    <string name="profile_email">E-mail:</string>
+    <string name="profile_mobile_number">Número de telemóvel:</string>
+    <string name="profile_address">Morada:</string>
+    <string name="profile_status">Estado:</string>
+    <string name="profile_average_grade">Nota média:</string>
+    <string name="profile_number_absences">Número de faltas:</string>
+    <string name="profile_attendance_score">Pontuação de assistência:</string>
+    <string name="profile_leaderboard_position">Posição da tabela de liderança:</string>
+    <string name="ranking_points">Pontos:</string>
+    <string name="preview">Pré-visualização</string>
 </resources>

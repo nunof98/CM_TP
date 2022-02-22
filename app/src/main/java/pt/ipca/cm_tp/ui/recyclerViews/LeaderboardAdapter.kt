@@ -3,8 +3,9 @@ package pt.ipca.cm_tp.ui.recyclerViews
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import pt.ipca.cm_tp.databases.Leaderboard
 
-class LeaderboardAdapter(val leatherBoardList: List<String>) :
+class LeaderboardAdapter(val leaderboardList: List<Leaderboard>) :
     RecyclerView.Adapter<LeaderboardViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): LeaderboardViewHolder {
@@ -13,11 +14,11 @@ class LeaderboardAdapter(val leatherBoardList: List<String>) :
     }
 
     override fun onBindViewHolder(holder: LeaderboardViewHolder, position: Int) {
-        holder.bindData(leatherBoardList.get(position))
+        holder.bindData(leaderboardList.get(position), position)
     }
 
     override fun getItemCount(): Int {
-        return leatherBoardList.size
+        return leaderboardList.size
     }
 
 }

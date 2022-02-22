@@ -4,13 +4,22 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
+import android.widget.ImageButton
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import pt.ipca.cm_tp.MyApplication
 import pt.ipca.cm_tp.R
+import pt.ipca.cm_tp.databases.DeadlineRepository
+import pt.ipca.cm_tp.databases.SubjectRepository
+import pt.ipca.cm_tp.ui.MainActivity
 import pt.ipca.cm_tp.ui.recyclerViews.DeadlineAdapter
 
 class DeadlinesFragment : Fragment() {
+
+    private val addDeadlineFragment by lazy { AddDeadlinesFragment() }
+    private lateinit var deadlineRepository: DeadlineRepository
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -23,22 +32,24 @@ class DeadlinesFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        // Initialize repository
+        deadlineRepository = (requireActivity().application as MyApplication).deadlineRepository
+
+        // Bind imageView press to profile fragment
+        requireView().findViewById<ImageButton>(R.id.imageButton_add).setOnClickListener {
+            // Change to profile fragment
+            (activity as MainActivity).loadFragment(addDeadlineFragment)
+        }
+
         // Get recyclerView from layout
-        val recyclerView = requireView().findViewById<RecyclerView>(R.id.recyclerView_deadlineList)
+        val recyclerView = requireView().findViewById<RecyclerView>(R.id.recyclerView_deadline)
 
-        // Get data
-        val values = listOf<pt.ipca.cm_tp.databases.Deadline>(
-            pt.ipca.cm_tp.databases.Deadline(title = "Computação Móvel", dueDate =  "12 Days"),
-            pt.ipca.cm_tp.databases.Deadline(title = "Laboratórios Integrados I", dueDate =  "15 Days"),
-            pt.ipca.cm_tp.databases.Deadline(title = "Procesamento Digital de Sinal", dueDate =  "20 Days"),
-            pt.ipca.cm_tp.databases.Deadline(title = "Procesamento de Imagem e Visão por Computador", dueDate =  "18 Days"),
-            pt.ipca.cm_tp.databases.Deadline(title = "Sistemas Embebidos e Tempo Real", dueDate =  "35 Days"))
-
-        // Initialize adapter
-        val adapter = DeadlineAdapter(values)
-        recyclerView.adapter = adapter
-        recyclerView.layoutManager = LinearLayoutManager(requireContext())
-
+        deadlineRepository.getAll { deadlineList ->
+            // Initialize adapter
+            val adapter = deadlineList?.let { DeadlineAdapter(it) }
+            recyclerView.adapter = adapter
+            recyclerView.layoutManager = LinearLayoutManager(requireContext())
+        }
     }
 
     private fun OpenEdit() {
