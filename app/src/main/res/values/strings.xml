@@ -54,6 +54,8 @@
     <string name="hint_describe">Describe your event</string>
     <string name="hint_add_event">Add Event</string>
     <string name="hint_delete_event">Delete Event</string>
+    <string name="error_enter_a_title">Enter a title</string>
+    <string name="error_enter_a_date">Enter a date</string>
 
     <!-- Add Deadline -->
     <string name="preview">Preview</string>

@@ -17,10 +17,12 @@ import android.widget.TextView
 import androidx.annotation.RequiresApi
 import androidx.fragment.app.Fragment
 import com.google.android.material.textfield.TextInputEditText
+import com.google.android.material.textfield.TextInputLayout
 import pt.ipca.cm_tp.MyApplication
 import pt.ipca.cm_tp.R
 import pt.ipca.cm_tp.databases.Deadline
 import pt.ipca.cm_tp.databases.DeadlineRepository
+import pt.ipca.cm_tp.ui.MainActivity
 import java.time.LocalDate
 import java.time.Period
 import java.time.format.DateTimeFormatter
@@ -30,7 +32,10 @@ val PICK_IMAGE = 1
 
 class AddDeadlinesFragment : Fragment(){
 
+    private val deadlineFragment by lazy { DeadlinesFragment() }
     private lateinit var deadlineRepository: DeadlineRepository
+    private lateinit var textInputEventTitle: TextInputLayout
+    private lateinit var textInputEventDate: TextInputLayout
     private lateinit var period: Period
 
     override fun onCreateView(inflater: LayoutInflater,container: ViewGroup?,savedInstanceState: Bundle?): View? {
@@ -44,17 +49,17 @@ class AddDeadlinesFragment : Fragment(){
         // Initialize repositories
         deadlineRepository = (requireActivity().application as MyApplication).deadlineRepository
 
+        // Get objects from login activity
+        textInputEventTitle = requireView().findViewById(R.id.til_event_title)
+        textInputEventDate = requireView().findViewById(R.id.til_event_date)
+
         // Bind button press to Change Background Picture
         requireView().findViewById<ImageButton>(R.id.imageButton_select_background).setOnClickListener {
             selectBackground()
         }
         // Bind button press to Add Event
-        requireView().findViewById<Button>(R.id.button_add_event).setOnClickListener {
+        requireView().findViewById<ImageButton>(R.id.imageButton_add_event).setOnClickListener {
             addEvent()
-        }
-        // Bind button press to Delete Event
-        requireView().findViewById<Button>(R.id.button_delete_event).setOnClickListener {
-            deleteEvent()
         }
 
         // Set up text watcher for event title
@@ -70,12 +75,11 @@ class AddDeadlinesFragment : Fragment(){
 
         // Set focus listener
         requireView().findViewById<TextInputEditText>(R.id.tet_date).setOnFocusChangeListener { _, b ->
+            val stringDate = requireView().findViewById<TextInputEditText>(R.id.tet_date).text.toString()
             // Lost focus
-            if (!b) {
+            if (!b && stringDate.isNotEmpty()) {
                 // Get current time
                 val current = LocalDate.now()
-                // Get user input
-                val stringDate = requireView().findViewById<TextView>(R.id.tet_date).text.toString()
                 // Convert to LocalDate
                 val finalDate = LocalDate.parse(stringDate.replace("/", "-"), DateTimeFormatter.ISO_DATE)
                 // Calculate difference between dates in days
@@ -100,16 +104,32 @@ class AddDeadlinesFragment : Fragment(){
     @RequiresApi(Build.VERSION_CODES.O)
     private fun addEvent() {
         val eventTitle = requireView().findViewById<TextInputEditText>(R.id.tet_event_title).text.toString()
+        val daysLeft = "${period.days}"
         val eventDescription = requireView().findViewById<TextInputEditText>(R.id.tet_event_description).text.toString()
       //val image = requireView().findViewById<ImageView>(R.id.imageView_background_pic).drawable
 
-        deadlineRepository.insertDeadline(
-            Deadline(
-                title = eventTitle,
-                dueDate = "${period.days}",
-                description = eventDescription,)
-                //picture = image)
-        )
+        if (eventTitle.isNotEmpty()) {
+            if (daysLeft.isNotEmpty()) {
+                deadlineRepository.insertDeadline(
+                    Deadline(
+                        title = eventTitle,
+                        dueDate = daysLeft,
+                        description = eventDescription,
+                        //picture = image
+                    )
+                )
+
+                // Change to deadline fragment
+                (activity as MainActivity).loadFragment(deadlineFragment)
+
+            } else {
+            //Display error message
+            textInputEventDate.error = getString(R.string.error_enter_a_date)
+            }
+        } else {
+            //Display error message
+            textInputEventTitle.error = getString(R.string.error_enter_a_title)
+        }
     }
 
     /**
