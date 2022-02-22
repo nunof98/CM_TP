@@ -3,6 +3,7 @@ package pt.ipca.cm_tp.ui
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.provider.ContactsContract
 import android.util.Log
 import android.view.View
 import android.widget.Button
@@ -15,6 +16,7 @@ import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import org.jetbrains.anko.doAsync
 import pt.ipca.cm_tp.R
+import pt.ipca.cm_tp.databases.Student
 import pt.ipca.cm_tp.databases.http.HttpHelper
 import java.util.regex.Pattern
 
@@ -34,16 +36,7 @@ class SignUpActivity : AppCompatActivity() {
 
         // Bind button press to login function
         findViewById<Button>(R.id.button_sign_up).setOnClickListener {
-            //performSignUp()
-            // Validade Credentials
-            doAsync {
-                Log.d("ANSWER","helloworld!!")
-                val http : HttpHelper = HttpHelper()
-                textInputEmail = findViewById(R.id.til_email)
-                val email = textInputEmail.editText?.text.toString()
-                val studentID = email.substring(1, email.indexOf("@"))
-                val jsonSTinfo = http.getStudent(studentID)
-            }
+            serverQuery()
         }
     }
 
@@ -53,11 +46,14 @@ class SignUpActivity : AppCompatActivity() {
      * If it isn't successful it will alert user trough error
      * messages, depending on the cause
      */
-    private fun performSignUp() {
+    private fun performSignUp(jsonSTinfo: String) {
         textInputName = findViewById(R.id.til_name)
         textInputEmail = findViewById(R.id.til_email)
         textInputPassword = findViewById(R.id.til_password)
         val textViewError = findViewById<TextView>(R.id.textView_error)
+
+        // Create Student From DB
+        //Student()
 
         findViewById<TextInputLayout>(R.id.til_password).addOnEditTextAttachedListener {
             if (textInputPassword.isErrorEnabled) {
@@ -72,8 +68,7 @@ class SignUpActivity : AppCompatActivity() {
         val email = textInputEmail.editText?.text.toString()
         val password = textInputPassword.editText?.text.toString()
 
-        if (name.isNotEmpty() && email.isNotEmpty() && password.isNotEmpty())
-        {
+        if (name.isNotEmpty() && email.isNotEmpty() && password.isNotEmpty()) {
             // Reset visibility
             textViewError.visibility = View.GONE
 
@@ -86,12 +81,16 @@ class SignUpActivity : AppCompatActivity() {
                             // Get intent and start activity
                             changeToLoginActivity()
                             // Sign in success, update UI with the signed-in user's information
-                            Toast.makeText(this, getString(R.string.dialog_you_are_signed_up),
-                                Toast.LENGTH_LONG).show()
+                            Toast.makeText(
+                                this, getString(R.string.dialog_you_are_signed_up),
+                                Toast.LENGTH_LONG
+                            ).show()
                         } else {
                             // If sign in fails, display a message to the user.
-                            Toast.makeText(this, getString(R.string.dialog_ign_up_failed),
-                                Toast.LENGTH_LONG).show()
+                            Toast.makeText(
+                                this, getString(R.string.dialog_ign_up_failed),
+                                Toast.LENGTH_LONG
+                            ).show()
                         }
                     }
             }
@@ -107,7 +106,7 @@ class SignUpActivity : AppCompatActivity() {
     private fun setUser(id: String, name: String, email: String) {
         val db = Firebase.firestore
 
-        var parts  = name.split(" ").toMutableList()
+        var parts = name.split(" ").toMutableList()
         val firstName = parts.firstOrNull()
         parts.removeAt(0)
         val lastName = parts.joinToString(" ")
@@ -176,9 +175,9 @@ class SignUpActivity : AppCompatActivity() {
 
             // Regex to validate if password is strong
             val regex = "^(?=.*[0-9])" +
-                        "(?=.*[a-z])(?=.*[A-Z])" +
-                        "(?=.*[@#$%^&+=?!])" +
-                        "(?=\\S+$).{8,20}$"
+                    "(?=.*[a-z])(?=.*[A-Z])" +
+                    "(?=.*[@#$%^&+=?!])" +
+                    "(?=\\S+$).{8,20}$"
 
             val p = Pattern.compile(regex)
             val m = p.matcher(password)
@@ -205,4 +204,23 @@ class SignUpActivity : AppCompatActivity() {
         val intent = Intent(this, LoginActivity::class.java)
         startActivity(intent)
     }
+
+    /**
+     * Calls the server and Performs the Sign Up
+     */
+    private fun serverQuery() {
+        // Validade Credentials
+        doAsync {
+            Log.d("ANSWER", "helloworld!!")
+            val http: HttpHelper = HttpHelper()
+            textInputEmail = findViewById(R.id.til_email)
+            val email = textInputEmail.editText?.text.toString()
+            val studentID = email.substring(1, email.indexOf("@"))
+            val jsonSTinfo = http.getStudent(studentID)
+            Log.d("ANSWER", "$jsonSTinfo")
+            performSignUp(jsonSTinfo)
+        }
+
+    }
+
 }

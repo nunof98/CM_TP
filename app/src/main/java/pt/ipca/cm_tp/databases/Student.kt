@@ -10,7 +10,17 @@ class Student(
     val firstName: String,
     val lastName: String,
     val course: String,
-    val year: Int
+    val year: Int,
+    //val email: String,
+    //val phoneNumber: String,
+    //val address: String,
+    //val status: String,
+    //val averageGrade: Int,
+    // This shit is ethernal
+
+
+
+
     ) {
 
 }

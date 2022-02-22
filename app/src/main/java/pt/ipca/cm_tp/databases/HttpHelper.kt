@@ -1,10 +1,12 @@
 package pt.ipca.cm_tp.databases.http
 
 import android.util.Log
+import com.google.gson.JsonObject
 import okhttp3.MediaType
 import okhttp3.OkHttpClient
 import okhttp3.Request
 import okhttp3.RequestBody
+import org.json.JSONObject
 
 class HttpHelper (){
 
@@ -34,11 +36,8 @@ class HttpHelper (){
 
     fun getStudent (string: String): String{
 
-
-        Log.d("ANSWER","Get Student!!!$string")
-
         // Define URL of the Server
-        val address = "http://192.168.1.127:5000/flask/ST_get" //Or https://172.25.224.1:8080/
+        val address = " http://cc81-193-137-231-114.ngrok.io/ST_get"
 
         // Add to URL the number of the Student
         val URL = "$address/$string/"
