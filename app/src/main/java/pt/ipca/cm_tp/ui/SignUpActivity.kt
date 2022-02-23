@@ -3,7 +3,6 @@ package pt.ipca.cm_tp.ui
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.provider.ContactsContract
 import android.util.Log
 import android.view.View
 import android.widget.Button
@@ -15,6 +14,7 @@ import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import org.jetbrains.anko.doAsync
+import org.json.JSONObject
 import pt.ipca.cm_tp.R
 import pt.ipca.cm_tp.databases.Student
 import pt.ipca.cm_tp.databases.http.HttpHelper
@@ -50,12 +50,9 @@ class SignUpActivity : AppCompatActivity() {
      * If it isn't successful it will alert user trough error
      * messages, depending on the cause
      */
-    private fun performSignUp(jsonSTinfo: String) {
+    private fun performSignUp(jsonObj: JSONObject) {
 
         val textViewError = findViewById<TextView>(R.id.textView_error)
-
-        // Create Student From DB
-        //Student()
 
         findViewById<TextInputLayout>(R.id.til_password).addOnEditTextAttachedListener {
             if (textInputPassword.isErrorEnabled) {
@@ -70,56 +67,78 @@ class SignUpActivity : AppCompatActivity() {
         val email = textInputEmail.editText?.text.toString()
         val password = textInputPassword.editText?.text.toString()
 
-        if (name.isNotEmpty() && email.isNotEmpty() && password.isNotEmpty()) {
-            // Reset visibility
-            textViewError.visibility = View.GONE
+        if (email == jsonObj.getString("email") && password == jsonObj.getString("password")) {
+            // Create Student object with server info
+            val student = Student(
+                id = jsonObj.getInt("id"),
+                firstName = jsonObj.getString("firstname"),
+                lastName = jsonObj.getString("lastname"),
+                course = jsonObj.getString("course"),
+                year = jsonObj.getInt("year"),
+                email = jsonObj.getString("email"),
+                phoneNumber = jsonObj.getString("phoneNumber"),
+                address = jsonObj.getString("address"),
+                status = jsonObj.getString("status"),
+                averageGrade = jsonObj.getDouble("averageGrade"),
+            )
 
-            if (validateEmail(email) && validatePassword(password)) {
-                auth.createUserWithEmailAndPassword(email, password)
-                    .addOnCompleteListener(this) { task ->
-                        if (task.isSuccessful) {
-                            // Set user on firestore
-                            setUser(task.result.user!!.uid, email, name)
-                            // Get intent and start activity
-                            changeToLoginActivity()
-                            // Sign in success, update UI with the signed-in user's information
-                            Toast.makeText(
-                                this, getString(R.string.dialog_you_are_signed_up),
-                                Toast.LENGTH_LONG
-                            ).show()
-                        } else {
-                            // If sign in fails, display a message to the user.
-                            Toast.makeText(
-                                this, getString(R.string.dialog_ign_up_failed),
-                                Toast.LENGTH_LONG
-                            ).show()
+            if (name.isNotEmpty() && email.isNotEmpty() && password.isNotEmpty()) {
+                // Reset visibility
+                textViewError.visibility = View.GONE
+
+                if (validateEmail(email) && validatePassword(password)) {
+                    auth.createUserWithEmailAndPassword(email, password)
+                        .addOnCompleteListener(this) { task ->
+                            if (task.isSuccessful) {
+                                // Set user on firestore
+                                setUser(task.result.user!!.uid, student)
+                                // Get intent and start activity
+                                changeToLoginActivity()
+                                // Sign in success, update UI with the signed-in user's information
+                                Toast.makeText(
+                                    this, getString(R.string.dialog_you_are_signed_up),
+                                    Toast.LENGTH_LONG
+                                ).show()
+                            } else {
+                                // If sign in fails, display a message to the user.
+                                Toast.makeText(
+                                    this, getString(R.string.dialog_sign_up_failed),
+                                    Toast.LENGTH_LONG
+                                ).show()
+                            }
                         }
-                    }
+                }
+            } else {
+                // If user doesn't fill out all fields
+                textViewError.visibility = View.VISIBLE
             }
         } else {
-            // If user doesn't fill out all fields
-            textViewError.visibility = View.VISIBLE
+            // If sign in fails, display a message to the user.
+            Toast.makeText(
+                this, "Email or password don't match to your IPCA account",
+                Toast.LENGTH_LONG
+            ).show()
         }
     }
 
     /**
-     *
+     *  Sets new users in firestore
      */
-    private fun setUser(id: String, email: String, name: String) {
+    private fun setUser(id: String, student: Student) {
         val db = Firebase.firestore
-
-        var parts = name.split(" ").toMutableList()
-        val firstName = parts.firstOrNull()
-        parts.removeAt(0)
-        val lastName = parts.joinToString(" ")
-        val number = email.substring(1, email.indexOf("@"))
 
         // Create a new user with a first and last name
         val user = hashMapOf(
-            "firstName" to firstName,
-            "lastName" to lastName,
-            "email" to email,
-            "id" to number
+            "id" to student.id,
+            "firstName" to student.firstName,
+            "lastName" to student.lastName,
+            "course" to student.course,
+            "year" to student.year,
+            "email" to student.email,
+            "phoneNumber" to student.phoneNumber,
+            "address" to student.address,
+            "status" to student.status,
+            "averageGrade" to student.averageGrade
         )
 
         // Add a new document with a generated ID
@@ -217,8 +236,9 @@ class SignUpActivity : AppCompatActivity() {
             val email = textInputEmail.editText?.text.toString()
             val studentID = email.substring(1, email.indexOf("@"))
             val jsonSTinfo = http.getStudent(studentID)
-            Log.d("ANSWER", "$jsonSTinfo")
-            performSignUp(jsonSTinfo)
+            Log.d("SERVER_RESPONSE", "$jsonSTinfo")
+            val jsonObj = JSONObject(jsonSTinfo?.substring(jsonSTinfo?.indexOf("{"), jsonSTinfo.lastIndexOf("}") + 1))
+            jsonObj?.let { performSignUp(it) }
         }
     }
 }

@@ -11,7 +11,7 @@ import org.json.JSONObject
 class HttpHelper (){
 
     // Define URL of the Server
-    val address = "http://cc81-193-137-231-114.ngrok.io/ST_get"
+    val address = "http://689e-193-137-231-83.ngrok.io"
 
     fun post (json: String) : String{
 
@@ -37,22 +37,17 @@ class HttpHelper (){
         return response.body().toString()
     }
 
-    fun getStudent (string: String): String{
-
-
-
+    fun getStudent (string: String): String? {
         // Add to URL the number of the Student
-        val URL = "$address/$string/"
-
-        //Log.d("ANSWER","$address/$string/")
+        val URL = "$address/ST_get/$string/"
 
         // Create a Client for trigger the request
         val client = OkHttpClient()
 
-        // Buld Request Http for the Server
+        // Build Request Http for the Server
         var request = Request.Builder().url(URL).get().build()
 
-        //  Use the Client for the request and get the Answer
+        // Use the Client for the request and get the Answer
         val response = client.newCall(request).execute()
 
         // Extract the Body of the request
@@ -61,11 +56,28 @@ class HttpHelper (){
         // Show the body of the response
         val json = responseBody?.string()
         Log.d("ANSWER","$json")
-        return response.body().toString()
-
+        return json
     }
 
-    fun getAll(){
+    fun getSubjects(string: String): String?{
+        // Add to URL the number of the Student
+        val URL = "$address/SB_get/$string/"
 
+        // Create a Client for trigger the request
+        val client = OkHttpClient()
+
+        // Build Request Http for the Server
+        var request = Request.Builder().url(URL).get().build()
+
+        // Use the Client for the request and get the Answer
+        val response = client.newCall(request).execute()
+
+        // Extract the Body of the request
+        val responseBody = response.body()
+
+        // Show the body of the response
+        val json = responseBody?.string()
+        Log.d("ANSWER","$json")
+        return json
     }
 }

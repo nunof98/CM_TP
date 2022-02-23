@@ -13,11 +13,11 @@ class Student(
     val lastName: String,
     val course: String,
     val year: Int,
-    //val email: String,
-    //val phoneNumber: String,
-    //val address: String,
-    //val status: String,
-    //val averageGrade: Int,
+    val email: String,
+    val phoneNumber: String,
+    val address: String,
+    val status: String,
+    val averageGrade: Double,
     //@ColumnInfo(typeAffinity = ColumnInfo.BLOB)
     //var profilePicture: ByteArray?
     ) {

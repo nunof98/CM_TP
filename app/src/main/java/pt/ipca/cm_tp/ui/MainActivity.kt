@@ -104,10 +104,15 @@ class MainActivity : AppCompatActivity() {
                     studentRepository.insertStudent(
                         Student(
                             id = document.get("id").toString().toInt(),
-                            course = document.get("course") as String,
                             firstName = document.get("firstName") as String,
                             lastName = document.get("lastName") as String,
-                            year = document.get("year").toString().toInt()
+                            course = document.get("course") as String,
+                            year = document.get("year").toString().toInt(),
+                            email = document.get("email") as String,
+                            phoneNumber = document.get("phoneNumber") as String,
+                            address = document.get("address") as String,
+                            status = document.get("status") as String,
+                            averageGrade = document.get("averageGrade").toString().toDouble()
                         ))
                 }
             }

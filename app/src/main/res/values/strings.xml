@@ -15,7 +15,7 @@
     <string name="hint_name">Name</string>
 
     <string name="dialog_you_are_signed_up">You are signed up</string>
-    <string name="dialog_ign_up_failed">Sign up failed</string>
+    <string name="dialog_sign_up_failed">Sign up failed</string>
 
     <string name="error_fill_out_all_fields">Fill out all fields</string>
     <string name="error_enter_an_email">Enter an email</string>

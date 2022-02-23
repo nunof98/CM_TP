@@ -5,6 +5,7 @@ import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Bundle
 import android.text.Html
+import android.util.Log
 import android.view.View
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
@@ -12,7 +13,10 @@ import com.google.android.material.textfield.TextInputLayout
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
+import org.jetbrains.anko.doAsync
+import org.json.JSONObject
 import pt.ipca.cm_tp.R
+import pt.ipca.cm_tp.databases.http.HttpHelper
 
 
 class LoginActivity : AppCompatActivity() {

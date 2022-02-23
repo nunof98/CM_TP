@@ -50,7 +50,6 @@ class ProfileFragment : Fragment() {
                 .findViewById<TextView>(R.id.textView_student_course)
                 .text = "${student?.course} — ${student?.year}º year"
 
-            /*
             // Set student email on textView
             requireView()
                 .findViewById<TextView>(R.id.textView_student_mail)
@@ -58,25 +57,24 @@ class ProfileFragment : Fragment() {
 
             // Set student phone number on textView
             requireView()
-                .findViewById<TextView>(R.id.textView_student_mail)
+                .findViewById<TextView>(R.id.textView_phone)
                 .text = student?.phoneNumber
 
             // Set student address on textView
             requireView()
-                .findViewById<TextView>(R.id.textView_student_mail)
+                .findViewById<TextView>(R.id.textView_address)
                 .text = student?.address
 
             // Set student status on textView
             requireView()
-                .findViewById<TextView>(R.id.textView_student_mail)
+                .findViewById<TextView>(R.id.textView_status)
                 .text = student?.status
 
             // Set student average grade on textView
             requireView()
-                .findViewById<TextView>(R.id.textView_student_mail)
+                .findViewById<TextView>(R.id.textView_overall_avg)
                 .text = student?.averageGrade.toString()
 
-             */
         }
     }
 }

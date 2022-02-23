@@ -11,7 +11,7 @@
     <string name="error_fill_out_all_fields">Preencha todos os campos</string>
     <string name="error_enter_an_email">Insira um e-mail</string>
     <string name="dialog_you_are_signed_up">Está registado</string>
-    <string name="dialog_ign_up_failed">O registo falhou</string>
+    <string name="dialog_sign_up_failed">O registo falhou</string>
     <string name="error_you_must_use_an_IPCA_email">Deve utilizar um e-mail do IPCA</string>
     <string name="error_password_isnt_strong_enough">A palavra-passe não é suficientemente forte</string>
     <string name="main_menu_home">Página principal</string>
@@ -48,4 +48,6 @@
     <string name="profile_leaderboard_position">Posição da tabela de liderança:</string>
     <string name="ranking_points">Pontos:</string>
     <string name="preview">Pré-visualização</string>
+    <string name="error_enter_a_title">Introduza um título</string>
+    <string name="error_enter_a_date">Introduza uma data</string>
 </resources>

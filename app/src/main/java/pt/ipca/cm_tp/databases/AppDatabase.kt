@@ -7,7 +7,7 @@ import androidx.room.RoomDatabase
 import java.util.concurrent.ExecutorService
 import java.util.concurrent.Executors
 
-@Database(entities = [Student::class, Subject::class, Deadline::class, Leaderboard::class], version = 7)
+@Database(entities = [Student::class, Subject::class, Deadline::class, Leaderboard::class], version = 8)
 abstract class AppDatabase : RoomDatabase() {
 
     abstract fun studentDao(): StudentDao

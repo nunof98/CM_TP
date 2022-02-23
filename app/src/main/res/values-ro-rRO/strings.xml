@@ -11,7 +11,7 @@
     <string name="error_fill_out_all_fields">Completați toate câmpurile</string>
     <string name="error_enter_an_email">Introduceți un e-mail</string>
     <string name="dialog_you_are_signed_up">Sunteți înscris</string>
-    <string name="dialog_ign_up_failed">Înregistrarea a eșuat</string>
+    <string name="dialog_sign_up_failed">Înregistrarea a eșuat</string>
     <string name="error_you_must_use_an_IPCA_email">Trebuie să utilizați un e-mail IPCA</string>
     <string name="error_password_isnt_strong_enough">Parola nu este suficient de puternică</string>
     <string name="main_menu_home">Pagina principală</string>
@@ -48,4 +48,6 @@
     <string name="profile_leaderboard_position">Poziția în clasament:</string>
     <string name="ranking_points">Puncte:</string>
     <string name="preview">Previzualizare</string>
+    <string name="error_enter_a_title">Introdu un titlu</string>
+    <string name="error_enter_a_date">Introdu o dată</string>
 </resources>
