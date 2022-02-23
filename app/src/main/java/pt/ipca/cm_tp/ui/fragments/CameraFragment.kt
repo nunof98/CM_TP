@@ -43,7 +43,7 @@ import kotlin.math.sin
 
 
 private const val LOG_TAG = "AudioRecordTest"
-private const val FILE_NAME = "photo.jpg"
+private const val FILE_NAME = "photo"
 private const val REQUEST_CAMERA = 0
 private const val REQUEST_RECORD_AUDIO = 1
 private const val REQUEST_FINE_LOCATION = 2
@@ -282,13 +282,11 @@ class CameraFragment : Fragment(){
             }
 
         Toast.makeText(requireContext(), "Data sent", Toast.LENGTH_SHORT).show()
+
+        // Change to HomeFragment
         val intent = Intent(requireContext(), MainActivity::class.java)
         intent.putExtra("studentID", studentID)
         startActivity(intent)
-
-
-        // Change to HomeFragment
-
     }
 
     /**

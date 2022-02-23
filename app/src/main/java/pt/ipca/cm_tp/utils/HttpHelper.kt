@@ -45,7 +45,7 @@ class HttpHelper (){
         val client = OkHttpClient()
 
         // Build Request Http for the Server
-        var request = Request.Builder().url(URL).get().build()
+        val request = Request.Builder().url(URL).get().build()
 
         // Use the Client for the request and get the Answer
         val response = client.newCall(request).execute()
@@ -54,9 +54,9 @@ class HttpHelper (){
         val responseBody = response.body()
 
         // Show the body of the response
-        val json = responseBody?.string()
-        Log.d("ANSWER","$json")
-        return json
+        val jsonString = responseBody?.string()
+        Log.d("ANSWER","$jsonString")
+        return jsonString
     }
 
     fun getSubjects(string: String): String?{
@@ -67,7 +67,7 @@ class HttpHelper (){
         val client = OkHttpClient()
 
         // Build Request Http for the Server
-        var request = Request.Builder().url(URL).get().build()
+        val request = Request.Builder().url(URL).get().build()
 
         // Use the Client for the request and get the Answer
         val response = client.newCall(request).execute()
@@ -76,8 +76,8 @@ class HttpHelper (){
         val responseBody = response.body()
 
         // Show the body of the response
-        val json = responseBody?.string()
-        Log.d("ANSWER","$json")
-        return json
+        val jsonString = responseBody?.string()
+        Log.d("ANSWER","$jsonString")
+        return jsonString
     }
 }
