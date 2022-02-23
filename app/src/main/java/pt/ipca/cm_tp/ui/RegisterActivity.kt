@@ -1,7 +1,7 @@
 package pt.ipca.cm_tp.ui
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import pt.ipca.cm_tp.R
@@ -14,9 +14,14 @@ class RegisterActivity : AppCompatActivity() {
     private val nfcFragment by lazy { NfcFragment() }
     private val cameraFragment by lazy { CameraFragment() }
 
+    lateinit var studentID: String
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_register)
+
+        studentID = intent.getStringExtra("studentID")!!
+
 
         // Load nfc fragment by default
         loadFragment(nfcFragment)
@@ -47,7 +52,7 @@ class RegisterActivity : AppCompatActivity() {
      * Loads fragments into ui
      * @param   Fragment    an activity fragment
      */
-    private fun loadFragment(fragment: Fragment){
+    fun loadFragment(fragment: Fragment){
         supportFragmentManager
             .beginTransaction()
             .replace(R.id.navigationContainer, fragment)

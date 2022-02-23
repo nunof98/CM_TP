@@ -46,7 +46,7 @@ class HomeFragment : Fragment() {
 
         // Bind button press to login function
         requireView().findViewById<Button>(R.id.button_register).setOnClickListener {
-            changeToRegisterActivity()
+            changeToRegisterActivity(studentID)
         }
 
         // Bind imageView press to profile fragment
@@ -96,8 +96,9 @@ class HomeFragment : Fragment() {
     /**
      * Changes activity to Register activity
      */
-    private fun changeToRegisterActivity() {
+    private fun changeToRegisterActivity(studentID: Int) {
         val intent = Intent(requireContext(), RegisterActivity::class.java)
+        intent.putExtra("studentID", (activity as MainActivity).studentID)
         startActivity(intent)
     }
 }
